@@ -1,0 +1,32 @@
+experiment:
+  name: "NeuroCreamFL_RestMetaMDD_Run1"
+  seed: 3407  # "lucky seed"
+  device: "cuda"
+  save_dir: "./checkpoints"
+
+data:
+  root_dir: "./data/Rest-meta-MDD"
+  public_site: "S20"   # 公共数据集
+  roi_count: 116            # AAL116 图谱
+  clinical_dim: 4          # [Age, Sex, HAMD, HAMA]
+  batch_size: 16
+  num_workers: 4
+  raw_excel_path: "./data/REST-meta-MDD-PhenotypicData_WithHAMDSubItem_V4.xlsx"
+  processed_root: "./data/Rest-meta-MDD"
+
+federated:
+  n_rounds: 50
+  n_clients: 25             # 参与训练的站点数量
+  client_sample_rate: 1.0  # 每轮参与的客户端比例
+  multimodal_ratio: 0.5  # 50% 的站点拥有临床数据，另外 50% 只有影像
+
+train:
+  local_epochs: 20
+  lr: 0.00001
+  weight_decay: 1.0e-4
+  gamma: 0.5               # LCR 正则化系数
+  temperature: 0.07        # InfoNCE 温度系数
+
+model:
+  feature_dim: 256         # 投影空间维度
+  hidden_dim: 1024         # 编码器隐藏层维度
