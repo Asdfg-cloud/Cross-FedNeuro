@@ -260,6 +260,8 @@ def main():
     logger.info(f"AUCs per fold: {folds_best_auc}")
     logger.info(f"Final Result: {mean_auc:.4f} ± {std_auc:.4f}")
 
+    # Git测试
+
 
 if __name__ == "__main__":
     main()
