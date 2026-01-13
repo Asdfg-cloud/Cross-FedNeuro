@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 class ClientTrainer:
     def __init__(self, client_id, model, train_loader, public_loader, config, device,
-                 is_multimodal=False, clinical_model=None):
+                 is_multimodal=False, clinical_model=None, ablation_config=None):
         """
         :param model: 本地影像模型 (可以是异构的，但投影头输出维度需统一)
         :param clinical_model: 临床网络 (仅多模态客户端持有)
@@ -34,6 +34,8 @@ class ClientTrainer:
 
         # LR Scheduler
         self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=10, gamma=0.9)
+        # 默认开启所有 Loss
+        self.ablation = ablation_config if ablation_config else {'use_intra': True, 'use_inter': True}
 
     def contrastive_loss(self, feat1, feat2):
         """ InfoNCE Loss """
@@ -108,13 +110,14 @@ class ClientTrainer:
 
                         # Intra: 本地影像 <-> 全局影像共识
                         # 注意：这里假设 public_loader 是 shuffle=False 的，顺序一致
-                        target_img = g_img_reps[:curr_bs]
-                        loss_intra = self.contrastive_loss(pub_local_proj, target_img)
-                        loss_lcr += loss_intra
+                        if self.ablation['use_intra']:
+                            target_img = g_img_reps[:curr_bs]
+                            loss_intra = self.contrastive_loss(pub_local_proj, target_img)
+                            loss_lcr += loss_intra
 
                         # Inter: 本地影像 <-> 全局临床共识
                         # 单模态客户端在这里通过 global_cli_reps 间接学习临床知识
-                        if g_cli_reps is not None:
+                        if self.ablation['use_inter'] and g_cli_reps is not None:
                             target_cli = g_cli_reps[:curr_bs]
                             loss_inter = self.contrastive_loss(pub_local_proj, target_cli)
                             loss_lcr += loss_inter

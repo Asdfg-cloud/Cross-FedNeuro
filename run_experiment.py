@@ -5,9 +5,10 @@ import torch
 import torch.nn as nn
 import yaml
 import logging
+import statistics
 from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
 
 from src import (
     RestMetaDataset,
@@ -41,6 +42,30 @@ def get_client_site_ids(data_root, public_site_id):
     client_ids.sort(key=lambda x: int(x[1:]))
     return client_ids
 
+# ================= 计算指标辅助函数 =================
+def calculate_metrics(y_true, y_probs, threshold=0.5):
+    """
+    计算 AUC, ACC, SEN, SPE
+    """
+    try:
+        auc = roc_auc_score(y_true, y_probs)
+    except ValueError:
+        auc = 0.5  # 极端情况处理
+
+    y_pred = (np.array(y_probs) > threshold).astype(int)
+
+    # 混淆矩阵
+    tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+
+    acc = accuracy_score(y_true, y_pred)
+
+    # Sensitivity (Recall) = TP / (TP + FN)
+    sen = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+
+    # Specificity = TN / (TN + FP)
+    spe = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+
+    return auc, acc, sen, spe
 
 # ================= 主程序 =================
 def main():
@@ -77,82 +102,61 @@ def main():
     logger.info(f"Multimodal Clients ({len(multi_site_set)}): {list(multi_site_set)}")
 
     # ================= 5折交叉验证循环 =================
-    # 定义 K-Fold 切分器 (Shuffle=True 配合固定Seed，保证可复现)
     n_folds = 5
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
-    # 存储每一折的最佳结果
-    folds_best_auc = []
+
+    # 存储每一折的最佳结果 (包含 AUC, ACC, SEN, SPE)
+    folds_results = [] # List of dicts
 
     for fold_idx in range(n_folds):
         logger.info(f"\n{'=' * 20} Start Fold {fold_idx + 1} / {n_folds} {'=' * 20}")
 
-        # --- 步骤 A: 初始化异构服务端 (必须重置) ---
-        # s_backbone = ResNetFC(input_dim=cfg['data']['roi_count']**2,
-        #                       hidden_dim=cfg['model']['hidden_dim'],
-        #                       feature_dim=cfg['model']['feature_dim']).to(device)
-        # s_clinical = ClinicalNet(input_dim=cfg['data']['clinical_dim'],
-        #                          feature_dim=cfg['model']['feature_dim']).to(device)
-        # server = ServerTrainer(s_backbone, s_clinical, public_loader, cfg, device)
+        # --- 步骤 A: 初始化异构服务端 ---
         server = ServerTrainer(cfg, device)
 
-        # --- 步骤 B: 初始化本折的客户端 (划分数据 & 重置模型) ---
+        # --- 步骤 B: 初始化本折的客户端 ---
         clients = []
-
         for site_id in site_ids:
-            # 加载该站点的完整数据集
             full_ds = RestMetaDataset(
                 site_id,
                 cfg['data']['processed_root'],
                 mode='private',
-                return_clinical=(site_id in multi_site_set)  # 标记是否返回临床数据
+                return_clinical=(site_id in multi_site_set)
             )
 
-            # --- 关键：使用 StratifiedKFold 获取本折的索引 ---
-            # skf.split 需要 X 和 y。X 可以是任意等长数组，y 必须是标签
             dummy_X = np.zeros(len(full_ds))
-            site_labels = full_ds.labels  # 假设 Dataset 里有 self.labels
-
-            # list(generator) 会生成 [(train_idx, test_idx), ...] 共5个元组
-            # 我们取第 fold_idx 个
+            site_labels = full_ds.labels
             train_idx, test_idx = list(skf.split(dummy_X, site_labels))[fold_idx]
 
-            # 创建 Subset
             train_subset = Subset(full_ds, train_idx)
             test_subset = Subset(full_ds, test_idx)
 
-            # 创建 DataLoader
-            # 只有训练集需要 shuffle=True
             train_loader = DataLoader(train_subset, batch_size=cfg['data']['batch_size'], shuffle=True, drop_last=True)
             test_loader = DataLoader(test_subset, batch_size=cfg['data']['batch_size'], shuffle=False)
 
-            # backbone = ResNetFC(input_dim=cfg['data']['roi_count']**2,
-            #                     hidden_dim=cfg['model']['hidden_dim'],
-            #                     feature_dim=cfg['model']['feature_dim'])
             # --- 异构模型分配 ---
-            # 随机给客户端分配不同的模型结构
             model_choice = random.choice(['resnet', 'transformer'])
             classifier_input_dim = 0
             backbone = None
             if model_choice == 'resnet':
-                # 标准 ResNetFC
                 classifier_input_dim = cfg['model']['hidden_dim']
                 backbone = ResNetFC(input_dim=cfg['data']['roi_count'] ** 2,
                                     hidden_dim=classifier_input_dim,
-                                    feature_dim=cfg['model']['feature_dim'])  # Proj Head Dim 统一
+                                    feature_dim=cfg['model']['feature_dim'])
             elif model_choice == 'transformer':
                 backbone = BrainTransformer(num_rois=cfg['data']['roi_count'],
                                             d_model=256,
                                             feature_dim=cfg['model']['feature_dim'])
-                classifier_input_dim = 256  # 与 d_model 一致
+                classifier_input_dim = 256
+
             model = MDDClassifier(backbone, hidden_dim=classifier_input_dim).to(device)
 
-            # 多模态客户端需要 ClinicalNet
             cli_model = None
             is_multimodal = site_id in multi_site_set
             if is_multimodal:
                 cli_model = ClinicalNet(input_dim=cfg['data']['clinical_dim'],
                                         feature_dim=cfg['model']['feature_dim']).to(device)
-            # 初始化 Trainer
+
             trainer = ClientTrainer(site_id, model, train_loader, public_loader, cfg, device,
                                     is_multimodal=is_multimodal,
                                     clinical_model=cli_model)
@@ -163,105 +167,102 @@ def main():
                 'test_loader': test_loader
             })
 
-        # --- 步骤 C: 联邦训练循环 (N Rounds) ---
-        best_fold_auc = 0.0
+        # --- 步骤 C: 联邦训练循环 ---
+        best_fold_metric = 0.0 # 用于选模型的指标 (通常用 AUC)
+        best_fold_stats = {}   # 记录最佳时刻的所有指标
 
         for round_idx in range(cfg['federated']['n_rounds']):
-            # 1. 服务端分发全局特征 (Round 0 为 None)
+            # 1. 下发
             g_reps = server.get_global_reps()
 
-            # 2. 客户端采样 (Client Sampling)
+            # 2. 采样
             sample_rate = cfg['federated'].get('client_sample_rate', 1.0)
-
-            # 计算本轮选多少个客户端 (至少选1个)
             num_selected = max(1, int(len(clients) * sample_rate))
-
-            # 随机抽取
             selected_clients = random.sample(clients, num_selected)
 
-            # 打印日志看看选中了谁，防止出错
-            selected_ids = [c['id'] for c in selected_clients]
-            logger.info(f"  Round {round_idx + 1} Selected: {selected_ids}")
-
-            # 3. 客户端训练 & 上传
+            # 3. 训练 & 上传
             client_uploads = []
             for c in selected_clients:
                 loss = c['trainer'].train_epoch(g_reps)
-
-                # 获取上传包 (特征表示)
                 pkg = c['trainer'].get_upload_package()
                 client_uploads.append(pkg)
 
-            # 4. 服务端聚合
+            # 4. 聚合
             server.aggregate(client_uploads)
 
-            # 5. 评估 (Evaluation) - 在本折的测试集上评估
-            # 通常我们在所有客户端的测试集上评估，取平均 AUC
-            auc_list = []
+            # 5. 评估 (Evaluation) - 计算综合指标
+            # 策略：汇总所有客户端的预测结果，计算 micro-average 指标
+            # 或者：计算每个客户端的指标然后平均 (macro-average)。这里采用汇总所有样本计算，更直观。
+
+            total_labels = []
+            total_probs = []
 
             for c in clients:
                 trainer = c['trainer']
-                loader = c['test_loader']  # 注意：这是本折划分出来的 20% 数据
+                loader = c['test_loader']
                 trainer.model.eval()
 
-                all_labels, all_probs = [], []
+                c_labels, c_probs = [], []
                 with torch.no_grad():
                     for batch_data in loader:
                         if (len(batch_data) == 3):
-                            # 多模态客户端返回: (img, clinical, label)
                             imgs, _, labels = batch_data
                         else:
-                            # 单模态客户端返回: (img, label)
                             imgs, labels = batch_data
 
                         imgs = imgs.to(device)
                         outputs = trainer.model(imgs)
 
-                        # 简单的二分类概率获取
                         if outputs.shape[1] == 2:
                             probs = torch.softmax(outputs, dim=1)[:, 1]
                         else:
                             probs = torch.sigmoid(outputs).squeeze()
 
-                        all_labels.extend(labels.cpu().numpy())
-                        all_probs.extend(probs.cpu().numpy())
+                        c_labels.extend(labels.cpu().numpy())
+                        c_probs.extend(probs.cpu().numpy())
 
-                # 计算 AUC (防止只有一类样本报错)
-                try:
-                    score = roc_auc_score(all_labels, all_probs)
-                except ValueError:
-                    score = 0.5  # 极端情况：测试集只有正例或只有负例
-                auc_list.append(score)
+                total_labels.extend(c_labels)
+                total_probs.extend(c_probs)
 
-            # 计算本轮平均 AUC
-            round_avg_auc = np.mean(auc_list)
-            if round_avg_auc > best_fold_auc:
-                best_fold_auc = round_avg_auc
+            # 计算本轮所有数据的综合指标
+            r_auc, r_acc, r_sen, r_spe = calculate_metrics(total_labels, total_probs)
+
+            # 记录最佳结果 (以 AUC 为准)
+            if r_auc > best_fold_metric:
+                best_fold_metric = r_auc
+                best_fold_stats = {
+                    'AUC': r_auc,
+                    'ACC': r_acc,
+                    'SEN': r_sen,
+                    'SPE': r_spe
+                }
 
             if (round_idx + 1) % 5 == 0:
-                logger.info(f"  [Fold {fold_idx + 1}] Round {round_idx + 1} Avg AUC: {round_avg_auc:.4f}")
+                logger.info(f"  [Fold {fold_idx + 1}] Round {round_idx + 1} | AUC: {r_auc:.4f} | ACC: {r_acc:.4f}")
 
-        # 本折结束，记录最佳结果
-        logger.info(f"Fold {fold_idx + 1} Best AUC: {best_fold_auc:.4f}")
-        folds_best_auc.append(best_fold_auc)
+        # 本折结束
+        logger.info(f"Fold {fold_idx + 1} Best Result: {best_fold_stats}")
+        folds_results.append(best_fold_stats)
 
     # ================= 实验结束，输出统计 =================
-    import statistics
+    logger.info(f"\n{'=' * 20} 5-Fold Cross-Validation Final Report {'=' * 20}")
 
-    if len(folds_best_auc) > 0:
-        mean_auc = statistics.mean(folds_best_auc)
-        # 如果只有一折，stdev 会报错，做个判断
-        std_auc = statistics.stdev(folds_best_auc) if len(folds_best_auc) > 1 else 0.0
-    else:
-        mean_auc = 0.0
-        std_auc = 0.0
+    # 提取各指标列表
+    metrics_keys = ['AUC', 'ACC', 'SEN', 'SPE']
+    final_stats = {}
 
-    logger.info(f"\n{'=' * 20} 5-Fold Cross-Validation Results {'=' * 20}")
-    logger.info(f"AUCs per fold: {folds_best_auc}")
-    logger.info(f"Final Result: {mean_auc:.4f} ± {std_auc:.4f}")
+    for key in metrics_keys:
+        values = [res[key] for res in folds_results]
+        if len(values) > 0:
+            mean_val = statistics.mean(values)
+            std_val = statistics.stdev(values) if len(values) > 1 else 0.0
+        else:
+            mean_val, std_val = 0.0, 0.0
 
-    # Git测试
+        final_stats[key] = f"{mean_val:.4f} ± {std_val:.4f}"
+        logger.info(f"{key}: {final_stats[key]}")
 
+    logger.info("============================================================")
 
 if __name__ == "__main__":
     main()
