@@ -22,9 +22,9 @@ federated:
 
 train:
   local_epochs: 20
-  lr: 0.00001
+  lr: 0.0001
   weight_decay: 1.0e-4
-  gamma: 0.5               # LCR 正则化系数
+  gamma: 0.2               # LCR 正则化系数
   temperature: 0.07        # InfoNCE 温度系数
 
 model:
