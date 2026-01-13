@@ -17236,3 +17236,54 @@
 2026-01-13 21:11:45,232 - Cross-FedNeuro - SEN: 0.5013 ¡À 0.1155
 2026-01-13 21:11:45,232 - Cross-FedNeuro - SPE: 0.5576 ¡À 0.1481
 2026-01-13 21:11:45,233 - Cross-FedNeuro - ============================================================
+2026-01-13 21:20:36,161 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-13 21:20:36,182 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-13 21:20:36,182 - Cross-FedNeuro - Multimodal Clients (11): ['S2', 'S1', 'S6', 'S10', 'S5', 'S9', 'S7', 'S12', 'S11', 'S8', 'S3']
+2026-01-13 21:20:36,182 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-13 21:22:52,440 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-13 21:22:52,459 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-13 21:22:52,459 - Cross-FedNeuro - Multimodal Clients (11): ['S12', 'S7', 'S1', 'S5', 'S2', 'S3', 'S9', 'S11', 'S6', 'S10', 'S8']
+2026-01-13 21:22:52,460 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-13 21:22:54,919 - Cross-FedNeuro -   Round 1 Selected: ['S5', 'S10', 'S19', 'S2', 'S1', 'S7', 'S9', 'S17', 'S24', 'S15', 'S6', 'S16', 'S3', 'S25', 'S18', 'S13', 'S23', 'S21', 'S11', 'S14', 'S22', 'S12', 'S8']
+2026-01-13 21:23:10,366 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-13 21:23:10,390 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-13 21:23:10,390 - Cross-FedNeuro - Multimodal Clients (11): ['S11', 'S12', 'S5', 'S3', 'S2', 'S8', 'S9', 'S7', 'S6', 'S10', 'S1']
+2026-01-13 21:23:10,390 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-13 21:23:12,819 - Cross-FedNeuro -   Round 1 Selected: ['S5', 'S10', 'S19', 'S2', 'S1', 'S7', 'S9', 'S17', 'S24', 'S15', 'S6', 'S16', 'S3', 'S25', 'S18', 'S13', 'S23', 'S21', 'S11', 'S14', 'S22', 'S12', 'S8']
+2026-01-13 21:23:15,379 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-13 21:23:15,494 - Cross-FedNeuro - Fold 1 Best Result -> AUC: 0.5269, ACC: 0.5284, SEN: 0.4691, SPE: 0.5617
+2026-01-13 21:23:15,494 - Cross-FedNeuro - 
+==================== Start Fold 2 / 5 ====================
+2026-01-13 21:23:17,139 - Cross-FedNeuro -   Round 1 Selected: ['S13', 'S3', 'S5', 'S23', 'S14', 'S17', 'S24', 'S1', 'S2', 'S8', 'S9', 'S22', 'S16', 'S6', 'S25', 'S21', 'S10', 'S12', 'S18', 'S19', 'S7', 'S15', 'S11']
+2026-01-13 21:23:19,158 - Cross-FedNeuro - Aggregated Clinical Reps from 674 weighted samples.
+2026-01-13 21:23:19,260 - Cross-FedNeuro - Fold 2 Best Result -> AUC: 0.5853, ACC: 0.5654, SEN: 0.3975, SPE: 0.7223
+2026-01-13 21:23:19,261 - Cross-FedNeuro - 
+==================== Start Fold 3 / 5 ====================
+2026-01-13 21:23:20,152 - Cross-FedNeuro -   Round 1 Selected: ['S3', 'S11', 'S19', 'S5', 'S15', 'S16', 'S23', 'S24', 'S13', 'S1', 'S17', 'S10', 'S18', 'S6', 'S2', 'S14', 'S25', 'S9', 'S7', 'S12', 'S8', 'S22', 'S21']
+2026-01-13 21:23:22,435 - Cross-FedNeuro - Aggregated Clinical Reps from 675 weighted samples.
+2026-01-13 21:23:22,546 - Cross-FedNeuro - Fold 3 Best Result -> AUC: 0.4676, ACC: 0.5081, SEN: 0.5514, SPE: 0.4491
+2026-01-13 21:23:22,546 - Cross-FedNeuro - 
+==================== Start Fold 4 / 5 ====================
+2026-01-13 21:23:23,456 - Cross-FedNeuro -   Round 1 Selected: ['S16', 'S19', 'S23', 'S1', 'S13', 'S11', 'S5', 'S24', 'S6', 'S3', 'S21', 'S8', 'S9', 'S14', 'S15', 'S2', 'S17', 'S12', 'S22', 'S10', 'S25', 'S7', 'S18']
+2026-01-13 21:23:25,743 - Cross-FedNeuro - Aggregated Clinical Reps from 678 weighted samples.
+2026-01-13 21:23:25,845 - Cross-FedNeuro - Fold 4 Best Result -> AUC: 0.5409, ACC: 0.5339, SEN: 0.5634, SPE: 0.4406
+2026-01-13 21:23:25,845 - Cross-FedNeuro - 
+==================== Start Fold 5 / 5 ====================
+2026-01-13 21:23:26,893 - Cross-FedNeuro -   Round 1 Selected: ['S22', 'S11', 'S14', 'S2', 'S9', 'S19', 'S17', 'S18', 'S24', 'S6', 'S10', 'S12', 'S25', 'S13', 'S16', 'S5', 'S7', 'S3', 'S15', 'S23', 'S21', 'S1', 'S8']
+2026-01-13 21:23:29,016 - Cross-FedNeuro - Aggregated Clinical Reps from 680 weighted samples.
+2026-01-13 21:23:29,122 - Cross-FedNeuro - Fold 5 Best Result -> AUC: 0.5209, ACC: 0.5351, SEN: 0.6264, SPE: 0.3894
+2026-01-13 21:23:29,122 - Cross-FedNeuro - 
+==================== 5-Fold Cross-Validation Final Results ====================
+2026-01-13 21:23:29,123 - Cross-FedNeuro - AUC: 0.5283 ¡À 0.0422
+2026-01-13 21:23:29,123 - Cross-FedNeuro - ACC: 0.5342 ¡À 0.0206
+2026-01-13 21:23:29,123 - Cross-FedNeuro - SEN: 0.5216 ¡À 0.0892
+2026-01-13 21:23:29,123 - Cross-FedNeuro - SPE: 0.5126 ¡À 0.1330
+2026-01-13 21:23:59,815 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-13 21:23:59,836 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-13 21:23:59,836 - Cross-FedNeuro - Multimodal Clients (11): ['S7', 'S11', 'S6', 'S3', 'S2', 'S9', 'S8', 'S5', 'S10', 'S1', 'S12']
+2026-01-13 21:23:59,836 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-13 21:24:02,623 - Cross-FedNeuro -   Round 1 Selected: ['S5', 'S10', 'S19', 'S2', 'S1', 'S7', 'S9', 'S17', 'S24', 'S15', 'S6', 'S16', 'S3', 'S25', 'S18', 'S13', 'S23', 'S21', 'S11', 'S14', 'S22', 'S12', 'S8']

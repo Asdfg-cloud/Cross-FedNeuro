@@ -42,30 +42,24 @@ def get_client_site_ids(data_root, public_site_id):
     client_ids.sort(key=lambda x: int(x[1:]))
     return client_ids
 
-# ================= 计算指标辅助函数 =================
-def calculate_metrics(y_true, y_probs, threshold=0.5):
-    """
-    计算 AUC, ACC, SEN, SPE
-    """
+
+# ================= 辅助函数：计算 Sen/Spe =================
+def calculate_metrics(y_true, y_pred):
+    """根据真实标签和预测标签计算 ACC, SEN, SPE"""
+    # 处理二分类混淆矩阵
+    # labels: [0, 1] 确保即使只有一类也能正确解包，但在 batch 很小且单一类别时需小心
     try:
-        auc = roc_auc_score(y_true, y_probs)
+        tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+
+        acc = (tp + tn) / (tp + tn + fp + fn + 1e-10)
+        sen = tp / (tp + fn + 1e-10) # 敏感度 / 召回率
+        spe = tn / (tn + fp + 1e-10) # 特异度
+
+        return acc, sen, spe
     except ValueError:
-        auc = 0.5  # 极端情况处理
+        # 极端情况处理
+        return 0.0, 0.0, 0.0
 
-    y_pred = (np.array(y_probs) > threshold).astype(int)
-
-    # 混淆矩阵
-    tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
-
-    acc = accuracy_score(y_true, y_pred)
-
-    # Sensitivity (Recall) = TP / (TP + FN)
-    sen = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-
-    # Specificity = TN / (TN + FP)
-    spe = tn / (tn + fp) if (tn + fp) > 0 else 0.0
-
-    return auc, acc, sen, spe
 
 # ================= 主程序 =================
 def main():
@@ -102,35 +96,44 @@ def main():
     logger.info(f"Multimodal Clients ({len(multi_site_set)}): {list(multi_site_set)}")
 
     # ================= 5折交叉验证循环 =================
+    # 定义 K-Fold 切分器 (Shuffle=True 配合固定Seed，保证可复现)
     n_folds = 5
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
 
-    # 存储每一折的最佳结果 (包含 AUC, ACC, SEN, SPE)
-    folds_results = [] # List of dicts
+    # 存储每一折的最佳结果 (包含多个指标)
+    folds_best_results = {
+        'auc': [], 'acc': [], 'sen': [], 'spe': []
+    }
 
     for fold_idx in range(n_folds):
         logger.info(f"\n{'=' * 20} Start Fold {fold_idx + 1} / {n_folds} {'=' * 20}")
 
-        # --- 步骤 A: 初始化异构服务端 ---
+        # --- 步骤 A: 初始化异构服务端 (必须重置) ---
         server = ServerTrainer(cfg, device)
 
-        # --- 步骤 B: 初始化本折的客户端 ---
+        # --- 步骤 B: 初始化本折的客户端 (划分数据 & 重置模型) ---
         clients = []
+
         for site_id in site_ids:
+            # 加载该站点的完整数据集
             full_ds = RestMetaDataset(
                 site_id,
                 cfg['data']['processed_root'],
                 mode='private',
-                return_clinical=(site_id in multi_site_set)
+                return_clinical=(site_id in multi_site_set)  # 标记是否返回临床数据
             )
 
+            # --- 关键：使用 StratifiedKFold 获取本折的索引 ---
             dummy_X = np.zeros(len(full_ds))
             site_labels = full_ds.labels
+
             train_idx, test_idx = list(skf.split(dummy_X, site_labels))[fold_idx]
 
+            # 创建 Subset
             train_subset = Subset(full_ds, train_idx)
             test_subset = Subset(full_ds, test_idx)
 
+            # 创建 DataLoader
             train_loader = DataLoader(train_subset, batch_size=cfg['data']['batch_size'], shuffle=True, drop_last=True)
             test_loader = DataLoader(test_subset, batch_size=cfg['data']['batch_size'], shuffle=False)
 
@@ -151,12 +154,13 @@ def main():
 
             model = MDDClassifier(backbone, hidden_dim=classifier_input_dim).to(device)
 
+            # 多模态客户端需要 ClinicalNet
             cli_model = None
             is_multimodal = site_id in multi_site_set
             if is_multimodal:
                 cli_model = ClinicalNet(input_dim=cfg['data']['clinical_dim'],
                                         feature_dim=cfg['model']['feature_dim']).to(device)
-
+            # 初始化 Trainer
             trainer = ClientTrainer(site_id, model, train_loader, public_loader, cfg, device,
                                     is_multimodal=is_multimodal,
                                     clinical_model=cli_model)
@@ -167,42 +171,41 @@ def main():
                 'test_loader': test_loader
             })
 
-        # --- 步骤 C: 联邦训练循环 ---
-        best_fold_metric = 0.0 # 用于选模型的指标 (通常用 AUC)
-        best_fold_stats = {}   # 记录最佳时刻的所有指标
+        # --- 步骤 C: 联邦训练循环 (N Rounds) ---
+        best_fold_auc = 0.0
+        # 同时记录产生最佳 AUC 时的其他指标
+        best_fold_metrics = {'auc': 0.0, 'acc': 0.0, 'sen': 0.0, 'spe': 0.0}
 
         for round_idx in range(cfg['federated']['n_rounds']):
-            # 1. 下发
+            # 1. 服务端分发全局特征
             g_reps = server.get_global_reps()
 
-            # 2. 采样
+            # 2. 客户端采样
             sample_rate = cfg['federated'].get('client_sample_rate', 1.0)
             num_selected = max(1, int(len(clients) * sample_rate))
             selected_clients = random.sample(clients, num_selected)
+            selected_ids = [c['id'] for c in selected_clients]
+            logger.info(f"  Round {round_idx + 1} Selected: {selected_ids}")
 
-            # 3. 训练 & 上传
+            # 3. 客户端训练 & 上传
             client_uploads = []
             for c in selected_clients:
                 loss = c['trainer'].train_epoch(g_reps)
                 pkg = c['trainer'].get_upload_package()
                 client_uploads.append(pkg)
 
-            # 4. 聚合
+            # 4. 服务端聚合
             server.aggregate(client_uploads)
 
-            # 5. 评估 (Evaluation) - 计算综合指标
-            # 策略：汇总所有客户端的预测结果，计算 micro-average 指标
-            # 或者：计算每个客户端的指标然后平均 (macro-average)。这里采用汇总所有样本计算，更直观。
-
-            total_labels = []
-            total_probs = []
+            # 5. 评估 (Evaluation) - 计算多指标
+            round_metrics = {'auc': [], 'acc': [], 'sen': [], 'spe': []}
 
             for c in clients:
                 trainer = c['trainer']
                 loader = c['test_loader']
                 trainer.model.eval()
 
-                c_labels, c_probs = [], []
+                all_labels, all_probs, all_preds = [], [], []
                 with torch.no_grad():
                     for batch_data in loader:
                         if (len(batch_data) == 3):
@@ -213,56 +216,81 @@ def main():
                         imgs = imgs.to(device)
                         outputs = trainer.model(imgs)
 
+                        # 计算概率
                         if outputs.shape[1] == 2:
                             probs = torch.softmax(outputs, dim=1)[:, 1]
                         else:
                             probs = torch.sigmoid(outputs).squeeze()
 
-                        c_labels.extend(labels.cpu().numpy())
-                        c_probs.extend(probs.cpu().numpy())
+                        # 计算预测类别 (Threshold = 0.5)
+                        preds = (probs > 0.5).long()
 
-                total_labels.extend(c_labels)
-                total_probs.extend(c_probs)
+                        all_labels.extend(labels.cpu().numpy())
+                        all_probs.extend(probs.cpu().numpy())
+                        all_preds.extend(preds.cpu().numpy())
 
-            # 计算本轮所有数据的综合指标
-            r_auc, r_acc, r_sen, r_spe = calculate_metrics(total_labels, total_probs)
+                # --- 计算单站点指标 ---
+                # AUC
+                try:
+                    auc = roc_auc_score(all_labels, all_probs)
+                except ValueError:
+                    auc = 0.5
 
-            # 记录最佳结果 (以 AUC 为准)
-            if r_auc > best_fold_metric:
-                best_fold_metric = r_auc
-                best_fold_stats = {
-                    'AUC': r_auc,
-                    'ACC': r_acc,
-                    'SEN': r_sen,
-                    'SPE': r_spe
+                # ACC, SEN, SPE
+                acc, sen, spe = calculate_metrics(all_labels, all_preds)
+
+                round_metrics['auc'].append(auc)
+                round_metrics['acc'].append(acc)
+                round_metrics['sen'].append(sen)
+                round_metrics['spe'].append(spe)
+
+            # 计算本轮所有站点的平均指标
+            avg_auc = np.mean(round_metrics['auc'])
+            avg_acc = np.mean(round_metrics['acc'])
+            avg_sen = np.mean(round_metrics['sen'])
+            avg_spe = np.mean(round_metrics['spe'])
+
+            # 根据 AUC 择优
+            if avg_auc > best_fold_auc:
+                best_fold_auc = avg_auc
+                best_fold_metrics = {
+                    'auc': avg_auc, 'acc': avg_acc,
+                    'sen': avg_sen, 'spe': avg_spe
                 }
 
             if (round_idx + 1) % 5 == 0:
-                logger.info(f"  [Fold {fold_idx + 1}] Round {round_idx + 1} | AUC: {r_auc:.4f} | ACC: {r_acc:.4f}")
+                logger.info(f"  [Fold {fold_idx + 1} Round {round_idx + 1}] "
+                            f"AUC: {avg_auc:.4f} | ACC: {avg_acc:.4f} | "
+                            f"SEN: {avg_sen:.4f} | SPE: {avg_spe:.4f}")
 
-        # 本折结束
-        logger.info(f"Fold {fold_idx + 1} Best Result: {best_fold_stats}")
-        folds_results.append(best_fold_stats)
+        # 本折结束，记录最佳结果
+        logger.info(f"Fold {fold_idx + 1} Best Result -> "
+                    f"AUC: {best_fold_metrics['auc']:.4f}, "
+                    f"ACC: {best_fold_metrics['acc']:.4f}, "
+                    f"SEN: {best_fold_metrics['sen']:.4f}, "
+                    f"SPE: {best_fold_metrics['spe']:.4f}")
+
+        for k in folds_best_results:
+            folds_best_results[k].append(best_fold_metrics[k])
 
     # ================= 实验结束，输出统计 =================
-    logger.info(f"\n{'=' * 20} 5-Fold Cross-Validation Final Report {'=' * 20}")
+    logger.info(f"\n{'=' * 20} 5-Fold Cross-Validation Final Results {'=' * 20}")
 
-    # 提取各指标列表
-    metrics_keys = ['AUC', 'ACC', 'SEN', 'SPE']
+    # 计算均值和标准差
     final_stats = {}
-
-    for key in metrics_keys:
-        values = [res[key] for res in folds_results]
-        if len(values) > 0:
-            mean_val = statistics.mean(values)
-            std_val = statistics.stdev(values) if len(values) > 1 else 0.0
+    for k, v in folds_best_results.items():
+        if len(v) > 0:
+            mean_val = statistics.mean(v)
+            std_val = statistics.stdev(v) if len(v) > 1 else 0.0
+            final_stats[k] = (mean_val, std_val)
         else:
-            mean_val, std_val = 0.0, 0.0
+            final_stats[k] = (0.0, 0.0)
 
-        final_stats[key] = f"{mean_val:.4f} ± {std_val:.4f}"
-        logger.info(f"{key}: {final_stats[key]}")
+    logger.info(f"AUC: {final_stats['auc'][0]:.4f} ± {final_stats['auc'][1]:.4f}")
+    logger.info(f"ACC: {final_stats['acc'][0]:.4f} ± {final_stats['acc'][1]:.4f}")
+    logger.info(f"SEN: {final_stats['sen'][0]:.4f} ± {final_stats['sen'][1]:.4f}")
+    logger.info(f"SPE: {final_stats['spe'][0]:.4f} ± {final_stats['spe'][1]:.4f}")
 
-    logger.info("============================================================")
 
 if __name__ == "__main__":
     main()
