@@ -7,10 +7,6 @@ from tqdm import tqdm
 class ClientTrainer:
     def __init__(self, client_id, model, train_loader, public_loader, config, device,
                  is_multimodal=False, clinical_model=None, ablation_config=None):
-        """
-        :param model: 本地影像模型 (可以是异构的，但投影头输出维度需统一)
-        :param clinical_model: 临床网络 (仅多模态客户端持有)
-        """
         self.client_id = client_id
         self.model = model
         self.train_loader = train_loader
@@ -21,7 +17,9 @@ class ClientTrainer:
         self.is_multimodal = is_multimodal
         self.clinical_model = clinical_model
 
-        # 优化器配置：多模态客户端同时优化影像和临床网络
+        # 消融实验配置 (默认全开)
+        self.ablation = ablation_config if ablation_config else {'use_intra': True, 'use_inter': True}
+
         if self.is_multimodal and self.clinical_model is not None:
             params = list(self.model.parameters()) + list(self.clinical_model.parameters())
         else:
@@ -31,31 +29,26 @@ class ClientTrainer:
                                           lr=config['train']['lr'],
                                           weight_decay=config['train']['weight_decay'])
         self.criterion_ce = nn.CrossEntropyLoss()
-
-        # LR Scheduler
-        self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=10, gamma=0.9)
-        # 默认开启所有 Loss
-        self.ablation = ablation_config if ablation_config else {'use_intra': True, 'use_inter': True}
+        self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=config['train'].get('step_size', 50), gamma=0.9)
 
     def contrastive_loss(self, feat1, feat2):
-        """ InfoNCE Loss """
         feat1 = torch.nn.functional.normalize(feat1, dim=1)
         feat2 = torch.nn.functional.normalize(feat2, dim=1)
         logits = torch.matmul(feat1, feat2.T) / self.config['train']['temperature']
         labels = torch.arange(logits.size(0)).to(self.device)
         return self.criterion_ce(logits, labels)
 
-    def train_epoch(self, global_reps):
+    def train_epoch(self, global_reps=None, global_model_params=None, mu=0.0):
         """
-        :param global_reps: (global_img_reps, global_cli_reps)
-                            来自服务端聚合的公共数据特征共识。
-                            Round 0 时可能为 None。
+        :param global_reps: (img_reps, cli_reps) 用于 H2-FedNeuro / Solo
+        :param global_model_params: 全局模型参数 (state_dict) 用于 FedProx
+        :param mu: FedProx 的超参数
         """
         self.model.train()
         if self.is_multimodal:
             self.clinical_model.train()
 
-        # 解析全局特征
+        # 解析全局特征 (Distillation 模式)
         g_img_reps, g_cli_reps = None, None
         if global_reps is not None:
             g_img_reps, g_cli_reps = global_reps
@@ -68,12 +61,11 @@ class ClientTrainer:
         all_epochs_loss = []
         num_epochs = self.config['train'].get('local_epochs', 1)
 
-        with tqdm(range(num_epochs), desc=f"Client {self.client_id} ({'Multi' if self.is_multimodal else 'Uni'})", leave=False, dynamic_ncols=True) as pbar:
+        with tqdm(range(num_epochs), desc=f"Client {self.client_id}", leave=False, dynamic_ncols=True) as pbar:
             for epoch in pbar:
                 batch_losses = []
-
                 for batch_data in self.train_loader:
-                    # --- 1. 数据解包 (适配混合模态) ---
+                    # 数据解包
                     if self.is_multimodal:
                         pvt_imgs, pvt_clin, pvt_labels = batch_data
                         pvt_clin = pvt_clin.to(self.device)
@@ -83,48 +75,44 @@ class ClientTrainer:
 
                     pvt_imgs, pvt_labels = pvt_imgs.to(self.device), pvt_labels.to(self.device)
 
-                    # --- 2. Task Loss ---
+                    # 1. Task Loss
                     preds = self.model(pvt_imgs)
                     loss_task = self.criterion_ce(preds, pvt_labels)
+                    loss = loss_task
 
-                    # --- 3. Local Multimodal Contrast (仅多模态) ---
-                    loss_local_mm = 0.0
-                    if self.is_multimodal:
-                        local_img_feat = self.model.get_projection(pvt_imgs)
-                        local_cli_feat = self.clinical_model(pvt_clin)
-                        loss_local_mm = self.contrastive_loss(local_img_feat, local_cli_feat)
+                    # 2. FedProx Loss (仅当传入 global_model_params 时计算)
+                    if global_model_params is not None and mu > 0:
+                        loss_prox = 0.0
+                        for name, param in self.model.named_parameters():
+                            if name in global_model_params:
+                                target = global_model_params[name].to(self.device)
+                                loss_prox += torch.norm(param - target) ** 2
+                        loss += (mu / 2) * loss_prox
 
-                    # --- 4. LCR Regularization (依赖全局特征) ---
-                    loss_lcr = 0.0
-                    # 只有当全局特征存在时才计算 LCR
+                    # 3. H2-FedNeuro Losses (仅当 global_reps 存在时计算)
                     if g_img_reps is not None:
-                        # 获取公共数据
+                        loss_local_mm = 0.0
+                        if self.is_multimodal and self.is_multimodal: # Typo check, logic ok
+                            local_img_feat = self.model.get_projection(pvt_imgs)
+                            local_cli_feat = self.clinical_model(pvt_clin)
+                            loss_local_mm = self.contrastive_loss(local_img_feat, local_cli_feat)
+
+                        loss_lcr = 0.0
                         pub_imgs, _ = next(public_iter)
                         pub_imgs = pub_imgs.to(self.device)
-
-                        # 确保 batch size 对齐
                         curr_bs = pub_imgs.size(0)
-
-                        # 本地提取公共数据特征
+                        target_img = g_img_reps[:curr_bs]
                         pub_local_proj = self.model.get_projection(pub_imgs)
 
-                        # Intra: 本地影像 <-> 全局影像共识
-                        # 注意：这里假设 public_loader 是 shuffle=False 的，顺序一致
                         if self.ablation['use_intra']:
-                            target_img = g_img_reps[:curr_bs]
-                            loss_intra = self.contrastive_loss(pub_local_proj, target_img)
-                            loss_lcr += loss_intra
+                            loss_lcr += self.contrastive_loss(pub_local_proj, target_img)
 
-                        # Inter: 本地影像 <-> 全局临床共识
-                        # 单模态客户端在这里通过 global_cli_reps 间接学习临床知识
                         if self.ablation['use_inter'] and g_cli_reps is not None:
                             target_cli = g_cli_reps[:curr_bs]
-                            loss_inter = self.contrastive_loss(pub_local_proj, target_cli)
-                            loss_lcr += loss_inter
+                            loss_lcr += self.contrastive_loss(pub_local_proj, target_cli)
 
-                    # --- Total Loss ---
-                    gamma = self.config['train']['gamma']
-                    loss = loss_task + gamma * (loss_lcr + loss_local_mm)
+                        gamma = self.config['train']['gamma']
+                        loss += gamma * (loss_lcr + loss_local_mm)
 
                     self.optimizer.zero_grad()
                     loss.backward()
@@ -141,40 +129,21 @@ class ClientTrainer:
         return sum(all_epochs_loss) / len(all_epochs_loss)
 
     def get_upload_package(self):
-        """
-        【核心修改】
-        不再上传模型参数，而是上传公共数据集在当前本地模型下的特征表示。
-        这允许客户端使用完全不同的模型结构。
-        """
+        """ H2-FedNeuro 专用: 上传特征 """
         self.model.eval()
-        if self.is_multimodal:
-            self.clinical_model.eval()
-
-        img_reps_list = []
-        cli_reps_list = []
-
+        if self.is_multimodal: self.clinical_model.eval()
+        img_reps, cli_reps = [], []
         with torch.no_grad():
             for batch in self.public_loader:
-                # 兼容 Dataset 返回 2 个或 3 个值的情况
                 if len(batch) == 3: imgs, clins, _ = batch
                 else: imgs, clins = batch
-
                 imgs = imgs.to(self.device)
-
-                # 1. 提取影像特征
-                img_proj = self.model.get_projection(imgs)
-                img_reps_list.append(img_proj)
-
-                # 2. 提取临床特征 (仅多模态)
+                img_reps.append(self.model.get_projection(imgs))
                 if self.is_multimodal:
                     clins = clins.to(self.device)
-                    cli_proj = self.clinical_model(clins)
-                    cli_reps_list.append(cli_proj)
-
-        # 拼接并转至 CPU 以前往 Server
-        pkg = {
-            'n_samples': len(self.train_loader.dataset), # 权重依据
-            'img_reps': torch.cat(img_reps_list, dim=0).cpu(),
-            'cli_reps': torch.cat(cli_reps_list, dim=0).cpu() if self.is_multimodal else None
+                    cli_reps.append(self.clinical_model(clins))
+        return {
+            'n_samples': len(self.train_loader.dataset),
+            'img_reps': torch.cat(img_reps, dim=0).cpu(),
+            'cli_reps': torch.cat(cli_reps, dim=0).cpu() if self.is_multimodal else None
         }
-        return pkg
