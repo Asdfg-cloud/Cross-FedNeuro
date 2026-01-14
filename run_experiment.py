@@ -9,6 +9,7 @@ import statistics
 from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
+import pandas as pd
 
 from src import (
     RestMetaDataset,
@@ -99,6 +100,10 @@ def main():
     # 定义 K-Fold 切分器 (Shuffle=True 配合固定Seed，保证可复现)
     n_folds = 5
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
+    folds_best_results = {'auc': [], 'acc': [], 'sen': [], 'spe': []}
+
+    # 用于存储所有折的收敛曲线数据
+    convergence_records = []
 
     # 存储每一折的最佳结果 (包含多个指标)
     folds_best_results = {
@@ -139,6 +144,7 @@ def main():
 
             # --- 异构模型分配 ---
             model_choice = random.choice(['resnet', 'transformer'])
+            # model_choice = 'resnet'
             classifier_input_dim = 0
             backbone = None
             if model_choice == 'resnet':
@@ -250,6 +256,13 @@ def main():
             avg_sen = np.mean(round_metrics['sen'])
             avg_spe = np.mean(round_metrics['spe'])
 
+            # 收集收敛数据: 记录 (折数, 轮数, 平均AUC)
+            convergence_records.append({
+                'fold': fold_idx,
+                'round': round_idx,
+                'avg_auc': avg_auc
+            })
+
             # 根据 AUC 择优
             if avg_auc > best_fold_auc:
                 best_fold_auc = avg_auc
@@ -273,8 +286,47 @@ def main():
         for k in folds_best_results:
             folds_best_results[k].append(best_fold_metrics[k])
 
+        # t-SNE 数据提取 (仅在最后一折进行)
+        # 目的：获取测试集在特征空间的高维表示，用于画散点图
+        if fold_idx == n_folds - 1:
+            logger.info("Extracting features for t-SNE (Last Fold)...")
+            tsne_feats, tsne_labels, tsne_sites = [], [], []
+
+            for c in clients:
+                c['trainer'].model.eval()
+                with torch.no_grad():
+                    for batch_data in c['test_loader']:
+                        if len(batch_data) == 3: imgs, _, labels = batch_data
+                        else: imgs, labels = batch_data
+
+                        imgs = imgs.to(device)
+
+                        # --- 关键：获取 Backbone 的输出特征，而不是分类头的 Logits ---
+                        # 假设 MDDClassifier 结构为 self.backbone -> self.classifier
+                        # 如果没有直接的方法，这里直接调用 backbone
+                        features = c['trainer'].model.backbone(imgs)
+
+                        tsne_feats.append(features.cpu().numpy())
+                        tsne_labels.append(labels.cpu().numpy())
+                        # 记录站点ID，以便观察是否存在站点效应
+                        tsne_sites.extend([c['id']] * len(labels))
+
+            # 保存 t-SNE 数据
+            tsne_save_path = os.path.join(cfg['experiment']['save_dir'], 'tsne_data.npz')
+            np.savez(tsne_save_path,
+                     features=np.concatenate(tsne_feats),
+                     labels=np.concatenate(tsne_labels),
+                     sites=np.array(tsne_sites))
+            logger.info(f"t-SNE data saved to {tsne_save_path}")
+
     # ================= 实验结束，输出统计 =================
     logger.info(f"\n{'=' * 20} 5-Fold Cross-Validation Final Results {'=' * 20}")
+
+    # 保存收敛曲线数据
+    df_convergence = pd.DataFrame(convergence_records)
+    conv_save_path = os.path.join(cfg['experiment']['save_dir'], 'convergence_curve.csv')
+    df_convergence.to_csv(conv_save_path, index=False)
+    logger.info(f"Convergence data saved to {conv_save_path}")
 
     # 计算均值和标准差
     final_stats = {}

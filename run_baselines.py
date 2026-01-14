@@ -26,7 +26,7 @@ from src import (
 # ==========================================
 # 核心控制变量: 切换此处以运行不同 Baseline
 # ==========================================
-BASELINE_MODE = 'Local'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx'
+BASELINE_MODE = 'FedAvg'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx'
 
 def fedavg_aggregate(global_model, clients):
     """ FedAvg/FedProx 专用的参数聚合函数 """

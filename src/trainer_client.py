@@ -61,7 +61,7 @@ class ClientTrainer:
         all_epochs_loss = []
         num_epochs = self.config['train'].get('local_epochs', 1)
 
-        with tqdm(range(num_epochs), desc=f"Client {self.client_id}", leave=False, dynamic_ncols=True) as pbar:
+        with tqdm(range(num_epochs), desc=f"Client {self.client_id}", leave=True, dynamic_ncols=True) as pbar:
             for epoch in pbar:
                 batch_losses = []
                 for batch_data in self.train_loader:
