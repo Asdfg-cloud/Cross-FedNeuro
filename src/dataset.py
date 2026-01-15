@@ -38,15 +38,15 @@ class RestMetaDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        # 这里为了兼容性直接 Flatten
         img = torch.from_numpy(self.data[idx]).flatten()
         clinical = torch.from_numpy(self.clinical[idx])
         label = torch.tensor(self.labels[idx], dtype=torch.long)
 
         if self.mode == 'public':
-            return img, clinical
+            # public mode
+            return img, clinical, label
         else:  # private mode
-            if self.return_clinical:  # 多模态客户端： 返回 影像 + 临床 + 标签
+            if self.return_clinical:
                 return img, clinical, label
-            else:  # 单模态客户端：只返回 影像 + 标签 (模拟临床数据缺失)
+            else:
                 return img, label

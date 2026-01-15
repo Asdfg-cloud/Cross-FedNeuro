@@ -301,10 +301,7 @@ def main():
 
                         imgs = imgs.to(device)
 
-                        # --- 关键：获取 Backbone 的输出特征，而不是分类头的 Logits ---
-                        # 假设 MDDClassifier 结构为 self.backbone -> self.classifier
-                        # 如果没有直接的方法，这里直接调用 backbone
-                        features = c['trainer'].model.backbone(imgs)
+                        features = c['trainer'].model.get_projection(imgs)
 
                         tsne_feats.append(features.cpu().numpy())
                         tsne_labels.append(labels.cpu().numpy())

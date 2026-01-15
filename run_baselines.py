@@ -1,6 +1,7 @@
 import os
 import random
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 import yaml
@@ -91,6 +92,9 @@ def main():
     n_folds = 5
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
     folds_best_results = {'auc': [], 'acc': [], 'sen': [], 'spe': []}
+
+    # 初始化收敛数据记录列表
+    convergence_records = []
 
     for fold_idx in range(n_folds):
         logger.info(f"\n{'=' * 20} Fold {fold_idx + 1} / {n_folds} ({BASELINE_MODE}) {'=' * 20}")
@@ -215,6 +219,12 @@ def main():
                 round_scores['sen'].append(sen); round_scores['spe'].append(spe)
 
             avg_auc = np.mean(round_scores['auc'])
+            convergence_records.append({
+                'fold': fold_idx,
+                'round': round_idx,
+                'avg_auc': avg_auc
+            })
+
             if avg_auc > best_metrics['auc']:
                 best_metrics = {k: np.mean(v) for k, v in round_scores.items()}
 
@@ -223,6 +233,43 @@ def main():
 
         for k in folds_best_results: folds_best_results[k].append(best_metrics[k])
         logger.info(f"Fold {fold_idx+1} Best AUC: {best_metrics['auc']:.4f}")
+
+        # t-SNE 数据提取 (仅在最后一折)
+        if fold_idx == n_folds - 1:
+            logger.info("Extracting features for t-SNE (Last Fold)...")
+            tsne_feats, tsne_labels, tsne_sites = [], [], []
+
+            for c in clients:
+                c['trainer'].model.eval()
+                with torch.no_grad():
+                    for batch in c['test_loader']:
+                        if len(batch) == 3: imgs, _, labels = batch
+                        else: imgs, labels = batch
+                        imgs = imgs.to(device)
+
+                        # 获取 Backbone 特征
+                        features = c['trainer'].model.backbone(imgs)
+
+                        tsne_feats.append(features.cpu().numpy())
+                        tsne_labels.append(labels.cpu().numpy())
+                        tsne_sites.extend([c['id']] * len(labels))
+
+            # 根据 Baseline 模式动态命名并保存
+            tsne_filename = f'tsne_data_{BASELINE_MODE}.npz'
+            tsne_save_path = os.path.join(cfg['experiment']['save_dir'], tsne_filename)
+            np.savez(tsne_save_path,
+                     features=np.concatenate(tsne_feats),
+                     labels=np.concatenate(tsne_labels),
+                     sites=np.array(tsne_sites))
+            logger.info(f"t-SNE data saved to {tsne_save_path}")
+
+    # ================= 实验结束，保存数据 =================
+    # 保存收敛曲线数据
+    df_convergence = pd.DataFrame(convergence_records)
+    conv_filename = f'convergence_curve_{BASELINE_MODE}.csv'
+    conv_save_path = os.path.join(cfg['experiment']['save_dir'], conv_filename)
+    df_convergence.to_csv(conv_save_path, index=False)
+    logger.info(f"Convergence data saved to {conv_save_path}")
 
     # 最终统计
     logger.info(f"\n{'='*20} Final Results ({BASELINE_MODE}) {'='*20}")

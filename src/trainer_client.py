@@ -129,21 +129,54 @@ class ClientTrainer:
         return sum(all_epochs_loss) / len(all_epochs_loss)
 
     def get_upload_package(self):
-        """ H2-FedNeuro 专用: 上传特征 """
+        """ 上传特征 + 模型在公共数据上的质量评分 """
         self.model.eval()
         if self.is_multimodal: self.clinical_model.eval()
+
         img_reps, cli_reps = [], []
+
+        # 新增：用于计算公共数据准确率的变量
+        total_correct = 0
+        total_samples = 0
+
         with torch.no_grad():
             for batch in self.public_loader:
-                if len(batch) == 3: imgs, clins, _ = batch
-                else: imgs, clins = batch
+                # 兼容不同的 dataset 返回格式 (img, cli, label) 或 (img, label)
+                if len(batch) == 3:
+                    imgs, clins, labels = batch
+                else:
+                    imgs, labels = batch
+                    clins = None # 此时没有 clinical 数据
+
                 imgs = imgs.to(self.device)
+                labels = labels.to(self.device)
+
+                # 1. 提取特征 (保持原有逻辑)
                 img_reps.append(self.model.get_projection(imgs))
-                if self.is_multimodal:
+                if self.is_multimodal and clins is not None:
                     clins = clins.to(self.device)
                     cli_reps.append(self.clinical_model(clins))
+
+                # 2. [新增] 计算准确率 (作为质量评分)
+                # 注意：这里需要过完整的模型拿到分类结果
+                outputs = self.model(imgs)
+
+                # 根据二分类输出维度判断 (logits是1维还是2维)
+                if outputs.shape[1] == 2:
+                    preds = torch.argmax(outputs, dim=1)
+                else:
+                    probs = torch.sigmoid(outputs).squeeze()
+                    preds = (probs > 0.5).long()
+
+                total_correct += (preds == labels).sum().item()
+                total_samples += labels.size(0)
+
+        # 计算精度
+        public_acc = total_correct / total_samples if total_samples > 0 else 0.0
+
         return {
             'n_samples': len(self.train_loader.dataset),
+            'public_acc': public_acc,  # <--- 新增字段：作为权重的依据
             'img_reps': torch.cat(img_reps, dim=0).cpu(),
             'cli_reps': torch.cat(cli_reps, dim=0).cpu() if self.is_multimodal else None
         }
