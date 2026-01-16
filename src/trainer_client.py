@@ -79,7 +79,7 @@ class ClientTrainer:
                     loss_task = self.criterion_ce(preds, pvt_labels)
                     loss = loss_task
 
-                    # 2. FedProx Loss (仅当传入 global_model_params 时计算)
+                    # FedProx Loss (仅当传入 global_model_params 时计算)
                     if global_model_params is not None and mu > 0:
                         loss_prox = 0.0
                         for name, param in self.model.named_parameters():
@@ -88,34 +88,40 @@ class ClientTrainer:
                                 loss_prox += torch.norm(param - target) ** 2
                         loss += (mu / 2) * loss_prox
 
-                    # 3. H2-FedNeuro Losses (原始版本核心逻辑)
-                    if g_img_reps is not None:
-                        loss_local_mm = 0.0
-                        # 模态内对比 (Intra-client Multimodal Contrastive)
-                        if self.is_multimodal and self.is_multimodal:
-                            local_img_feat = self.model.get_projection(pvt_imgs)
-                            local_cli_feat = self.clinical_model(pvt_clin)
-                            loss_local_mm = self.contrastive_loss(local_img_feat, local_cli_feat)
+                    # 2.多模态客户端模态内对比 (Intra-client Multimodal Contrastive)
+                    loss_local_mm = 0.0
+                    if self.is_multimodal:
+                        local_img_feat = self.model.get_projection(pvt_imgs)
+                        local_cli_feat = self.clinical_model(pvt_clin)
+                        loss_local_mm = self.contrastive_loss(local_img_feat, local_cli_feat)
 
-                        # 全局-本地正则化 (LCR Loss)
-                        loss_lcr = 0.0
-                        # 获取公共数据 (2返回值: img, cli)
+                    loss_lcr = 0.0
+                    if g_img_reps is not None:
+
                         pub_imgs, _ = next(public_iter)
                         pub_imgs = pub_imgs.to(self.device)
 
                         curr_bs = pub_imgs.size(0)
-                        target_img = g_img_reps[:curr_bs]
+
+                        # 本地提取公共数据特征
                         pub_local_proj = self.model.get_projection(pub_imgs)
 
-                        if self.ablation['use_intra']:
-                            loss_lcr += self.contrastive_loss(pub_local_proj, target_img)
+                        # Intra: 本地影像 <-> 全局影像共识
+                        target_img = g_img_reps[:curr_bs]
+                        loss_intra = self.contrastive_loss(pub_local_proj, target_img)
+                        loss_lcr += loss_intra
 
-                        if self.ablation['use_inter'] and g_cli_reps is not None:
+                        # Inter: 本地影像 <-> 全局临床共识
+                        # 单模态客户端在这里通过 global_cli_reps间接学习临床知识
+                        if g_cli_reps is not None:
                             target_cli = g_cli_reps[:curr_bs]
-                            loss_lcr += self.contrastive_loss(pub_local_proj, target_cli)
+                            loss_inter = self.contrastive_loss(pub_local_proj, target_cli)
+                            loss_lcr += loss_inter
 
-                        gamma = self.config['train']['gamma']
-                        loss += gamma * (loss_lcr + loss_local_mm)
+                    # --- Total Loss---
+                    # print(f"\nTask: {loss_task.item():.4f}, MM: {loss_task.item():.4f}, LCR: {loss_lcr:.4f}")
+                    gamma = self.config['train']['gamma']
+                    loss += gamma * (loss_lcr + loss_local_mm)
 
                     self.optimizer.zero_grad()
                     loss.backward()
@@ -128,18 +134,22 @@ class ClientTrainer:
                     pbar.set_postfix({'loss': f'{epoch_avg_loss:.4f}'})
 
         self.scheduler.step()
-        if len(all_epochs_loss) == 0: return 0.0
+        if len(all_epochs_loss) == 0:
+            return 0.0
         return sum(all_epochs_loss) / len(all_epochs_loss)
 
     def get_upload_package(self):
         """ 上传公共数据上的特征投影 (Representations) """
         self.model.eval()
-        if self.is_multimodal: self.clinical_model.eval()
+        if self.is_multimodal:
+            self.clinical_model.eval()
         img_reps, cli_reps = [], []
         with torch.no_grad():
             for batch in self.public_loader:
-                if len(batch) == 3: imgs, clins, _ = batch
-                else: imgs, clins = batch # dataset 返回的是 img, cli
+                if len(batch) == 3:
+                    imgs, clins, _ = batch
+                else:
+                    imgs, clins = batch # dataset 返回的是 img, cli
 
                 imgs = imgs.to(self.device)
                 img_reps.append(self.model.get_projection(imgs))
