@@ -32,6 +32,7 @@ class ClientTrainer:
         self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=config['train'].get('step_size', 50), gamma=0.9)
 
     def contrastive_loss(self, feat1, feat2):
+        """ [原始版本] 计算特征间的对比损失 (基于余弦相似度) """
         feat1 = torch.nn.functional.normalize(feat1, dim=1)
         feat2 = torch.nn.functional.normalize(feat2, dim=1)
         logits = torch.matmul(feat1, feat2.T) / self.config['train']['temperature']
@@ -40,15 +41,13 @@ class ClientTrainer:
 
     def train_epoch(self, global_reps=None, global_model_params=None, mu=0.0):
         """
-        :param global_reps: (img_reps, cli_reps) 用于 H2-FedNeuro / Solo
-        :param global_model_params: 全局模型参数 (state_dict) 用于 FedProx
-        :param mu: FedProx 的超参数
+        :param global_reps: (img_reps, cli_reps) 原始的特征元组
         """
         self.model.train()
         if self.is_multimodal:
             self.clinical_model.train()
 
-        # 解析全局特征 (Distillation 模式)
+        # 解析全局特征
         g_img_reps, g_cli_reps = None, None
         if global_reps is not None:
             g_img_reps, g_cli_reps = global_reps
@@ -61,7 +60,7 @@ class ClientTrainer:
         all_epochs_loss = []
         num_epochs = self.config['train'].get('local_epochs', 1)
 
-        with tqdm(range(num_epochs), desc=f"Client {self.client_id}", leave=True, dynamic_ncols=True) as pbar:
+        with tqdm(range(num_epochs), desc=f"Client {self.client_id} ({'Multi' if self.is_multimodal else 'Uni'})", leave=True, dynamic_ncols=True) as pbar:
             for epoch in pbar:
                 batch_losses = []
                 for batch_data in self.train_loader:
@@ -89,17 +88,21 @@ class ClientTrainer:
                                 loss_prox += torch.norm(param - target) ** 2
                         loss += (mu / 2) * loss_prox
 
-                    # 3. H2-FedNeuro Losses (仅当 global_reps 存在时计算)
+                    # 3. H2-FedNeuro Losses (原始版本核心逻辑)
                     if g_img_reps is not None:
                         loss_local_mm = 0.0
-                        if self.is_multimodal and self.is_multimodal: # Typo check, logic ok
+                        # 模态内对比 (Intra-client Multimodal Contrastive)
+                        if self.is_multimodal and self.is_multimodal:
                             local_img_feat = self.model.get_projection(pvt_imgs)
                             local_cli_feat = self.clinical_model(pvt_clin)
                             loss_local_mm = self.contrastive_loss(local_img_feat, local_cli_feat)
 
+                        # 全局-本地正则化 (LCR Loss)
                         loss_lcr = 0.0
+                        # 获取公共数据 (2返回值: img, cli)
                         pub_imgs, _ = next(public_iter)
                         pub_imgs = pub_imgs.to(self.device)
+
                         curr_bs = pub_imgs.size(0)
                         target_img = g_img_reps[:curr_bs]
                         pub_local_proj = self.model.get_projection(pub_imgs)
@@ -129,54 +132,22 @@ class ClientTrainer:
         return sum(all_epochs_loss) / len(all_epochs_loss)
 
     def get_upload_package(self):
-        """ 上传特征 + 模型在公共数据上的质量评分 """
+        """ 上传公共数据上的特征投影 (Representations) """
         self.model.eval()
         if self.is_multimodal: self.clinical_model.eval()
-
         img_reps, cli_reps = [], []
-
-        # 新增：用于计算公共数据准确率的变量
-        total_correct = 0
-        total_samples = 0
-
         with torch.no_grad():
             for batch in self.public_loader:
-                # 兼容不同的 dataset 返回格式 (img, cli, label) 或 (img, label)
-                if len(batch) == 3:
-                    imgs, clins, labels = batch
-                else:
-                    imgs, labels = batch
-                    clins = None # 此时没有 clinical 数据
+                if len(batch) == 3: imgs, clins, _ = batch
+                else: imgs, clins = batch # dataset 返回的是 img, cli
 
                 imgs = imgs.to(self.device)
-                labels = labels.to(self.device)
-
-                # 1. 提取特征 (保持原有逻辑)
                 img_reps.append(self.model.get_projection(imgs))
-                if self.is_multimodal and clins is not None:
+                if self.is_multimodal:
                     clins = clins.to(self.device)
                     cli_reps.append(self.clinical_model(clins))
-
-                # 2. [新增] 计算准确率 (作为质量评分)
-                # 注意：这里需要过完整的模型拿到分类结果
-                outputs = self.model(imgs)
-
-                # 根据二分类输出维度判断 (logits是1维还是2维)
-                if outputs.shape[1] == 2:
-                    preds = torch.argmax(outputs, dim=1)
-                else:
-                    probs = torch.sigmoid(outputs).squeeze()
-                    preds = (probs > 0.5).long()
-
-                total_correct += (preds == labels).sum().item()
-                total_samples += labels.size(0)
-
-        # 计算精度
-        public_acc = total_correct / total_samples if total_samples > 0 else 0.0
-
         return {
             'n_samples': len(self.train_loader.dataset),
-            'public_acc': public_acc,  # <--- 新增字段：作为权重的依据
             'img_reps': torch.cat(img_reps, dim=0).cpu(),
             'cli_reps': torch.cat(cli_reps, dim=0).cpu() if self.is_multimodal else None
         }

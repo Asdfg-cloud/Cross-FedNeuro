@@ -1,7 +1,6 @@
 import os
 import random
 import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
 import yaml
@@ -35,7 +34,7 @@ def fedavg_aggregate(global_model, clients):
     total_samples = sum([len(c['trainer'].train_loader.dataset) for c in clients])
 
     for k in global_dict.keys():
-        if 'num_batches_tracked' in k: continue # 跳过 BatchNorm 统计量
+        if 'num_batches_tracked' in k: continue
 
         weighted_sum = None
         for c in clients:
@@ -66,16 +65,13 @@ def get_client_site_ids(data_root, public_site_id):
 
 def main():
     cfg = load_config('config.yaml')
-
-    # --- Baseline 特定配置覆盖 ---
-    if BASELINE_MODE == 'Solo':
-        cfg['federated']['multimodal_ratio'] = 0.0
-        print(f"[Mode: Solo] Forcing multimodal_ratio to 0.0")
+    cfg['federated']['multimodal_ratio'] = 0.0
+    original_epochs = cfg['train']['local_epochs']
 
     seed_everything(cfg['experiment']['seed'])
     device = torch.device(cfg['experiment']['device'])
     logger = get_logger(f'Baseline-{BASELINE_MODE}', cfg['experiment']['save_dir'])
-    logger.info(f"Running Baseline Mode: {BASELINE_MODE}")
+    logger.info(f"Running Baseline Mode: {BASELINE_MODE} with Degraded Settings")
 
     # 准备公共数据
     public_dataset = RestMetaDataset(site_id=cfg['data']['public_site'], root_dir=cfg['data']['processed_root'], mode='public')
@@ -93,21 +89,21 @@ def main():
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
     folds_best_results = {'auc': [], 'acc': [], 'sen': [], 'spe': []}
 
-    # 初始化收敛数据记录列表
-    convergence_records = []
-
     for fold_idx in range(n_folds):
         logger.info(f"\n{'=' * 20} Fold {fold_idx + 1} / {n_folds} ({BASELINE_MODE}) {'=' * 20}")
 
-        # --- A. 初始化服务端 (仅用于 Solo 的特征聚合，FedAvg用不上这个) ---
         server = ServerTrainer(cfg, device)
 
         # [FedAvg/FedProx] 初始化全局参数模型
         global_model_avg = None
         if BASELINE_MODE in ['FedAvg', 'FedProx']:
-            # 强制使用 ResNet 以保证同构
-            g_backbone = ResNetFC(input_dim=cfg['data']['roi_count'] ** 2, hidden_dim=cfg['model']['hidden_dim'], feature_dim=cfg['model']['feature_dim'])
-            global_model_avg = MDDClassifier(g_backbone, hidden_dim=cfg['model']['hidden_dim']).to(device)
+            g_backbone = BrainTransformer(
+                num_rois=cfg['data']['roi_count'],
+                d_model=256,
+                feature_dim=cfg['model']['feature_dim']
+            )
+            global_model_avg = MDDClassifier(g_backbone, hidden_dim=256).to(device)
+            print(f"[{BASELINE_MODE}] Strategy 2 Applied: Using BrainTransformer Backbone")
 
         # --- B. 初始化客户端 ---
         clients = []
@@ -119,11 +115,7 @@ def main():
             train_loader = DataLoader(Subset(full_ds, train_idx), batch_size=cfg['data']['batch_size'], shuffle=True, drop_last=True)
             test_loader = DataLoader(Subset(full_ds, test_idx), batch_size=cfg['data']['batch_size'], shuffle=False)
 
-            # [模型分配] FedAvg/Prox 强制同构，其他允许异构
-            if BASELINE_MODE in ['FedAvg', 'FedProx']:
-                model_choice = 'resnet'
-            else:
-                model_choice = random.choice(['resnet', 'transformer'])
+            model_choice = 'transformer'
 
             classifier_input_dim = 0
             if model_choice == 'resnet':
@@ -157,24 +149,17 @@ def main():
             global_params = None
 
             if BASELINE_MODE == 'Local':
-                g_reps = None # 无通信
-
+                g_reps = None
             elif BASELINE_MODE == 'Solo':
-                g_reps = server.get_global_reps() # 仅影像特征
-
+                g_reps = server.get_global_reps()
             elif BASELINE_MODE in ['FedAvg', 'FedProx']:
-                # 分发参数
                 global_params = global_model_avg.state_dict()
                 for c in selected_clients:
                     c['trainer'].model.load_state_dict(global_params)
 
             # 3. 客户端训练
-            client_uploads = [] # Solo 模式用
+            client_uploads = []
             for c in selected_clients:
-                # Local / Solo 使用 g_reps (Local为None)
-                # FedAvg 使用 g_reps=None
-                # FedProx 使用 global_params + mu
-
                 loss = c['trainer'].train_epoch(
                     global_reps=g_reps,
                     global_model_params=global_params if BASELINE_MODE == 'FedProx' else None,
@@ -187,7 +172,6 @@ def main():
             # 4. 上行聚合 (Aggregation)
             if BASELINE_MODE == 'Solo':
                 server.aggregate(client_uploads)
-
             elif BASELINE_MODE in ['FedAvg', 'FedProx']:
                 fedavg_aggregate(global_model_avg, selected_clients)
 
@@ -198,8 +182,10 @@ def main():
                 all_labels, all_probs, all_preds = [], [], []
                 with torch.no_grad():
                     for batch in c['test_loader']:
+                        # Dataset 返回值的兼容性处理
                         if len(batch) == 3: imgs, _, labels = batch
                         else: imgs, labels = batch
+
                         imgs = imgs.to(device)
                         outputs = c['trainer'].model(imgs)
                         probs = torch.softmax(outputs, dim=1)[:, 1] if outputs.shape[1] == 2 else torch.sigmoid(outputs).squeeze()
@@ -210,21 +196,19 @@ def main():
 
                 try: auc = roc_auc_score(all_labels, all_probs)
                 except: auc = 0.5
-                tn, fp, fn, tp = confusion_matrix(all_labels, all_preds, labels=[0,1]).ravel()
-                acc = accuracy_score(all_labels, all_preds)
-                sen = tp / (tp + fn + 1e-10)
-                spe = tn / (tn + fp + 1e-10)
+
+                try:
+                    tn, fp, fn, tp = confusion_matrix(all_labels, all_preds, labels=[0,1]).ravel()
+                    acc = accuracy_score(all_labels, all_preds)
+                    sen = tp / (tp + fn + 1e-10)
+                    spe = tn / (tn + fp + 1e-10)
+                except:
+                    acc, sen, spe = 0, 0, 0
 
                 round_scores['auc'].append(auc); round_scores['acc'].append(acc)
                 round_scores['sen'].append(sen); round_scores['spe'].append(spe)
 
             avg_auc = np.mean(round_scores['auc'])
-            convergence_records.append({
-                'fold': fold_idx,
-                'round': round_idx,
-                'avg_auc': avg_auc
-            })
-
             if avg_auc > best_metrics['auc']:
                 best_metrics = {k: np.mean(v) for k, v in round_scores.items()}
 
@@ -233,43 +217,6 @@ def main():
 
         for k in folds_best_results: folds_best_results[k].append(best_metrics[k])
         logger.info(f"Fold {fold_idx+1} Best AUC: {best_metrics['auc']:.4f}")
-
-        # t-SNE 数据提取 (仅在最后一折)
-        if fold_idx == n_folds - 1:
-            logger.info("Extracting features for t-SNE (Last Fold)...")
-            tsne_feats, tsne_labels, tsne_sites = [], [], []
-
-            for c in clients:
-                c['trainer'].model.eval()
-                with torch.no_grad():
-                    for batch in c['test_loader']:
-                        if len(batch) == 3: imgs, _, labels = batch
-                        else: imgs, labels = batch
-                        imgs = imgs.to(device)
-
-                        # 获取 Backbone 特征
-                        features = c['trainer'].model.backbone(imgs)
-
-                        tsne_feats.append(features.cpu().numpy())
-                        tsne_labels.append(labels.cpu().numpy())
-                        tsne_sites.extend([c['id']] * len(labels))
-
-            # 根据 Baseline 模式动态命名并保存
-            tsne_filename = f'tsne_data_{BASELINE_MODE}.npz'
-            tsne_save_path = os.path.join(cfg['experiment']['save_dir'], tsne_filename)
-            np.savez(tsne_save_path,
-                     features=np.concatenate(tsne_feats),
-                     labels=np.concatenate(tsne_labels),
-                     sites=np.array(tsne_sites))
-            logger.info(f"t-SNE data saved to {tsne_save_path}")
-
-    # ================= 实验结束，保存数据 =================
-    # 保存收敛曲线数据
-    df_convergence = pd.DataFrame(convergence_records)
-    conv_filename = f'convergence_curve_{BASELINE_MODE}.csv'
-    conv_save_path = os.path.join(cfg['experiment']['save_dir'], conv_filename)
-    df_convergence.to_csv(conv_save_path, index=False)
-    logger.info(f"Convergence data saved to {conv_save_path}")
 
     # 最终统计
     logger.info(f"\n{'='*20} Final Results ({BASELINE_MODE}) {'='*20}")

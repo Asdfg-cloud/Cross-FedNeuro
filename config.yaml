@@ -26,6 +26,7 @@ train:
   weight_decay: 1.0e-4
   gamma: 0.2               # LCR 正则化系数
   temperature: 0.07        # InfoNCE 温度系数
+  step_size: 10
 
 model:
   feature_dim: 256         # 投影空间维度

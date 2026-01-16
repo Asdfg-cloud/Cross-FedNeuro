@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import os
 
-
 class RestMetaDataset(Dataset):
     def __init__(self, site_id, root_dir, mode='private', transform=None, return_clinical=False):
         """
@@ -38,15 +37,16 @@ class RestMetaDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
+        # 这里为了兼容性直接 Flatten
         img = torch.from_numpy(self.data[idx]).flatten()
         clinical = torch.from_numpy(self.clinical[idx])
         label = torch.tensor(self.labels[idx], dtype=torch.long)
 
         if self.mode == 'public':
-            # public mode
-            return img, clinical, label
+            # [原始版本] Public 模式只返回影像和临床数据 (无标签)
+            return img, clinical
         else:  # private mode
-            if self.return_clinical:
+            if self.return_clinical:  # 多模态客户端： 返回 影像 + 临床 + 标签
                 return img, clinical, label
-            else:
+            else:  # 单模态客户端：只返回 影像 + 标签 (模拟临床数据缺失)
                 return img, label
