@@ -4779,3 +4779,666 @@
 2026-01-16 19:30:20,953 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
 2026-01-16 19:30:21,053 - Cross-FedNeuro -   [Fold 1 Round 25] AUC: 0.6512 | ACC: 0.6044 | SEN: 0.6142 | SPE: 0.5481
 2026-01-16 19:30:21,053 - Cross-FedNeuro -   Round 26 Selected: ['S6', 'S19', 'S17', 'S10', 'S14', 'S16', 'S11', 'S25', 'S12', 'S8', 'S5', 'S13', 'S7', 'S22', 'S1', 'S18', 'S23', 'S24', 'S21', 'S9', 'S15', 'S3', 'S2']
+2026-01-17 15:20:05,213 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-17 15:20:05,312 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-17 15:20:05,312 - Cross-FedNeuro - Multimodal Clients (11): ['S8', 'S1', 'S7', 'S2', 'S5', 'S11', 'S6', 'S12', 'S9', 'S3', 'S10']
+2026-01-17 15:20:05,312 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-17 15:20:08,513 - Cross-FedNeuro -   Round 1 Selected: ['S5', 'S10', 'S19', 'S2', 'S1', 'S7', 'S9', 'S17', 'S24', 'S15', 'S6', 'S16', 'S3', 'S25', 'S18', 'S13', 'S23', 'S21', 'S11', 'S14', 'S22', 'S12', 'S8']
+2026-01-17 15:20:29,650 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:20:29,798 - Cross-FedNeuro -   Round 2 Selected: ['S9', 'S15', 'S5', 'S1', 'S3', 'S2', 'S11', 'S7', 'S21', 'S18', 'S23', 'S6', 'S10', 'S22', 'S19', 'S24', 'S25', 'S8', 'S14', 'S12', 'S17', 'S13', 'S16']
+2026-01-17 15:21:00,470 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:21:00,587 - Cross-FedNeuro -   Round 3 Selected: ['S6', 'S22', 'S21', 'S7', 'S13', 'S3', 'S5', 'S18', 'S8', 'S14', 'S9', 'S2', 'S1', 'S23', 'S16', 'S15', 'S10', 'S11', 'S12', 'S19', 'S25', 'S24', 'S17']
+2026-01-17 15:21:31,521 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:21:31,649 - Cross-FedNeuro -   Round 4 Selected: ['S9', 'S12', 'S3', 'S17', 'S7', 'S2', 'S14', 'S13', 'S5', 'S21', 'S16', 'S25', 'S19', 'S22', 'S8', 'S10', 'S15', 'S11', 'S6', 'S1', 'S24', 'S18', 'S23']
+2026-01-17 15:22:02,319 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:22:02,432 - Cross-FedNeuro -   Round 5 Selected: ['S25', 'S10', 'S16', 'S17', 'S18', 'S21', 'S23', 'S24', 'S6', 'S8', 'S19', 'S2', 'S13', 'S14', 'S22', 'S12', 'S15', 'S5', 'S7', 'S11', 'S9', 'S1', 'S3']
+2026-01-17 15:22:34,885 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:22:34,992 - Cross-FedNeuro -   [Fold 1 Round 5] AUC: 0.6611 | ACC: 0.5948 | SEN: 0.5653 | SPE: 0.5862
+2026-01-17 15:22:34,992 - Cross-FedNeuro -   Round 6 Selected: ['S3', 'S22', 'S11', 'S23', 'S21', 'S9', 'S12', 'S19', 'S10', 'S13', 'S24', 'S7', 'S5', 'S16', 'S6', 'S17', 'S14', 'S18', 'S15', 'S8', 'S1', 'S25', 'S2']
+2026-01-17 15:23:07,058 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:23:07,169 - Cross-FedNeuro -   Round 7 Selected: ['S13', 'S21', 'S23', 'S9', 'S3', 'S11', 'S6', 'S10', 'S12', 'S17', 'S14', 'S18', 'S22', 'S16', 'S8', 'S2', 'S5', 'S7', 'S24', 'S15', 'S25', 'S1', 'S19']
+2026-01-17 15:23:38,843 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:23:38,949 - Cross-FedNeuro -   Round 8 Selected: ['S11', 'S5', 'S25', 'S10', 'S6', 'S15', 'S17', 'S19', 'S3', 'S2', 'S14', 'S16', 'S1', 'S7', 'S13', 'S9', 'S8', 'S21', 'S23', 'S22', 'S12', 'S24', 'S18']
+2026-01-17 15:24:10,416 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:24:10,523 - Cross-FedNeuro -   Round 9 Selected: ['S6', 'S12', 'S21', 'S15', 'S2', 'S22', 'S9', 'S18', 'S25', 'S17', 'S14', 'S23', 'S13', 'S8', 'S16', 'S19', 'S5', 'S11', 'S7', 'S1', 'S24', 'S3', 'S10']
+2026-01-17 15:24:42,263 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:24:42,366 - Cross-FedNeuro -   Round 10 Selected: ['S14', 'S2', 'S9', 'S19', 'S17', 'S21', 'S10', 'S3', 'S24', 'S16', 'S12', 'S11', 'S25', 'S18', 'S5', 'S7', 'S6', 'S15', 'S22', 'S1', 'S13', 'S23', 'S8']
+2026-01-17 15:25:13,588 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:25:13,694 - Cross-FedNeuro -   [Fold 1 Round 10] AUC: 0.6752 | ACC: 0.6290 | SEN: 0.5899 | SPE: 0.6404
+2026-01-17 15:25:13,694 - Cross-FedNeuro -   Round 11 Selected: ['S18', 'S24', 'S25', 'S22', 'S12', 'S2', 'S9', 'S1', 'S23', 'S13', 'S6', 'S14', 'S3', 'S19', 'S8', 'S11', 'S16', 'S17', 'S10', 'S15', 'S5', 'S21', 'S7']
+2026-01-17 15:25:45,639 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:25:45,755 - Cross-FedNeuro -   Round 12 Selected: ['S17', 'S9', 'S24', 'S7', 'S13', 'S15', 'S14', 'S22', 'S18', 'S10', 'S19', 'S11', 'S2', 'S1', 'S3', 'S6', 'S23', 'S16', 'S25', 'S21', 'S8', 'S5', 'S12']
+2026-01-17 15:26:17,502 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:26:17,617 - Cross-FedNeuro -   Round 13 Selected: ['S25', 'S7', 'S11', 'S13', 'S10', 'S15', 'S5', 'S19', 'S8', 'S24', 'S1', 'S9', 'S2', 'S21', 'S23', 'S14', 'S6', 'S3', 'S17', 'S18', 'S16', 'S12', 'S22']
+2026-01-17 15:26:49,397 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:26:49,519 - Cross-FedNeuro -   Round 14 Selected: ['S16', 'S1', 'S14', 'S5', 'S7', 'S18', 'S21', 'S11', 'S13', 'S10', 'S24', 'S8', 'S22', 'S3', 'S23', 'S17', 'S12', 'S6', 'S2', 'S25', 'S15', 'S9', 'S19']
+2026-01-17 15:27:21,568 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:27:21,678 - Cross-FedNeuro -   Round 15 Selected: ['S6', 'S5', 'S8', 'S12', 'S15', 'S13', 'S3', 'S23', 'S21', 'S22', 'S17', 'S2', 'S19', 'S24', 'S1', 'S9', 'S18', 'S16', 'S14', 'S25', 'S11', 'S10', 'S7']
+2026-01-17 15:27:53,940 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:27:54,075 - Cross-FedNeuro -   [Fold 1 Round 15] AUC: 0.6749 | ACC: 0.6155 | SEN: 0.5768 | SPE: 0.6287
+2026-01-17 15:27:54,075 - Cross-FedNeuro -   Round 16 Selected: ['S17', 'S19', 'S16', 'S14', 'S15', 'S2', 'S9', 'S22', 'S6', 'S5', 'S1', 'S21', 'S12', 'S13', 'S10', 'S18', 'S8', 'S23', 'S7', 'S25', 'S24', 'S11', 'S3']
+2026-01-17 15:28:26,439 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:28:26,568 - Cross-FedNeuro -   Round 17 Selected: ['S8', 'S10', 'S19', 'S3', 'S23', 'S16', 'S5', 'S2', 'S6', 'S21', 'S11', 'S25', 'S13', 'S14', 'S24', 'S1', 'S12', 'S17', 'S7', 'S22', 'S15', 'S18', 'S9']
+2026-01-17 15:28:58,868 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:28:58,981 - Cross-FedNeuro -   Round 18 Selected: ['S18', 'S3', 'S1', 'S7', 'S19', 'S16', 'S9', 'S2', 'S21', 'S13', 'S17', 'S23', 'S10', 'S24', 'S11', 'S22', 'S8', 'S12', 'S5', 'S6', 'S14', 'S15', 'S25']
+2026-01-17 15:29:31,390 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:29:31,497 - Cross-FedNeuro -   Round 19 Selected: ['S11', 'S24', 'S22', 'S15', 'S2', 'S6', 'S9', 'S8', 'S10', 'S12', 'S21', 'S1', 'S18', 'S16', 'S7', 'S19', 'S5', 'S25', 'S14', 'S23', 'S13', 'S17', 'S3']
+2026-01-17 15:30:03,498 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:30:03,613 - Cross-FedNeuro -   Round 20 Selected: ['S7', 'S3', 'S13', 'S8', 'S22', 'S11', 'S23', 'S19', 'S1', 'S15', 'S14', 'S6', 'S12', 'S17', 'S18', 'S2', 'S25', 'S21', 'S9', 'S16', 'S10', 'S24', 'S5']
+2026-01-17 15:30:34,983 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:30:35,088 - Cross-FedNeuro -   [Fold 1 Round 20] AUC: 0.6767 | ACC: 0.6029 | SEN: 0.5797 | SPE: 0.5939
+2026-01-17 15:30:35,089 - Cross-FedNeuro -   Round 21 Selected: ['S16', 'S3', 'S17', 'S2', 'S5', 'S1', 'S14', 'S6', 'S18', 'S8', 'S19', 'S25', 'S23', 'S10', 'S7', 'S12', 'S22', 'S15', 'S21', 'S24', 'S11', 'S13', 'S9']
+2026-01-17 15:31:06,730 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:31:06,858 - Cross-FedNeuro -   Round 22 Selected: ['S5', 'S24', 'S15', 'S19', 'S21', 'S2', 'S23', 'S25', 'S17', 'S13', 'S11', 'S22', 'S1', 'S7', 'S10', 'S6', 'S16', 'S9', 'S8', 'S12', 'S18', 'S3', 'S14']
+2026-01-17 15:31:38,759 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:31:38,884 - Cross-FedNeuro -   Round 23 Selected: ['S18', 'S11', 'S17', 'S1', 'S12', 'S15', 'S14', 'S24', 'S22', 'S16', 'S25', 'S13', 'S8', 'S3', 'S6', 'S19', 'S9', 'S2', 'S5', 'S7', 'S10', 'S23', 'S21']
+2026-01-17 15:32:12,289 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:32:12,403 - Cross-FedNeuro -   Round 24 Selected: ['S22', 'S6', 'S3', 'S11', 'S18', 'S24', 'S14', 'S7', 'S8', 'S10', 'S1', 'S5', 'S13', 'S9', 'S17', 'S21', 'S19', 'S16', 'S23', 'S15', 'S12', 'S25', 'S2']
+2026-01-17 15:32:43,838 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:32:43,945 - Cross-FedNeuro -   Round 25 Selected: ['S21', 'S1', 'S17', 'S24', 'S6', 'S3', 'S19', 'S13', 'S10', 'S9', 'S8', 'S25', 'S18', 'S11', 'S14', 'S12', 'S22', 'S5', 'S2', 'S15', 'S7', 'S16', 'S23']
+2026-01-17 15:33:15,318 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:33:15,425 - Cross-FedNeuro -   [Fold 1 Round 25] AUC: 0.6641 | ACC: 0.6193 | SEN: 0.5951 | SPE: 0.6120
+2026-01-17 15:33:15,425 - Cross-FedNeuro -   Round 26 Selected: ['S6', 'S19', 'S17', 'S10', 'S14', 'S16', 'S11', 'S25', 'S12', 'S8', 'S5', 'S13', 'S7', 'S22', 'S1', 'S18', 'S23', 'S24', 'S21', 'S9', 'S15', 'S3', 'S2']
+2026-01-17 15:33:46,692 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:33:46,795 - Cross-FedNeuro -   Round 27 Selected: ['S5', 'S17', 'S23', 'S10', 'S12', 'S19', 'S14', 'S13', 'S3', 'S25', 'S9', 'S6', 'S7', 'S24', 'S16', 'S21', 'S2', 'S8', 'S1', 'S11', 'S18', 'S22', 'S15']
+2026-01-17 15:34:17,862 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:34:17,991 - Cross-FedNeuro -   Round 28 Selected: ['S22', 'S10', 'S8', 'S6', 'S14', 'S2', 'S9', 'S7', 'S3', 'S1', 'S15', 'S25', 'S23', 'S24', 'S11', 'S12', 'S19', 'S17', 'S18', 'S13', 'S5', 'S21', 'S16']
+2026-01-17 15:34:49,442 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:34:49,560 - Cross-FedNeuro -   Round 29 Selected: ['S3', 'S19', 'S13', 'S21', 'S6', 'S1', 'S15', 'S9', 'S22', 'S23', 'S24', 'S8', 'S10', 'S17', 'S7', 'S25', 'S14', 'S11', 'S18', 'S16', 'S2', 'S5', 'S12']
+2026-01-17 15:35:21,253 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:35:21,369 - Cross-FedNeuro -   Round 30 Selected: ['S7', 'S12', 'S10', 'S14', 'S17', 'S19', 'S21', 'S13', 'S24', 'S22', 'S16', 'S25', 'S2', 'S6', 'S3', 'S9', 'S8', 'S15', 'S11', 'S23', 'S5', 'S1', 'S18']
+2026-01-17 15:35:53,953 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:35:54,081 - Cross-FedNeuro -   [Fold 1 Round 30] AUC: 0.6874 | ACC: 0.6399 | SEN: 0.6245 | SPE: 0.6208
+2026-01-17 15:35:54,082 - Cross-FedNeuro -   Round 31 Selected: ['S13', 'S5', 'S12', 'S24', 'S2', 'S16', 'S19', 'S15', 'S21', 'S10', 'S11', 'S17', 'S8', 'S14', 'S3', 'S22', 'S6', 'S7', 'S25', 'S18', 'S1', 'S9', 'S23']
+2026-01-17 15:36:26,929 - Cross-FedNeuro - Aggregated Clinical Reps from 673 weighted samples.
+2026-01-17 15:36:27,032 - Cross-FedNeuro -   Round 32 Selected: ['S5', 'S14', 'S16', 'S8', 'S12', 'S3', 'S23', 'S1', 'S19', 'S10', 'S9', 'S24', 'S21', 'S17', 'S11', 'S22', 'S13', 'S15', 'S2', 'S6', 'S18', 'S7', 'S25']
+2026-01-17 15:38:00,963 - Cross-FedNeuro - Config loaded. Starting 5-Fold Cross-Validation.
+2026-01-17 15:38:00,986 - Cross-FedNeuro - Sites Selected: ['S1', 'S2', 'S3', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S18', 'S19', 'S21', 'S22', 'S23', 'S24', 'S25']
+2026-01-17 15:38:00,986 - Cross-FedNeuro - Multimodal Clients (11): ['S2', 'S1', 'S7', 'S9', 'S6', 'S12', 'S8', 'S11', 'S10', 'S5', 'S3']
+2026-01-17 15:38:00,986 - Cross-FedNeuro - 
+==================== Start Fold 1 / 5 ====================
+2026-01-17 15:38:03,367 - Cross-FedNeuro -   Round 1 Selected: ['S5', 'S10', 'S19', 'S2', 'S1', 'S7', 'S9', 'S17', 'S24', 'S15', 'S6', 'S16', 'S3', 'S25', 'S18', 'S13', 'S23', 'S21', 'S11', 'S14', 'S22', 'S12', 'S8']
+2026-01-17 15:38:24,267 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:38:24,386 - Cross-FedNeuro -   Round 2 Selected: ['S9', 'S15', 'S5', 'S1', 'S3', 'S2', 'S11', 'S7', 'S21', 'S18', 'S23', 'S6', 'S10', 'S22', 'S19', 'S24', 'S25', 'S8', 'S14', 'S12', 'S17', 'S13', 'S16']
+2026-01-17 15:38:56,108 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:38:56,229 - Cross-FedNeuro -   Round 3 Selected: ['S6', 'S22', 'S21', 'S7', 'S13', 'S3', 'S5', 'S18', 'S8', 'S14', 'S9', 'S2', 'S1', 'S23', 'S16', 'S15', 'S10', 'S11', 'S12', 'S19', 'S25', 'S24', 'S17']
+2026-01-17 15:39:27,757 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:39:27,872 - Cross-FedNeuro -   Round 4 Selected: ['S9', 'S12', 'S3', 'S17', 'S7', 'S2', 'S14', 'S13', 'S5', 'S21', 'S16', 'S25', 'S19', 'S22', 'S8', 'S10', 'S15', 'S11', 'S6', 'S1', 'S24', 'S18', 'S23']
+2026-01-17 15:39:59,366 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:39:59,478 - Cross-FedNeuro -   Round 5 Selected: ['S25', 'S10', 'S16', 'S17', 'S18', 'S21', 'S23', 'S24', 'S6', 'S8', 'S19', 'S2', 'S13', 'S14', 'S22', 'S12', 'S15', 'S5', 'S7', 'S11', 'S9', 'S1', 'S3']
+2026-01-17 15:40:31,512 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:40:31,640 - Cross-FedNeuro -   [Fold 1 Round 5] AUC: 0.6508 | ACC: 0.6158 | SEN: 0.6090 | SPE: 0.5833
+2026-01-17 15:40:31,640 - Cross-FedNeuro -   Round 6 Selected: ['S3', 'S22', 'S11', 'S23', 'S21', 'S9', 'S12', 'S19', 'S10', 'S13', 'S24', 'S7', 'S5', 'S16', 'S6', 'S17', 'S14', 'S18', 'S15', 'S8', 'S1', 'S25', 'S2']
+2026-01-17 15:41:04,840 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:41:04,964 - Cross-FedNeuro -   Round 7 Selected: ['S13', 'S21', 'S23', 'S9', 'S3', 'S11', 'S6', 'S10', 'S12', 'S17', 'S14', 'S18', 'S22', 'S16', 'S8', 'S2', 'S5', 'S7', 'S24', 'S15', 'S25', 'S1', 'S19']
+2026-01-17 15:41:36,152 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:41:36,256 - Cross-FedNeuro -   Round 8 Selected: ['S11', 'S5', 'S25', 'S10', 'S6', 'S15', 'S17', 'S19', 'S3', 'S2', 'S14', 'S16', 'S1', 'S7', 'S13', 'S9', 'S8', 'S21', 'S23', 'S22', 'S12', 'S24', 'S18']
+2026-01-17 15:42:07,636 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:42:07,741 - Cross-FedNeuro -   Round 9 Selected: ['S6', 'S12', 'S21', 'S15', 'S2', 'S22', 'S9', 'S18', 'S25', 'S17', 'S14', 'S23', 'S13', 'S8', 'S16', 'S19', 'S5', 'S11', 'S7', 'S1', 'S24', 'S3', 'S10']
+2026-01-17 15:42:39,029 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:42:39,146 - Cross-FedNeuro -   Round 10 Selected: ['S14', 'S2', 'S9', 'S19', 'S17', 'S21', 'S10', 'S3', 'S24', 'S16', 'S12', 'S11', 'S25', 'S18', 'S5', 'S7', 'S6', 'S15', 'S22', 'S1', 'S13', 'S23', 'S8']
+2026-01-17 15:43:09,874 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:43:09,975 - Cross-FedNeuro -   [Fold 1 Round 10] AUC: 0.6535 | ACC: 0.6020 | SEN: 0.5951 | SPE: 0.5750
+2026-01-17 15:43:09,975 - Cross-FedNeuro -   Round 11 Selected: ['S18', 'S24', 'S25', 'S22', 'S12', 'S2', 'S9', 'S1', 'S23', 'S13', 'S6', 'S14', 'S3', 'S19', 'S8', 'S11', 'S16', 'S17', 'S10', 'S15', 'S5', 'S21', 'S7']
+2026-01-17 15:43:41,465 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:43:41,562 - Cross-FedNeuro -   Round 12 Selected: ['S17', 'S9', 'S24', 'S7', 'S13', 'S15', 'S14', 'S22', 'S18', 'S10', 'S19', 'S11', 'S2', 'S1', 'S3', 'S6', 'S23', 'S16', 'S25', 'S21', 'S8', 'S5', 'S12']
+2026-01-17 15:44:12,570 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:44:12,667 - Cross-FedNeuro -   Round 13 Selected: ['S25', 'S7', 'S11', 'S13', 'S10', 'S15', 'S5', 'S19', 'S8', 'S24', 'S1', 'S9', 'S2', 'S21', 'S23', 'S14', 'S6', 'S3', 'S17', 'S18', 'S16', 'S12', 'S22']
+2026-01-17 15:44:43,165 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:44:43,265 - Cross-FedNeuro -   Round 14 Selected: ['S16', 'S1', 'S14', 'S5', 'S7', 'S18', 'S21', 'S11', 'S13', 'S10', 'S24', 'S8', 'S22', 'S3', 'S23', 'S17', 'S12', 'S6', 'S2', 'S25', 'S15', 'S9', 'S19']
+2026-01-17 15:45:15,159 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:45:15,272 - Cross-FedNeuro -   Round 15 Selected: ['S6', 'S5', 'S8', 'S12', 'S15', 'S13', 'S3', 'S23', 'S21', 'S22', 'S17', 'S2', 'S19', 'S24', 'S1', 'S9', 'S18', 'S16', 'S14', 'S25', 'S11', 'S10', 'S7']
+2026-01-17 15:45:47,670 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:45:47,776 - Cross-FedNeuro -   [Fold 1 Round 15] AUC: 0.6613 | ACC: 0.6191 | SEN: 0.6031 | SPE: 0.5973
+2026-01-17 15:45:47,776 - Cross-FedNeuro -   Round 16 Selected: ['S17', 'S19', 'S16', 'S14', 'S15', 'S2', 'S9', 'S22', 'S6', 'S5', 'S1', 'S21', 'S12', 'S13', 'S10', 'S18', 'S8', 'S23', 'S7', 'S25', 'S24', 'S11', 'S3']
+2026-01-17 15:46:18,460 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:46:18,579 - Cross-FedNeuro -   Round 17 Selected: ['S8', 'S10', 'S19', 'S3', 'S23', 'S16', 'S5', 'S2', 'S6', 'S21', 'S11', 'S25', 'S13', 'S14', 'S24', 'S1', 'S12', 'S17', 'S7', 'S22', 'S15', 'S18', 'S9']
+2026-01-17 15:46:50,728 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:46:50,831 - Cross-FedNeuro -   Round 18 Selected: ['S18', 'S3', 'S1', 'S7', 'S19', 'S16', 'S9', 'S2', 'S21', 'S13', 'S17', 'S23', 'S10', 'S24', 'S11', 'S22', 'S8', 'S12', 'S5', 'S6', 'S14', 'S15', 'S25']
+2026-01-17 15:47:22,562 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:47:22,675 - Cross-FedNeuro -   Round 19 Selected: ['S11', 'S24', 'S22', 'S15', 'S2', 'S6', 'S9', 'S8', 'S10', 'S12', 'S21', 'S1', 'S18', 'S16', 'S7', 'S19', 'S5', 'S25', 'S14', 'S23', 'S13', 'S17', 'S3']
+2026-01-17 15:47:53,853 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:47:53,973 - Cross-FedNeuro -   Round 20 Selected: ['S7', 'S3', 'S13', 'S8', 'S22', 'S11', 'S23', 'S19', 'S1', 'S15', 'S14', 'S6', 'S12', 'S17', 'S18', 'S2', 'S25', 'S21', 'S9', 'S16', 'S10', 'S24', 'S5']
+2026-01-17 15:48:25,399 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:48:25,506 - Cross-FedNeuro -   [Fold 1 Round 20] AUC: 0.6594 | ACC: 0.6320 | SEN: 0.6426 | SPE: 0.5815
+2026-01-17 15:48:25,506 - Cross-FedNeuro -   Round 21 Selected: ['S16', 'S3', 'S17', 'S2', 'S5', 'S1', 'S14', 'S6', 'S18', 'S8', 'S19', 'S25', 'S23', 'S10', 'S7', 'S12', 'S22', 'S15', 'S21', 'S24', 'S11', 'S13', 'S9']
+2026-01-17 15:48:57,319 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:48:57,443 - Cross-FedNeuro -   Round 22 Selected: ['S5', 'S24', 'S15', 'S19', 'S21', 'S2', 'S23', 'S25', 'S17', 'S13', 'S11', 'S22', 'S1', 'S7', 'S10', 'S6', 'S16', 'S9', 'S8', 'S12', 'S18', 'S3', 'S14']
+2026-01-17 15:49:29,045 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:49:29,150 - Cross-FedNeuro -   Round 23 Selected: ['S18', 'S11', 'S17', 'S1', 'S12', 'S15', 'S14', 'S24', 'S22', 'S16', 'S25', 'S13', 'S8', 'S3', 'S6', 'S19', 'S9', 'S2', 'S5', 'S7', 'S10', 'S23', 'S21']
+2026-01-17 15:50:00,659 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:50:00,780 - Cross-FedNeuro -   Round 24 Selected: ['S22', 'S6', 'S3', 'S11', 'S18', 'S24', 'S14', 'S7', 'S8', 'S10', 'S1', 'S5', 'S13', 'S9', 'S17', 'S21', 'S19', 'S16', 'S23', 'S15', 'S12', 'S25', 'S2']
+2026-01-17 15:50:32,713 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:50:32,835 - Cross-FedNeuro -   Round 25 Selected: ['S21', 'S1', 'S17', 'S24', 'S6', 'S3', 'S19', 'S13', 'S10', 'S9', 'S8', 'S25', 'S18', 'S11', 'S14', 'S12', 'S22', 'S5', 'S2', 'S15', 'S7', 'S16', 'S23']
+2026-01-17 15:51:05,096 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:51:05,200 - Cross-FedNeuro -   [Fold 1 Round 25] AUC: 0.6678 | ACC: 0.6532 | SEN: 0.6608 | SPE: 0.6040
+2026-01-17 15:51:05,200 - Cross-FedNeuro -   Round 26 Selected: ['S6', 'S19', 'S17', 'S10', 'S14', 'S16', 'S11', 'S25', 'S12', 'S8', 'S5', 'S13', 'S7', 'S22', 'S1', 'S18', 'S23', 'S24', 'S21', 'S9', 'S15', 'S3', 'S2']
+2026-01-17 15:51:36,757 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:51:36,858 - Cross-FedNeuro -   Round 27 Selected: ['S5', 'S17', 'S23', 'S10', 'S12', 'S19', 'S14', 'S13', 'S3', 'S25', 'S9', 'S6', 'S7', 'S24', 'S16', 'S21', 'S2', 'S8', 'S1', 'S11', 'S18', 'S22', 'S15']
+2026-01-17 15:52:08,507 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:52:08,620 - Cross-FedNeuro -   Round 28 Selected: ['S22', 'S10', 'S8', 'S6', 'S14', 'S2', 'S9', 'S7', 'S3', 'S1', 'S15', 'S25', 'S23', 'S24', 'S11', 'S12', 'S19', 'S17', 'S18', 'S13', 'S5', 'S21', 'S16']
+2026-01-17 15:52:40,710 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:52:40,812 - Cross-FedNeuro -   Round 29 Selected: ['S3', 'S19', 'S13', 'S21', 'S6', 'S1', 'S15', 'S9', 'S22', 'S23', 'S24', 'S8', 'S10', 'S17', 'S7', 'S25', 'S14', 'S11', 'S18', 'S16', 'S2', 'S5', 'S12']
+2026-01-17 15:53:11,688 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:53:11,795 - Cross-FedNeuro -   Round 30 Selected: ['S7', 'S12', 'S10', 'S14', 'S17', 'S19', 'S21', 'S13', 'S24', 'S22', 'S16', 'S25', 'S2', 'S6', 'S3', 'S9', 'S8', 'S15', 'S11', 'S23', 'S5', 'S1', 'S18']
+2026-01-17 15:53:43,363 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:53:43,479 - Cross-FedNeuro -   [Fold 1 Round 30] AUC: 0.6634 | ACC: 0.6364 | SEN: 0.6151 | SPE: 0.6214
+2026-01-17 15:53:43,479 - Cross-FedNeuro -   Round 31 Selected: ['S13', 'S5', 'S12', 'S24', 'S2', 'S16', 'S19', 'S15', 'S21', 'S10', 'S11', 'S17', 'S8', 'S14', 'S3', 'S22', 'S6', 'S7', 'S25', 'S18', 'S1', 'S9', 'S23']
+2026-01-17 15:54:15,528 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:54:15,647 - Cross-FedNeuro -   Round 32 Selected: ['S5', 'S14', 'S16', 'S8', 'S12', 'S3', 'S23', 'S1', 'S19', 'S10', 'S9', 'S24', 'S21', 'S17', 'S11', 'S22', 'S13', 'S15', 'S2', 'S6', 'S18', 'S7', 'S25']
+2026-01-17 15:54:47,635 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:54:47,746 - Cross-FedNeuro -   Round 33 Selected: ['S3', 'S5', 'S6', 'S22', 'S9', 'S10', 'S17', 'S14', 'S13', 'S24', 'S25', 'S16', 'S21', 'S11', 'S18', 'S12', 'S15', 'S1', 'S7', 'S2', 'S8', 'S23', 'S19']
+2026-01-17 15:55:18,828 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:55:18,945 - Cross-FedNeuro -   Round 34 Selected: ['S11', 'S19', 'S17', 'S12', 'S8', 'S2', 'S18', 'S9', 'S3', 'S16', 'S5', 'S6', 'S1', 'S13', 'S15', 'S7', 'S21', 'S23', 'S25', 'S22', 'S10', 'S24', 'S14']
+2026-01-17 15:55:50,208 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:55:50,319 - Cross-FedNeuro -   Round 35 Selected: ['S18', 'S8', 'S15', 'S12', 'S23', 'S19', 'S5', 'S2', 'S17', 'S6', 'S11', 'S10', 'S24', 'S3', 'S16', 'S1', 'S7', 'S9', 'S14', 'S22', 'S21', 'S25', 'S13']
+2026-01-17 15:56:21,859 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:56:21,976 - Cross-FedNeuro -   [Fold 1 Round 35] AUC: 0.6638 | ACC: 0.6480 | SEN: 0.6323 | SPE: 0.6304
+2026-01-17 15:56:21,976 - Cross-FedNeuro -   Round 36 Selected: ['S14', 'S22', 'S3', 'S15', 'S10', 'S11', 'S25', 'S6', 'S5', 'S8', 'S17', 'S23', 'S13', 'S1', 'S12', 'S7', 'S16', 'S18', 'S19', 'S21', 'S24', 'S2', 'S9']
+2026-01-17 15:56:53,846 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:56:53,958 - Cross-FedNeuro -   Round 37 Selected: ['S1', 'S8', 'S12', 'S2', 'S18', 'S23', 'S5', 'S16', 'S19', 'S9', 'S14', 'S7', 'S11', 'S3', 'S17', 'S6', 'S25', 'S10', 'S22', 'S24', 'S13', 'S15', 'S21']
+2026-01-17 15:57:25,551 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:57:25,663 - Cross-FedNeuro -   Round 38 Selected: ['S13', 'S25', 'S10', 'S15', 'S24', 'S3', 'S21', 'S8', 'S19', 'S1', 'S23', 'S18', 'S14', 'S2', 'S12', 'S16', 'S9', 'S7', 'S22', 'S11', 'S6', 'S5', 'S17']
+2026-01-17 15:57:57,423 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:57:57,525 - Cross-FedNeuro -   Round 39 Selected: ['S18', 'S17', 'S10', 'S24', 'S11', 'S9', 'S22', 'S19', 'S1', 'S2', 'S23', 'S15', 'S6', 'S12', 'S3', 'S21', 'S25', 'S8', 'S14', 'S7', 'S5', 'S16', 'S13']
+2026-01-17 15:58:29,031 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:58:29,141 - Cross-FedNeuro -   Round 40 Selected: ['S2', 'S13', 'S24', 'S18', 'S10', 'S23', 'S5', 'S8', 'S11', 'S25', 'S6', 'S12', 'S7', 'S21', 'S15', 'S16', 'S9', 'S19', 'S17', 'S1', 'S22', 'S14', 'S3']
+2026-01-17 15:59:00,684 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:59:00,798 - Cross-FedNeuro -   [Fold 1 Round 40] AUC: 0.6797 | ACC: 0.6492 | SEN: 0.6508 | SPE: 0.6063
+2026-01-17 15:59:00,798 - Cross-FedNeuro -   Round 41 Selected: ['S6', 'S16', 'S1', 'S22', 'S3', 'S9', 'S2', 'S11', 'S5', 'S18', 'S19', 'S23', 'S8', 'S10', 'S12', 'S25', 'S14', 'S15', 'S21', 'S13', 'S7', 'S17', 'S24']
+2026-01-17 15:59:32,304 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 15:59:32,419 - Cross-FedNeuro -   Round 42 Selected: ['S8', 'S3', 'S11', 'S22', 'S21', 'S12', 'S5', 'S6', 'S18', 'S25', 'S9', 'S17', 'S19', 'S13', 'S1', 'S16', 'S23', 'S15', 'S7', 'S24', 'S10', 'S14', 'S2']
+2026-01-17 16:00:04,231 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:00:04,336 - Cross-FedNeuro -   Round 43 Selected: ['S9', 'S7', 'S2', 'S22', 'S1', 'S16', 'S25', 'S8', 'S13', 'S14', 'S17', 'S12', 'S11', 'S10', 'S15', 'S18', 'S21', 'S5', 'S6', 'S24', 'S23', 'S3', 'S19']
+2026-01-17 16:00:36,155 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:00:36,272 - Cross-FedNeuro -   Round 44 Selected: ['S7', 'S8', 'S17', 'S3', 'S6', 'S2', 'S12', 'S21', 'S16', 'S15', 'S9', 'S1', 'S24', 'S10', 'S13', 'S11', 'S23', 'S14', 'S19', 'S25', 'S18', 'S5', 'S22']
+2026-01-17 16:01:06,666 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:01:06,763 - Cross-FedNeuro -   Round 45 Selected: ['S3', 'S16', 'S15', 'S13', 'S23', 'S18', 'S6', 'S5', 'S2', 'S12', 'S25', 'S19', 'S22', 'S10', 'S17', 'S21', 'S1', 'S9', 'S11', 'S7', 'S8', 'S24', 'S14']
+2026-01-17 16:01:38,349 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:01:38,460 - Cross-FedNeuro -   [Fold 1 Round 45] AUC: 0.6735 | ACC: 0.6458 | SEN: 0.6431 | SPE: 0.6017
+2026-01-17 16:01:38,460 - Cross-FedNeuro -   Round 46 Selected: ['S14', 'S21', 'S19', 'S15', 'S22', 'S9', 'S5', 'S17', 'S1', 'S3', 'S24', 'S10', 'S23', 'S11', 'S16', 'S25', 'S18', 'S2', 'S6', 'S12', 'S7', 'S13', 'S8']
+2026-01-17 16:02:10,170 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:02:10,287 - Cross-FedNeuro -   Round 47 Selected: ['S2', 'S13', 'S21', 'S19', 'S17', 'S5', 'S10', 'S8', 'S18', 'S9', 'S12', 'S1', 'S11', 'S24', 'S22', 'S23', 'S7', 'S6', 'S16', 'S15', 'S14', 'S3', 'S25']
+2026-01-17 16:02:42,706 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:02:42,816 - Cross-FedNeuro -   Round 48 Selected: ['S25', 'S1', 'S24', 'S16', 'S21', 'S13', 'S17', 'S10', 'S6', 'S9', 'S18', 'S11', 'S15', 'S22', 'S19', 'S5', 'S8', 'S12', 'S7', 'S14', 'S3', 'S23', 'S2']
+2026-01-17 16:03:16,319 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:03:16,432 - Cross-FedNeuro -   Round 49 Selected: ['S10', 'S17', 'S14', 'S12', 'S13', 'S3', 'S7', 'S25', 'S6', 'S1', 'S16', 'S9', 'S24', 'S21', 'S18', 'S8', 'S19', 'S2', 'S5', 'S23', 'S22', 'S15', 'S11']
+2026-01-17 16:03:48,738 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:03:48,850 - Cross-FedNeuro -   Round 50 Selected: ['S16', 'S5', 'S18', 'S6', 'S10', 'S23', 'S14', 'S19', 'S8', 'S9', 'S12', 'S1', 'S13', 'S3', 'S2', 'S15', 'S22', 'S11', 'S25', 'S17', 'S21', 'S7', 'S24']
+2026-01-17 16:04:20,790 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:04:20,902 - Cross-FedNeuro -   [Fold 1 Round 50] AUC: 0.6742 | ACC: 0.6507 | SEN: 0.6363 | SPE: 0.6246
+2026-01-17 16:04:20,902 - Cross-FedNeuro - Fold 1 Best Result -> AUC: 0.6797, ACC: 0.6492, SEN: 0.6508, SPE: 0.6063
+2026-01-17 16:04:20,902 - Cross-FedNeuro - 
+==================== Start Fold 2 / 5 ====================
+2026-01-17 16:04:22,552 - Cross-FedNeuro -   Round 1 Selected: ['S14', 'S9', 'S18', 'S13', 'S21', 'S12', 'S25', 'S1', 'S3', 'S23', 'S22', 'S17', 'S7', 'S11', 'S24', 'S2', 'S8', 'S19', 'S10', 'S5', 'S16', 'S6', 'S15']
+2026-01-17 16:04:43,264 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:04:43,381 - Cross-FedNeuro -   Round 2 Selected: ['S17', 'S12', 'S18', 'S10', 'S19', 'S2', 'S21', 'S13', 'S23', 'S6', 'S14', 'S9', 'S3', 'S16', 'S7', 'S15', 'S5', 'S24', 'S8', 'S22', 'S1', 'S25', 'S11']
+2026-01-17 16:05:15,012 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:05:15,122 - Cross-FedNeuro -   Round 3 Selected: ['S6', 'S1', 'S19', 'S18', 'S23', 'S2', 'S10', 'S9', 'S8', 'S17', 'S25', 'S13', 'S15', 'S14', 'S22', 'S11', 'S21', 'S16', 'S5', 'S12', 'S24', 'S7', 'S3']
+2026-01-17 16:05:47,402 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:05:47,516 - Cross-FedNeuro -   Round 4 Selected: ['S24', 'S15', 'S17', 'S6', 'S23', 'S22', 'S13', 'S5', 'S3', 'S21', 'S7', 'S12', 'S1', 'S25', 'S18', 'S2', 'S10', 'S19', 'S9', 'S8', 'S16', 'S11', 'S14']
+2026-01-17 16:06:19,332 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:06:19,453 - Cross-FedNeuro -   Round 5 Selected: ['S3', 'S22', 'S11', 'S13', 'S9', 'S21', 'S15', 'S24', 'S17', 'S10', 'S2', 'S8', 'S25', 'S23', 'S18', 'S19', 'S6', 'S5', 'S7', 'S14', 'S12', 'S1', 'S16']
+2026-01-17 16:06:51,141 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:06:51,263 - Cross-FedNeuro -   [Fold 2 Round 5] AUC: 0.6389 | ACC: 0.6080 | SEN: 0.6668 | SPE: 0.4973
+2026-01-17 16:06:51,264 - Cross-FedNeuro -   Round 6 Selected: ['S6', 'S14', 'S23', 'S17', 'S21', 'S15', 'S2', 'S19', 'S11', 'S24', 'S5', 'S18', 'S3', 'S16', 'S1', 'S12', 'S9', 'S25', 'S8', 'S22', 'S13', 'S7', 'S10']
+2026-01-17 16:07:22,859 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:07:22,976 - Cross-FedNeuro -   Round 7 Selected: ['S1', 'S19', 'S17', 'S24', 'S13', 'S3', 'S6', 'S7', 'S8', 'S14', 'S15', 'S9', 'S23', 'S16', 'S2', 'S22', 'S21', 'S18', 'S25', 'S5', 'S11', 'S10', 'S12']
+2026-01-17 16:07:54,389 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:07:54,499 - Cross-FedNeuro -   Round 8 Selected: ['S3', 'S25', 'S24', 'S14', 'S5', 'S6', 'S1', 'S16', 'S8', 'S23', 'S21', 'S11', 'S12', 'S7', 'S18', 'S22', 'S19', 'S15', 'S17', 'S10', 'S2', 'S13', 'S9']
+2026-01-17 16:08:25,623 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:08:25,740 - Cross-FedNeuro -   Round 9 Selected: ['S3', 'S17', 'S16', 'S6', 'S7', 'S19', 'S14', 'S18', 'S1', 'S13', 'S10', 'S11', 'S21', 'S2', 'S8', 'S22', 'S15', 'S12', 'S9', 'S23', 'S25', 'S24', 'S5']
+2026-01-17 16:08:57,200 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:08:57,295 - Cross-FedNeuro -   Round 10 Selected: ['S22', 'S12', 'S10', 'S21', 'S5', 'S24', 'S14', 'S25', 'S19', 'S8', 'S11', 'S2', 'S7', 'S1', 'S18', 'S13', 'S9', 'S15', 'S3', 'S16', 'S17', 'S23', 'S6']
+2026-01-17 16:09:28,807 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:09:28,916 - Cross-FedNeuro -   [Fold 2 Round 10] AUC: 0.6266 | ACC: 0.6502 | SEN: 0.6947 | SPE: 0.5545
+2026-01-17 16:09:28,917 - Cross-FedNeuro -   Round 11 Selected: ['S19', 'S16', 'S25', 'S10', 'S13', 'S18', 'S2', 'S12', 'S6', 'S9', 'S8', 'S22', 'S3', 'S7', 'S1', 'S15', 'S17', 'S5', 'S24', 'S21', 'S14', 'S23', 'S11']
+2026-01-17 16:10:00,409 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:10:00,542 - Cross-FedNeuro -   Round 12 Selected: ['S2', 'S17', 'S7', 'S25', 'S18', 'S9', 'S16', 'S14', 'S22', 'S13', 'S10', 'S11', 'S12', 'S3', 'S5', 'S23', 'S8', 'S24', 'S6', 'S19', 'S1', 'S21', 'S15']
+2026-01-17 16:10:32,291 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:10:32,416 - Cross-FedNeuro -   Round 13 Selected: ['S25', 'S3', 'S19', 'S1', 'S17', 'S6', 'S23', 'S18', 'S12', 'S22', 'S5', 'S15', 'S13', 'S2', 'S8', 'S24', 'S11', 'S9', 'S21', 'S14', 'S16', 'S7', 'S10']
+2026-01-17 16:11:04,269 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:11:04,397 - Cross-FedNeuro -   Round 14 Selected: ['S23', 'S6', 'S21', 'S13', 'S9', 'S14', 'S7', 'S5', 'S11', 'S18', 'S16', 'S8', 'S3', 'S19', 'S10', 'S2', 'S12', 'S17', 'S1', 'S22', 'S25', 'S15', 'S24']
+2026-01-17 16:11:36,405 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:11:36,517 - Cross-FedNeuro -   Round 15 Selected: ['S11', 'S16', 'S13', 'S22', 'S25', 'S18', 'S6', 'S8', 'S3', 'S7', 'S10', 'S14', 'S9', 'S12', 'S23', 'S19', 'S24', 'S17', 'S21', 'S5', 'S1', 'S2', 'S15']
+2026-01-17 16:12:08,359 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:12:08,477 - Cross-FedNeuro -   [Fold 2 Round 15] AUC: 0.6231 | ACC: 0.6267 | SEN: 0.6720 | SPE: 0.5299
+2026-01-17 16:12:08,477 - Cross-FedNeuro -   Round 16 Selected: ['S8', 'S9', 'S10', 'S15', 'S22', 'S12', 'S14', 'S25', 'S11', 'S23', 'S5', 'S7', 'S19', 'S2', 'S17', 'S3', 'S24', 'S1', 'S18', 'S13', 'S21', 'S6', 'S16']
+2026-01-17 16:12:40,395 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:12:40,505 - Cross-FedNeuro -   Round 17 Selected: ['S5', 'S12', 'S19', 'S23', 'S7', 'S15', 'S18', 'S11', 'S1', 'S6', 'S8', 'S10', 'S3', 'S17', 'S21', 'S13', 'S22', 'S2', 'S14', 'S25', 'S16', 'S9', 'S24']
+2026-01-17 16:13:12,888 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:13:13,001 - Cross-FedNeuro -   Round 18 Selected: ['S23', 'S9', 'S19', 'S3', 'S8', 'S13', 'S12', 'S22', 'S24', 'S1', 'S17', 'S14', 'S7', 'S18', 'S16', 'S21', 'S10', 'S11', 'S6', 'S15', 'S2', 'S25', 'S5']
+2026-01-17 16:13:46,634 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:13:46,750 - Cross-FedNeuro -   Round 19 Selected: ['S7', 'S9', 'S22', 'S23', 'S3', 'S5', 'S17', 'S25', 'S2', 'S18', 'S15', 'S10', 'S1', 'S11', 'S24', 'S19', 'S16', 'S8', 'S21', 'S14', 'S12', 'S6', 'S13']
+2026-01-17 16:14:19,324 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:14:19,424 - Cross-FedNeuro -   Round 20 Selected: ['S12', 'S10', 'S9', 'S23', 'S17', 'S13', 'S14', 'S7', 'S24', 'S1', 'S22', 'S11', 'S21', 'S15', 'S3', 'S16', 'S8', 'S6', 'S25', 'S5', 'S18', 'S2', 'S19']
+2026-01-17 16:14:51,331 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:14:51,448 - Cross-FedNeuro -   [Fold 2 Round 20] AUC: 0.6292 | ACC: 0.6163 | SEN: 0.6574 | SPE: 0.5145
+2026-01-17 16:14:51,449 - Cross-FedNeuro -   Round 21 Selected: ['S7', 'S19', 'S1', 'S25', 'S9', 'S10', 'S12', 'S6', 'S23', 'S16', 'S8', 'S5', 'S13', 'S2', 'S14', 'S22', 'S15', 'S3', 'S17', 'S11', 'S18', 'S24', 'S21']
+2026-01-17 16:15:23,001 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:15:23,119 - Cross-FedNeuro -   Round 22 Selected: ['S3', 'S22', 'S24', 'S8', 'S23', 'S9', 'S16', 'S21', 'S25', 'S1', 'S2', 'S7', 'S14', 'S5', 'S17', 'S10', 'S18', 'S15', 'S6', 'S12', 'S19', 'S13', 'S11']
+2026-01-17 16:15:55,438 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:15:55,532 - Cross-FedNeuro -   Round 23 Selected: ['S21', 'S13', 'S1', 'S10', 'S17', 'S2', 'S3', 'S19', 'S23', 'S8', 'S24', 'S11', 'S25', 'S18', 'S5', 'S22', 'S6', 'S14', 'S16', 'S9', 'S15', 'S7', 'S12']
+2026-01-17 16:16:26,355 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:16:26,458 - Cross-FedNeuro -   Round 24 Selected: ['S25', 'S10', 'S23', 'S19', 'S13', 'S22', 'S24', 'S7', 'S5', 'S11', 'S2', 'S14', 'S9', 'S1', 'S16', 'S15', 'S12', 'S3', 'S21', 'S8', 'S6', 'S18', 'S17']
+2026-01-17 16:16:57,372 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:16:57,474 - Cross-FedNeuro -   Round 25 Selected: ['S17', 'S22', 'S25', 'S18', 'S24', 'S11', 'S21', 'S3', 'S7', 'S23', 'S14', 'S12', 'S1', 'S6', 'S13', 'S19', 'S5', 'S2', 'S10', 'S16', 'S15', 'S8', 'S9']
+2026-01-17 16:17:29,473 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:17:29,588 - Cross-FedNeuro -   [Fold 2 Round 25] AUC: 0.6455 | ACC: 0.6300 | SEN: 0.6598 | SPE: 0.5495
+2026-01-17 16:17:29,589 - Cross-FedNeuro -   Round 26 Selected: ['S9', 'S6', 'S17', 'S22', 'S7', 'S13', 'S15', 'S21', 'S1', 'S18', 'S23', 'S11', 'S5', 'S25', 'S8', 'S3', 'S14', 'S19', 'S2', 'S12', 'S16', 'S24', 'S10']
+2026-01-17 16:18:00,361 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:18:00,473 - Cross-FedNeuro -   Round 27 Selected: ['S9', 'S14', 'S12', 'S18', 'S19', 'S24', 'S16', 'S13', 'S2', 'S25', 'S10', 'S22', 'S8', 'S15', 'S23', 'S3', 'S6', 'S1', 'S17', 'S5', 'S11', 'S21', 'S7']
+2026-01-17 16:18:32,114 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:18:32,223 - Cross-FedNeuro -   Round 28 Selected: ['S6', 'S1', 'S13', 'S15', 'S5', 'S7', 'S25', 'S11', 'S8', 'S3', 'S10', 'S19', 'S18', 'S23', 'S24', 'S2', 'S21', 'S16', 'S22', 'S17', 'S12', 'S14', 'S9']
+2026-01-17 16:19:03,259 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:19:03,366 - Cross-FedNeuro -   Round 29 Selected: ['S15', 'S7', 'S8', 'S2', 'S14', 'S22', 'S12', 'S5', 'S18', 'S23', 'S6', 'S21', 'S1', 'S17', 'S19', 'S24', 'S25', 'S11', 'S16', 'S10', 'S3', 'S13', 'S9']
+2026-01-17 16:19:35,474 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:19:35,587 - Cross-FedNeuro -   Round 30 Selected: ['S18', 'S14', 'S8', 'S3', 'S7', 'S6', 'S13', 'S15', 'S16', 'S21', 'S2', 'S11', 'S10', 'S24', 'S25', 'S9', 'S5', 'S22', 'S12', 'S1', 'S23', 'S19', 'S17']
+2026-01-17 16:20:07,907 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:20:08,009 - Cross-FedNeuro -   [Fold 2 Round 30] AUC: 0.6536 | ACC: 0.6300 | SEN: 0.6481 | SPE: 0.5629
+2026-01-17 16:20:08,009 - Cross-FedNeuro -   Round 31 Selected: ['S21', 'S6', 'S3', 'S2', 'S7', 'S15', 'S22', 'S12', 'S24', 'S16', 'S25', 'S14', 'S1', 'S10', 'S17', 'S5', 'S13', 'S19', 'S8', 'S18', 'S11', 'S9', 'S23']
+2026-01-17 16:20:41,098 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:20:41,212 - Cross-FedNeuro -   Round 32 Selected: ['S22', 'S13', 'S8', 'S14', 'S24', 'S7', 'S23', 'S19', 'S17', 'S16', 'S21', 'S1', 'S6', 'S15', 'S12', 'S2', 'S3', 'S10', 'S9', 'S25', 'S18', 'S5', 'S11']
+2026-01-17 16:21:13,289 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:21:13,413 - Cross-FedNeuro -   Round 33 Selected: ['S19', 'S21', 'S3', 'S6', 'S5', 'S16', 'S13', 'S17', 'S14', 'S15', 'S18', 'S24', 'S11', 'S12', 'S25', 'S8', 'S22', 'S1', 'S2', 'S23', 'S10', 'S9', 'S7']
+2026-01-17 16:21:45,191 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:21:45,290 - Cross-FedNeuro -   Round 34 Selected: ['S17', 'S9', 'S5', 'S3', 'S7', 'S18', 'S12', 'S15', 'S14', 'S2', 'S23', 'S11', 'S8', 'S10', 'S24', 'S25', 'S21', 'S22', 'S13', 'S1', 'S16', 'S19', 'S6']
+2026-01-17 16:22:17,741 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:22:17,858 - Cross-FedNeuro -   Round 35 Selected: ['S17', 'S1', 'S7', 'S14', 'S13', 'S23', 'S5', 'S3', 'S6', 'S16', 'S19', 'S8', 'S21', 'S10', 'S2', 'S9', 'S22', 'S25', 'S18', 'S12', 'S24', 'S11', 'S15']
+2026-01-17 16:22:49,619 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:22:49,728 - Cross-FedNeuro -   [Fold 2 Round 35] AUC: 0.6456 | ACC: 0.6203 | SEN: 0.6434 | SPE: 0.5443
+2026-01-17 16:22:49,729 - Cross-FedNeuro -   Round 36 Selected: ['S1', 'S17', 'S15', 'S9', 'S25', 'S2', 'S8', 'S12', 'S10', 'S22', 'S5', 'S6', 'S18', 'S24', 'S3', 'S13', 'S23', 'S21', 'S19', 'S16', 'S11', 'S14', 'S7']
+2026-01-17 16:23:21,334 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:23:21,444 - Cross-FedNeuro -   Round 37 Selected: ['S25', 'S6', 'S24', 'S16', 'S17', 'S5', 'S14', 'S18', 'S9', 'S19', 'S1', 'S7', 'S13', 'S10', 'S11', 'S3', 'S2', 'S8', 'S15', 'S21', 'S23', 'S22', 'S12']
+2026-01-17 16:23:52,988 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:23:53,100 - Cross-FedNeuro -   Round 38 Selected: ['S15', 'S3', 'S5', 'S9', 'S14', 'S16', 'S24', 'S8', 'S12', 'S22', 'S19', 'S7', 'S23', 'S18', 'S6', 'S1', 'S17', 'S21', 'S13', 'S25', 'S11', 'S2', 'S10']
+2026-01-17 16:24:24,907 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:24:25,021 - Cross-FedNeuro -   Round 39 Selected: ['S15', 'S25', 'S24', 'S19', 'S23', 'S14', 'S3', 'S1', 'S7', 'S10', 'S21', 'S8', 'S18', 'S17', 'S9', 'S6', 'S22', 'S5', 'S2', 'S16', 'S12', 'S11', 'S13']
+2026-01-17 16:24:56,603 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:24:56,702 - Cross-FedNeuro -   Round 40 Selected: ['S13', 'S23', 'S9', 'S17', 'S7', 'S25', 'S1', 'S12', 'S2', 'S15', 'S14', 'S11', 'S22', 'S21', 'S3', 'S24', 'S5', 'S8', 'S18', 'S16', 'S19', 'S6', 'S10']
+2026-01-17 16:25:28,570 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:25:28,688 - Cross-FedNeuro -   [Fold 2 Round 40] AUC: 0.6405 | ACC: 0.6232 | SEN: 0.6601 | SPE: 0.5330
+2026-01-17 16:25:28,689 - Cross-FedNeuro -   Round 41 Selected: ['S1', 'S10', 'S6', 'S22', 'S21', 'S15', 'S7', 'S19', 'S23', 'S5', 'S18', 'S3', 'S16', 'S25', 'S11', 'S2', 'S14', 'S8', 'S13', 'S17', 'S24', 'S9', 'S12']
+2026-01-17 16:26:00,524 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:26:00,646 - Cross-FedNeuro -   Round 42 Selected: ['S10', 'S24', 'S18', 'S17', 'S22', 'S5', 'S7', 'S9', 'S14', 'S2', 'S12', 'S13', 'S8', 'S11', 'S19', 'S21', 'S15', 'S25', 'S16', 'S6', 'S23', 'S3', 'S1']
+2026-01-17 16:26:32,472 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:26:32,583 - Cross-FedNeuro -   Round 43 Selected: ['S22', 'S19', 'S1', 'S23', 'S3', 'S15', 'S9', 'S7', 'S12', 'S13', 'S14', 'S17', 'S2', 'S24', 'S6', 'S21', 'S5', 'S10', 'S25', 'S8', 'S16', 'S11', 'S18']
+2026-01-17 16:27:04,697 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:27:04,800 - Cross-FedNeuro -   Round 44 Selected: ['S25', 'S6', 'S8', 'S7', 'S1', 'S22', 'S9', 'S11', 'S17', 'S5', 'S21', 'S14', 'S23', 'S2', 'S15', 'S24', 'S12', 'S10', 'S16', 'S18', 'S3', 'S19', 'S13']
+2026-01-17 16:27:36,602 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:27:36,709 - Cross-FedNeuro -   Round 45 Selected: ['S18', 'S2', 'S15', 'S6', 'S11', 'S17', 'S16', 'S25', 'S21', 'S12', 'S22', 'S3', 'S14', 'S24', 'S9', 'S13', 'S8', 'S19', 'S23', 'S7', 'S1', 'S5', 'S10']
+2026-01-17 16:28:08,067 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:28:08,180 - Cross-FedNeuro -   [Fold 2 Round 45] AUC: 0.6447 | ACC: 0.6155 | SEN: 0.6706 | SPE: 0.5023
+2026-01-17 16:28:08,180 - Cross-FedNeuro -   Round 46 Selected: ['S23', 'S12', 'S14', 'S15', 'S3', 'S18', 'S17', 'S5', 'S10', 'S24', 'S8', 'S16', 'S25', 'S21', 'S22', 'S1', 'S6', 'S11', 'S2', 'S9', 'S13', 'S19', 'S7']
+2026-01-17 16:28:39,654 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:28:39,766 - Cross-FedNeuro -   Round 47 Selected: ['S21', 'S19', 'S16', 'S6', 'S9', 'S10', 'S17', 'S23', 'S1', 'S3', 'S8', 'S15', 'S11', 'S13', 'S24', 'S7', 'S25', 'S14', 'S5', 'S12', 'S18', 'S2', 'S22']
+2026-01-17 16:29:11,345 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:29:11,460 - Cross-FedNeuro -   Round 48 Selected: ['S2', 'S14', 'S6', 'S10', 'S15', 'S13', 'S17', 'S25', 'S11', 'S23', 'S5', 'S18', 'S1', 'S9', 'S22', 'S8', 'S21', 'S16', 'S7', 'S12', 'S24', 'S3', 'S19']
+2026-01-17 16:29:43,209 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:29:43,330 - Cross-FedNeuro -   Round 49 Selected: ['S24', 'S25', 'S18', 'S22', 'S8', 'S13', 'S12', 'S15', 'S3', 'S1', 'S14', 'S16', 'S11', 'S10', 'S5', 'S23', 'S19', 'S6', 'S21', 'S7', 'S17', 'S2', 'S9']
+2026-01-17 16:30:15,232 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:30:15,341 - Cross-FedNeuro -   Round 50 Selected: ['S3', 'S25', 'S2', 'S15', 'S11', 'S24', 'S5', 'S22', 'S14', 'S18', 'S16', 'S13', 'S1', 'S6', 'S17', 'S21', 'S12', 'S9', 'S7', 'S8', 'S23', 'S10', 'S19']
+2026-01-17 16:30:46,299 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:30:46,401 - Cross-FedNeuro -   [Fold 2 Round 50] AUC: 0.6395 | ACC: 0.6057 | SEN: 0.6354 | SPE: 0.5220
+2026-01-17 16:30:46,401 - Cross-FedNeuro - Fold 2 Best Result -> AUC: 0.6596, ACC: 0.6272, SEN: 0.6418, SPE: 0.5655
+2026-01-17 16:30:46,401 - Cross-FedNeuro - 
+==================== Start Fold 3 / 5 ====================
+2026-01-17 16:30:47,238 - Cross-FedNeuro -   Round 1 Selected: ['S1', 'S2', 'S15', 'S25', 'S9', 'S12', 'S24', 'S8', 'S6', 'S21', 'S16', 'S14', 'S18', 'S13', 'S17', 'S19', 'S3', 'S7', 'S22', 'S11', 'S10', 'S23', 'S5']
+2026-01-17 16:31:08,043 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:31:08,167 - Cross-FedNeuro -   Round 2 Selected: ['S1', 'S15', 'S10', 'S12', 'S2', 'S14', 'S13', 'S6', 'S23', 'S3', 'S16', 'S11', 'S24', 'S18', 'S8', 'S7', 'S21', 'S22', 'S19', 'S25', 'S5', 'S17', 'S9']
+2026-01-17 16:31:42,116 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:31:42,253 - Cross-FedNeuro -   Round 3 Selected: ['S23', 'S21', 'S12', 'S11', 'S6', 'S16', 'S22', 'S3', 'S10', 'S14', 'S19', 'S8', 'S25', 'S17', 'S1', 'S2', 'S7', 'S24', 'S18', 'S13', 'S15', 'S5', 'S9']
+2026-01-17 16:32:16,268 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:32:16,389 - Cross-FedNeuro -   Round 4 Selected: ['S6', 'S5', 'S22', 'S3', 'S11', 'S21', 'S24', 'S16', 'S10', 'S19', 'S15', 'S12', 'S25', 'S1', 'S18', 'S23', 'S8', 'S9', 'S14', 'S13', 'S7', 'S17', 'S2']
+2026-01-17 16:32:50,256 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:32:50,367 - Cross-FedNeuro -   Round 5 Selected: ['S7', 'S2', 'S6', 'S9', 'S10', 'S12', 'S19', 'S17', 'S23', 'S25', 'S8', 'S24', 'S11', 'S5', 'S13', 'S14', 'S3', 'S21', 'S18', 'S1', 'S15', 'S16', 'S22']
+2026-01-17 16:33:23,965 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:33:24,082 - Cross-FedNeuro -   [Fold 3 Round 5] AUC: 0.6691 | ACC: 0.6281 | SEN: 0.6409 | SPE: 0.5901
+2026-01-17 16:33:24,082 - Cross-FedNeuro -   Round 6 Selected: ['S15', 'S16', 'S3', 'S8', 'S2', 'S22', 'S17', 'S7', 'S12', 'S6', 'S10', 'S1', 'S11', 'S5', 'S18', 'S9', 'S13', 'S23', 'S24', 'S19', 'S21', 'S14', 'S25']
+2026-01-17 16:33:58,020 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:33:58,150 - Cross-FedNeuro -   Round 7 Selected: ['S25', 'S13', 'S9', 'S11', 'S23', 'S3', 'S6', 'S2', 'S24', 'S7', 'S22', 'S17', 'S12', 'S15', 'S10', 'S21', 'S1', 'S5', 'S14', 'S19', 'S8', 'S18', 'S16']
+2026-01-17 16:34:32,191 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:34:32,320 - Cross-FedNeuro -   Round 8 Selected: ['S16', 'S23', 'S1', 'S25', 'S21', 'S10', 'S2', 'S22', 'S8', 'S6', 'S5', 'S14', 'S13', 'S24', 'S11', 'S3', 'S7', 'S17', 'S12', 'S18', 'S19', 'S15', 'S9']
+2026-01-17 16:35:05,864 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:35:05,977 - Cross-FedNeuro -   Round 9 Selected: ['S7', 'S5', 'S19', 'S13', 'S14', 'S21', 'S3', 'S12', 'S23', 'S18', 'S15', 'S16', 'S11', 'S6', 'S8', 'S9', 'S22', 'S10', 'S24', 'S1', 'S17', 'S25', 'S2']
+2026-01-17 16:35:39,095 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:35:39,211 - Cross-FedNeuro -   Round 10 Selected: ['S8', 'S3', 'S12', 'S15', 'S5', 'S7', 'S23', 'S1', 'S24', 'S11', 'S21', 'S14', 'S17', 'S19', 'S18', 'S22', 'S13', 'S10', 'S16', 'S25', 'S6', 'S2', 'S9']
+2026-01-17 16:36:13,011 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:36:13,132 - Cross-FedNeuro -   [Fold 3 Round 10] AUC: 0.6632 | ACC: 0.6059 | SEN: 0.6329 | SPE: 0.5488
+2026-01-17 16:36:13,132 - Cross-FedNeuro -   Round 11 Selected: ['S12', 'S13', 'S5', 'S10', 'S18', 'S8', 'S17', 'S15', 'S9', 'S23', 'S1', 'S3', 'S22', 'S25', 'S19', 'S16', 'S24', 'S11', 'S7', 'S14', 'S21', 'S2', 'S6']
+2026-01-17 16:36:47,387 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:36:47,504 - Cross-FedNeuro -   Round 12 Selected: ['S13', 'S21', 'S24', 'S10', 'S19', 'S8', 'S17', 'S15', 'S9', 'S5', 'S16', 'S3', 'S25', 'S12', 'S7', 'S14', 'S23', 'S22', 'S6', 'S11', 'S1', 'S2', 'S18']
+2026-01-17 16:37:21,923 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:37:22,034 - Cross-FedNeuro -   Round 13 Selected: ['S23', 'S25', 'S11', 'S1', 'S9', 'S17', 'S15', 'S10', 'S22', 'S5', 'S19', 'S7', 'S2', 'S16', 'S12', 'S18', 'S8', 'S3', 'S21', 'S14', 'S13', 'S6', 'S24']
+2026-01-17 16:37:55,015 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:37:55,120 - Cross-FedNeuro -   Round 14 Selected: ['S15', 'S23', 'S6', 'S13', 'S11', 'S1', 'S10', 'S9', 'S18', 'S12', 'S24', 'S14', 'S16', 'S2', 'S17', 'S22', 'S8', 'S5', 'S19', 'S3', 'S25', 'S21', 'S7']
+2026-01-17 16:38:28,691 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:38:28,805 - Cross-FedNeuro -   Round 15 Selected: ['S18', 'S12', 'S13', 'S9', 'S2', 'S15', 'S10', 'S5', 'S23', 'S6', 'S7', 'S14', 'S24', 'S16', 'S8', 'S1', 'S21', 'S25', 'S11', 'S22', 'S3', 'S17', 'S19']
+2026-01-17 16:39:02,271 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:39:02,388 - Cross-FedNeuro -   [Fold 3 Round 15] AUC: 0.6681 | ACC: 0.6271 | SEN: 0.6698 | SPE: 0.5603
+2026-01-17 16:39:02,388 - Cross-FedNeuro -   Round 16 Selected: ['S2', 'S12', 'S25', 'S13', 'S6', 'S23', 'S14', 'S3', 'S17', 'S19', 'S22', 'S7', 'S1', 'S11', 'S24', 'S16', 'S15', 'S5', 'S8', 'S18', 'S21', 'S10', 'S9']
+2026-01-17 16:39:36,150 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:39:36,264 - Cross-FedNeuro -   Round 17 Selected: ['S5', 'S2', 'S19', 'S3', 'S13', 'S22', 'S12', 'S10', 'S6', 'S21', 'S17', 'S18', 'S1', 'S11', 'S25', 'S8', 'S24', 'S7', 'S15', 'S9', 'S23', 'S14', 'S16']
+2026-01-17 16:40:09,885 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:40:10,006 - Cross-FedNeuro -   Round 18 Selected: ['S19', 'S12', 'S10', 'S24', 'S5', 'S21', 'S14', 'S6', 'S25', 'S16', 'S15', 'S9', 'S18', 'S1', 'S17', 'S13', 'S2', 'S8', 'S7', 'S23', 'S11', 'S3', 'S22']
+2026-01-17 16:40:43,600 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:40:43,718 - Cross-FedNeuro -   Round 19 Selected: ['S11', 'S24', 'S5', 'S23', 'S13', 'S10', 'S18', 'S9', 'S15', 'S25', 'S14', 'S6', 'S2', 'S3', 'S17', 'S19', 'S1', 'S22', 'S21', 'S8', 'S12', 'S7', 'S16']
+2026-01-17 16:41:17,526 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:41:17,650 - Cross-FedNeuro -   Round 20 Selected: ['S15', 'S25', 'S13', 'S11', 'S17', 'S3', 'S1', 'S19', 'S16', 'S12', 'S6', 'S14', 'S5', 'S2', 'S10', 'S7', 'S8', 'S9', 'S18', 'S24', 'S21', 'S23', 'S22']
+2026-01-17 16:41:51,571 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:41:51,701 - Cross-FedNeuro -   [Fold 3 Round 20] AUC: 0.6650 | ACC: 0.5988 | SEN: 0.6408 | SPE: 0.5242
+2026-01-17 16:41:51,701 - Cross-FedNeuro -   Round 21 Selected: ['S2', 'S1', 'S5', 'S7', 'S16', 'S10', 'S14', 'S17', 'S22', 'S15', 'S11', 'S9', 'S6', 'S24', 'S12', 'S23', 'S25', 'S21', 'S13', 'S18', 'S3', 'S8', 'S19']
+2026-01-17 16:42:25,247 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:42:25,366 - Cross-FedNeuro -   Round 22 Selected: ['S19', 'S15', 'S25', 'S14', 'S1', 'S3', 'S9', 'S5', 'S12', 'S11', 'S24', 'S17', 'S16', 'S21', 'S13', 'S8', 'S10', 'S6', 'S2', 'S18', 'S22', 'S23', 'S7']
+2026-01-17 16:43:00,379 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:43:00,523 - Cross-FedNeuro -   Round 23 Selected: ['S23', 'S8', 'S14', 'S7', 'S15', 'S5', 'S21', 'S3', 'S6', 'S11', 'S25', 'S2', 'S9', 'S16', 'S12', 'S22', 'S10', 'S18', 'S13', 'S1', 'S17', 'S19', 'S24']
+2026-01-17 16:43:34,960 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:43:35,072 - Cross-FedNeuro -   Round 24 Selected: ['S23', 'S12', 'S24', 'S6', 'S19', 'S5', 'S8', 'S13', 'S22', 'S10', 'S3', 'S18', 'S11', 'S9', 'S21', 'S2', 'S15', 'S17', 'S16', 'S25', 'S7', 'S14', 'S1']
+2026-01-17 16:44:09,525 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:44:09,652 - Cross-FedNeuro -   Round 25 Selected: ['S5', 'S22', 'S12', 'S1', 'S11', 'S24', 'S6', 'S18', 'S3', 'S13', 'S10', 'S8', 'S19', 'S7', 'S2', 'S15', 'S17', 'S14', 'S9', 'S23', 'S16', 'S25', 'S21']
+2026-01-17 16:44:43,373 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:44:43,498 - Cross-FedNeuro -   [Fold 3 Round 25] AUC: 0.6763 | ACC: 0.6359 | SEN: 0.6774 | SPE: 0.5545
+2026-01-17 16:44:43,498 - Cross-FedNeuro -   Round 26 Selected: ['S11', 'S19', 'S10', 'S25', 'S15', 'S5', 'S6', 'S3', 'S2', 'S23', 'S8', 'S17', 'S1', 'S9', 'S16', 'S13', 'S7', 'S18', 'S24', 'S21', 'S14', 'S22', 'S12']
+2026-01-17 16:45:17,461 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:45:17,583 - Cross-FedNeuro -   Round 27 Selected: ['S3', 'S6', 'S9', 'S1', 'S11', 'S18', 'S7', 'S15', 'S19', 'S5', 'S22', 'S17', 'S14', 'S24', 'S16', 'S10', 'S21', 'S8', 'S12', 'S23', 'S13', 'S2', 'S25']
+2026-01-17 16:45:51,366 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:45:51,488 - Cross-FedNeuro -   Round 28 Selected: ['S10', 'S11', 'S18', 'S2', 'S22', 'S9', 'S8', 'S14', 'S24', 'S12', 'S17', 'S1', 'S19', 'S3', 'S16', 'S25', 'S6', 'S5', 'S13', 'S23', 'S7', 'S15', 'S21']
+2026-01-17 16:46:25,363 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:46:25,480 - Cross-FedNeuro -   Round 29 Selected: ['S6', 'S9', 'S21', 'S13', 'S5', 'S19', 'S14', 'S17', 'S23', 'S22', 'S12', 'S3', 'S10', 'S8', 'S25', 'S24', 'S1', 'S2', 'S16', 'S15', 'S18', 'S7', 'S11']
+2026-01-17 16:46:59,479 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:46:59,605 - Cross-FedNeuro -   Round 30 Selected: ['S22', 'S8', 'S3', 'S14', 'S17', 'S23', 'S2', 'S21', 'S15', 'S10', 'S25', 'S11', 'S6', 'S18', 'S24', 'S9', 'S12', 'S16', 'S5', 'S7', 'S13', 'S1', 'S19']
+2026-01-17 16:47:34,224 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:47:34,338 - Cross-FedNeuro -   [Fold 3 Round 30] AUC: 0.6825 | ACC: 0.6384 | SEN: 0.6584 | SPE: 0.5774
+2026-01-17 16:47:34,338 - Cross-FedNeuro -   Round 31 Selected: ['S22', 'S10', 'S2', 'S7', 'S3', 'S12', 'S6', 'S11', 'S23', 'S14', 'S17', 'S18', 'S13', 'S21', 'S5', 'S15', 'S16', 'S9', 'S19', 'S8', 'S25', 'S24', 'S1']
+2026-01-17 16:48:08,550 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:48:08,679 - Cross-FedNeuro -   Round 32 Selected: ['S13', 'S11', 'S8', 'S21', 'S1', 'S12', 'S10', 'S22', 'S6', 'S15', 'S17', 'S18', 'S25', 'S5', 'S19', 'S9', 'S24', 'S14', 'S23', 'S7', 'S2', 'S3', 'S16']
+2026-01-17 16:48:43,006 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:48:43,128 - Cross-FedNeuro -   Round 33 Selected: ['S5', 'S18', 'S15', 'S25', 'S2', 'S11', 'S14', 'S23', 'S9', 'S22', 'S13', 'S6', 'S21', 'S10', 'S12', 'S3', 'S16', 'S1', 'S19', 'S17', 'S8', 'S24', 'S7']
+2026-01-17 16:49:16,696 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:49:16,821 - Cross-FedNeuro -   Round 34 Selected: ['S3', 'S21', 'S8', 'S16', 'S25', 'S2', 'S5', 'S1', 'S7', 'S24', 'S23', 'S12', 'S22', 'S11', 'S19', 'S10', 'S17', 'S15', 'S13', 'S9', 'S18', 'S14', 'S6']
+2026-01-17 16:49:50,693 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:49:50,835 - Cross-FedNeuro -   Round 35 Selected: ['S23', 'S11', 'S25', 'S5', 'S9', 'S21', 'S6', 'S24', 'S3', 'S10', 'S2', 'S18', 'S17', 'S16', 'S15', 'S12', 'S13', 'S19', 'S1', 'S14', 'S22', 'S7', 'S8']
+2026-01-17 16:50:24,503 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:50:24,624 - Cross-FedNeuro -   [Fold 3 Round 35] AUC: 0.6838 | ACC: 0.6268 | SEN: 0.6437 | SPE: 0.5748
+2026-01-17 16:50:24,624 - Cross-FedNeuro -   Round 36 Selected: ['S17', 'S5', 'S7', 'S11', 'S12', 'S6', 'S24', 'S23', 'S18', 'S25', 'S14', 'S21', 'S9', 'S19', 'S3', 'S1', 'S15', 'S13', 'S8', 'S2', 'S10', 'S22', 'S16']
+2026-01-17 16:50:58,630 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:50:58,748 - Cross-FedNeuro -   Round 37 Selected: ['S3', 'S18', 'S9', 'S1', 'S14', 'S19', 'S17', 'S6', 'S22', 'S16', 'S12', 'S8', 'S11', 'S13', 'S15', 'S23', 'S24', 'S10', 'S2', 'S7', 'S21', 'S25', 'S5']
+2026-01-17 16:51:33,346 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:51:33,468 - Cross-FedNeuro -   Round 38 Selected: ['S24', 'S10', 'S17', 'S16', 'S8', 'S13', 'S2', 'S1', 'S22', 'S5', 'S11', 'S15', 'S12', 'S3', 'S9', 'S7', 'S23', 'S25', 'S19', 'S14', 'S18', 'S6', 'S21']
+2026-01-17 16:52:07,667 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:52:07,799 - Cross-FedNeuro -   Round 39 Selected: ['S19', 'S22', 'S18', 'S6', 'S9', 'S13', 'S3', 'S14', 'S1', 'S21', 'S10', 'S7', 'S12', 'S8', 'S24', 'S11', 'S2', 'S5', 'S15', 'S25', 'S16', 'S23', 'S17']
+2026-01-17 16:52:41,469 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:52:41,590 - Cross-FedNeuro -   Round 40 Selected: ['S15', 'S18', 'S1', 'S2', 'S11', 'S22', 'S12', 'S8', 'S14', 'S25', 'S23', 'S3', 'S16', 'S6', 'S7', 'S17', 'S5', 'S19', 'S10', 'S24', 'S13', 'S21', 'S9']
+2026-01-17 16:53:15,435 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:53:15,550 - Cross-FedNeuro -   [Fold 3 Round 40] AUC: 0.6844 | ACC: 0.6306 | SEN: 0.6809 | SPE: 0.5411
+2026-01-17 16:53:15,551 - Cross-FedNeuro -   Round 41 Selected: ['S2', 'S17', 'S16', 'S13', 'S23', 'S5', 'S3', 'S11', 'S10', 'S25', 'S18', 'S15', 'S1', 'S21', 'S7', 'S19', 'S12', 'S9', 'S22', 'S14', 'S8', 'S6', 'S24']
+2026-01-17 16:53:49,743 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:53:49,858 - Cross-FedNeuro -   Round 42 Selected: ['S16', 'S17', 'S14', 'S24', 'S15', 'S10', 'S12', 'S18', 'S8', 'S7', 'S9', 'S5', 'S13', 'S23', 'S1', 'S6', 'S25', 'S19', 'S11', 'S21', 'S22', 'S3', 'S2']
+2026-01-17 16:54:23,646 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:54:23,767 - Cross-FedNeuro -   Round 43 Selected: ['S3', 'S1', 'S8', 'S16', 'S21', 'S6', 'S10', 'S5', 'S25', 'S19', 'S12', 'S18', 'S14', 'S7', 'S17', 'S2', 'S13', 'S24', 'S11', 'S22', 'S23', 'S9', 'S15']
+2026-01-17 16:54:57,255 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:54:57,381 - Cross-FedNeuro -   Round 44 Selected: ['S1', 'S9', 'S14', 'S13', 'S12', 'S17', 'S6', 'S7', 'S25', 'S16', 'S5', 'S19', 'S15', 'S22', 'S23', 'S2', 'S10', 'S18', 'S24', 'S21', 'S11', 'S3', 'S8']
+2026-01-17 16:55:30,755 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:55:30,879 - Cross-FedNeuro -   Round 45 Selected: ['S22', 'S10', 'S19', 'S16', 'S18', 'S25', 'S9', 'S15', 'S3', 'S1', 'S17', 'S13', 'S23', 'S7', 'S14', 'S21', 'S8', 'S24', 'S2', 'S5', 'S6', 'S11', 'S12']
+2026-01-17 16:56:04,319 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:56:04,439 - Cross-FedNeuro -   [Fold 3 Round 45] AUC: 0.6824 | ACC: 0.6323 | SEN: 0.6609 | SPE: 0.5696
+2026-01-17 16:56:04,440 - Cross-FedNeuro -   Round 46 Selected: ['S8', 'S2', 'S22', 'S14', 'S6', 'S1', 'S9', 'S23', 'S3', 'S11', 'S25', 'S10', 'S7', 'S21', 'S24', 'S16', 'S13', 'S5', 'S19', 'S12', 'S18', 'S17', 'S15']
+2026-01-17 16:56:37,593 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:56:37,716 - Cross-FedNeuro -   Round 47 Selected: ['S17', 'S16', 'S21', 'S8', 'S13', 'S5', 'S18', 'S6', 'S3', 'S2', 'S1', 'S10', 'S25', 'S9', 'S23', 'S14', 'S15', 'S22', 'S7', 'S11', 'S19', 'S12', 'S24']
+2026-01-17 16:57:10,966 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:57:11,079 - Cross-FedNeuro -   Round 48 Selected: ['S1', 'S11', 'S5', 'S25', 'S16', 'S22', 'S7', 'S21', 'S19', 'S18', 'S15', 'S13', 'S6', 'S2', 'S10', 'S23', 'S17', 'S9', 'S14', 'S8', 'S12', 'S3', 'S24']
+2026-01-17 16:57:44,784 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:57:44,919 - Cross-FedNeuro -   Round 49 Selected: ['S21', 'S12', 'S6', 'S8', 'S15', 'S11', 'S24', 'S3', 'S16', 'S25', 'S5', 'S9', 'S17', 'S13', 'S10', 'S1', 'S14', 'S2', 'S22', 'S19', 'S23', 'S7', 'S18']
+2026-01-17 16:58:18,554 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:58:18,664 - Cross-FedNeuro -   Round 50 Selected: ['S25', 'S6', 'S2', 'S18', 'S22', 'S5', 'S24', 'S8', 'S15', 'S12', 'S23', 'S7', 'S10', 'S19', 'S3', 'S16', 'S14', 'S17', 'S1', 'S13', 'S9', 'S11', 'S21']
+2026-01-17 16:58:52,172 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:58:52,293 - Cross-FedNeuro -   [Fold 3 Round 50] AUC: 0.6882 | ACC: 0.6281 | SEN: 0.6424 | SPE: 0.5783
+2026-01-17 16:58:52,294 - Cross-FedNeuro - Fold 3 Best Result -> AUC: 0.6911, ACC: 0.6280, SEN: 0.6617, SPE: 0.5609
+2026-01-17 16:58:52,294 - Cross-FedNeuro - 
+==================== Start Fold 4 / 5 ====================
+2026-01-17 16:58:53,953 - Cross-FedNeuro -   Round 1 Selected: ['S8', 'S14', 'S13', 'S17', 'S6', 'S21', 'S16', 'S11', 'S2', 'S12', 'S19', 'S15', 'S24', 'S5', 'S3', 'S7', 'S23', 'S10', 'S9', 'S18', 'S25', 'S22', 'S1']
+2026-01-17 16:59:14,797 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:59:14,919 - Cross-FedNeuro -   Round 2 Selected: ['S25', 'S14', 'S22', 'S15', 'S17', 'S13', 'S8', 'S2', 'S3', 'S18', 'S7', 'S16', 'S10', 'S24', 'S1', 'S23', 'S19', 'S11', 'S6', 'S5', 'S21', 'S12', 'S9']
+2026-01-17 16:59:46,465 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 16:59:46,572 - Cross-FedNeuro -   Round 3 Selected: ['S15', 'S9', 'S7', 'S18', 'S11', 'S23', 'S5', 'S19', 'S17', 'S8', 'S6', 'S14', 'S1', 'S3', 'S10', 'S24', 'S13', 'S12', 'S22', 'S21', 'S2', 'S25', 'S16']
+2026-01-17 17:00:17,101 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:00:17,209 - Cross-FedNeuro -   Round 4 Selected: ['S19', 'S7', 'S2', 'S5', 'S16', 'S14', 'S25', 'S11', 'S1', 'S10', 'S22', 'S24', 'S9', 'S23', 'S12', 'S13', 'S17', 'S18', 'S15', 'S6', 'S8', 'S3', 'S21']
+2026-01-17 17:00:47,670 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:00:47,773 - Cross-FedNeuro -   Round 5 Selected: ['S15', 'S11', 'S25', 'S22', 'S19', 'S6', 'S18', 'S7', 'S5', 'S17', 'S8', 'S1', 'S24', 'S9', 'S16', 'S10', 'S14', 'S23', 'S21', 'S13', 'S2', 'S12', 'S3']
+2026-01-17 17:01:19,005 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:01:19,135 - Cross-FedNeuro -   [Fold 4 Round 5] AUC: 0.6535 | ACC: 0.6192 | SEN: 0.6473 | SPE: 0.5556
+2026-01-17 17:01:19,135 - Cross-FedNeuro -   Round 6 Selected: ['S22', 'S14', 'S6', 'S21', 'S16', 'S3', 'S7', 'S11', 'S8', 'S17', 'S10', 'S12', 'S19', 'S9', 'S5', 'S1', 'S25', 'S13', 'S15', 'S24', 'S23', 'S2', 'S18']
+2026-01-17 17:01:50,268 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:01:50,377 - Cross-FedNeuro -   Round 7 Selected: ['S1', 'S25', 'S19', 'S14', 'S11', 'S18', 'S10', 'S3', 'S8', 'S2', 'S13', 'S24', 'S12', 'S7', 'S6', 'S16', 'S15', 'S17', 'S21', 'S5', 'S23', 'S22', 'S9']
+2026-01-17 17:02:20,928 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:02:21,071 - Cross-FedNeuro -   Round 8 Selected: ['S18', 'S24', 'S15', 'S6', 'S2', 'S8', 'S3', 'S21', 'S22', 'S9', 'S7', 'S25', 'S12', 'S13', 'S10', 'S16', 'S11', 'S19', 'S14', 'S5', 'S1', 'S17', 'S23']
+2026-01-17 17:02:51,354 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:02:51,459 - Cross-FedNeuro -   Round 9 Selected: ['S18', 'S23', 'S21', 'S8', 'S22', 'S3', 'S7', 'S2', 'S24', 'S16', 'S13', 'S17', 'S15', 'S1', 'S25', 'S9', 'S11', 'S5', 'S10', 'S6', 'S12', 'S19', 'S14']
+2026-01-17 17:03:22,254 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:03:22,392 - Cross-FedNeuro -   Round 10 Selected: ['S9', 'S23', 'S5', 'S18', 'S19', 'S2', 'S16', 'S24', 'S12', 'S14', 'S13', 'S10', 'S11', 'S25', 'S1', 'S21', 'S17', 'S22', 'S6', 'S7', 'S8', 'S15', 'S3']
+2026-01-17 17:03:52,902 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:03:53,013 - Cross-FedNeuro -   [Fold 4 Round 10] AUC: 0.6908 | ACC: 0.6286 | SEN: 0.6317 | SPE: 0.5924
+2026-01-17 17:03:53,014 - Cross-FedNeuro -   Round 11 Selected: ['S14', 'S5', 'S19', 'S21', 'S9', 'S2', 'S22', 'S16', 'S7', 'S24', 'S15', 'S1', 'S23', 'S10', 'S18', 'S6', 'S12', 'S11', 'S3', 'S25', 'S17', 'S13', 'S8']
+2026-01-17 17:04:23,324 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:04:23,444 - Cross-FedNeuro -   Round 12 Selected: ['S11', 'S8', 'S1', 'S12', 'S6', 'S10', 'S13', 'S14', 'S17', 'S5', 'S19', 'S2', 'S9', 'S15', 'S16', 'S24', 'S3', 'S23', 'S21', 'S22', 'S25', 'S7', 'S18']
+2026-01-17 17:04:53,995 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:04:54,093 - Cross-FedNeuro -   Round 13 Selected: ['S18', 'S24', 'S12', 'S1', 'S17', 'S25', 'S8', 'S14', 'S2', 'S22', 'S21', 'S9', 'S13', 'S11', 'S3', 'S19', 'S23', 'S15', 'S16', 'S6', 'S5', 'S7', 'S10']
+2026-01-17 17:05:24,462 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:05:24,594 - Cross-FedNeuro -   Round 14 Selected: ['S1', 'S21', 'S8', 'S14', 'S13', 'S23', 'S25', 'S6', 'S18', 'S7', 'S10', 'S12', 'S11', 'S22', 'S16', 'S5', 'S19', 'S2', 'S3', 'S9', 'S24', 'S15', 'S17']
+2026-01-17 17:05:54,839 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:05:54,943 - Cross-FedNeuro -   Round 15 Selected: ['S7', 'S16', 'S6', 'S22', 'S3', 'S21', 'S9', 'S11', 'S1', 'S24', 'S18', 'S2', 'S25', 'S15', 'S13', 'S10', 'S17', 'S14', 'S5', 'S12', 'S23', 'S8', 'S19']
+2026-01-17 17:06:25,017 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:06:25,118 - Cross-FedNeuro -   [Fold 4 Round 15] AUC: 0.6915 | ACC: 0.6377 | SEN: 0.6820 | SPE: 0.5449
+2026-01-17 17:06:25,118 - Cross-FedNeuro -   Round 16 Selected: ['S12', 'S13', 'S24', 'S2', 'S9', 'S5', 'S1', 'S10', 'S11', 'S6', 'S8', 'S7', 'S21', 'S17', 'S22', 'S19', 'S15', 'S18', 'S25', 'S3', 'S23', 'S16', 'S14']
+2026-01-17 17:06:55,162 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:06:55,266 - Cross-FedNeuro -   Round 17 Selected: ['S11', 'S1', 'S10', 'S22', 'S18', 'S23', 'S14', 'S25', 'S2', 'S6', 'S9', 'S21', 'S24', 'S15', 'S5', 'S17', 'S19', 'S13', 'S3', 'S8', 'S16', 'S12', 'S7']
+2026-01-17 17:07:25,745 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:07:25,862 - Cross-FedNeuro -   Round 18 Selected: ['S21', 'S18', 'S5', 'S24', 'S10', 'S1', 'S22', 'S7', 'S13', 'S8', 'S19', 'S23', 'S6', 'S17', 'S11', 'S12', 'S16', 'S15', 'S9', 'S25', 'S2', 'S14', 'S3']
+2026-01-17 17:07:56,511 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:07:56,623 - Cross-FedNeuro -   Round 19 Selected: ['S6', 'S10', 'S13', 'S19', 'S9', 'S23', 'S7', 'S18', 'S12', 'S24', 'S17', 'S2', 'S25', 'S1', 'S14', 'S16', 'S5', 'S8', 'S11', 'S22', 'S3', 'S21', 'S15']
+2026-01-17 17:08:27,311 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:08:27,424 - Cross-FedNeuro -   Round 20 Selected: ['S14', 'S7', 'S5', 'S25', 'S24', 'S19', 'S1', 'S9', 'S22', 'S10', 'S16', 'S2', 'S12', 'S17', 'S6', 'S11', 'S3', 'S13', 'S21', 'S8', 'S23', 'S18', 'S15']
+2026-01-17 17:08:58,327 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:08:58,427 - Cross-FedNeuro -   [Fold 4 Round 20] AUC: 0.6921 | ACC: 0.6655 | SEN: 0.7301 | SPE: 0.5445
+2026-01-17 17:08:58,427 - Cross-FedNeuro -   Round 21 Selected: ['S14', 'S10', 'S1', 'S11', 'S15', 'S25', 'S21', 'S19', 'S8', 'S23', 'S3', 'S6', 'S9', 'S24', 'S22', 'S2', 'S18', 'S16', 'S12', 'S7', 'S17', 'S5', 'S13']
+2026-01-17 17:09:28,600 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:09:28,706 - Cross-FedNeuro -   Round 22 Selected: ['S16', 'S17', 'S15', 'S12', 'S11', 'S23', 'S2', 'S19', 'S10', 'S21', 'S8', 'S25', 'S3', 'S7', 'S13', 'S18', 'S14', 'S6', 'S5', 'S1', 'S22', 'S24', 'S9']
+2026-01-17 17:09:58,968 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:09:59,068 - Cross-FedNeuro -   Round 23 Selected: ['S5', 'S3', 'S21', 'S10', 'S19', 'S7', 'S11', 'S17', 'S24', 'S9', 'S15', 'S25', 'S18', 'S16', 'S6', 'S14', 'S1', 'S2', 'S12', 'S23', 'S22', 'S8', 'S13']
+2026-01-17 17:10:29,104 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:10:29,209 - Cross-FedNeuro -   Round 24 Selected: ['S5', 'S18', 'S24', 'S6', 'S13', 'S14', 'S12', 'S23', 'S15', 'S1', 'S25', 'S7', 'S9', 'S8', 'S22', 'S21', 'S2', 'S11', 'S17', 'S10', 'S16', 'S19', 'S3']
+2026-01-17 17:10:59,186 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:10:59,295 - Cross-FedNeuro -   Round 25 Selected: ['S23', 'S25', 'S16', 'S21', 'S2', 'S14', 'S7', 'S17', 'S9', 'S1', 'S24', 'S15', 'S5', 'S8', 'S19', 'S6', 'S3', 'S12', 'S22', 'S10', 'S18', 'S13', 'S11']
+2026-01-17 17:11:29,582 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:11:29,686 - Cross-FedNeuro -   [Fold 4 Round 25] AUC: 0.6929 | ACC: 0.6356 | SEN: 0.6865 | SPE: 0.5327
+2026-01-17 17:11:29,686 - Cross-FedNeuro -   Round 26 Selected: ['S23', 'S11', 'S25', 'S7', 'S12', 'S14', 'S6', 'S19', 'S1', 'S18', 'S22', 'S3', 'S10', 'S21', 'S9', 'S5', 'S8', 'S24', 'S17', 'S2', 'S13', 'S16', 'S15']
+2026-01-17 17:11:59,870 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:11:59,979 - Cross-FedNeuro -   Round 27 Selected: ['S19', 'S3', 'S13', 'S7', 'S16', 'S10', 'S2', 'S9', 'S12', 'S24', 'S6', 'S25', 'S11', 'S22', 'S15', 'S14', 'S5', 'S17', 'S8', 'S18', 'S21', 'S23', 'S1']
+2026-01-17 17:12:30,652 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:12:30,752 - Cross-FedNeuro -   Round 28 Selected: ['S7', 'S11', 'S15', 'S18', 'S10', 'S24', 'S6', 'S3', 'S16', 'S9', 'S12', 'S21', 'S5', 'S17', 'S8', 'S2', 'S19', 'S22', 'S14', 'S25', 'S13', 'S23', 'S1']
+2026-01-17 17:13:01,134 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:13:01,236 - Cross-FedNeuro -   Round 29 Selected: ['S19', 'S21', 'S13', 'S2', 'S5', 'S8', 'S10', 'S3', 'S25', 'S9', 'S14', 'S24', 'S1', 'S23', 'S7', 'S18', 'S22', 'S17', 'S15', 'S6', 'S11', 'S16', 'S12']
+2026-01-17 17:13:31,730 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:13:31,840 - Cross-FedNeuro -   Round 30 Selected: ['S7', 'S9', 'S5', 'S21', 'S23', 'S16', 'S2', 'S22', 'S11', 'S15', 'S24', 'S18', 'S10', 'S17', 'S19', 'S6', 'S25', 'S8', 'S1', 'S14', 'S3', 'S12', 'S13']
+2026-01-17 17:14:02,537 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:14:02,640 - Cross-FedNeuro -   [Fold 4 Round 30] AUC: 0.7060 | ACC: 0.6500 | SEN: 0.6997 | SPE: 0.5451
+2026-01-17 17:14:02,641 - Cross-FedNeuro -   Round 31 Selected: ['S3', 'S22', 'S19', 'S16', 'S6', 'S11', 'S1', 'S12', 'S13', 'S15', 'S7', 'S2', 'S21', 'S14', 'S18', 'S5', 'S9', 'S23', 'S24', 'S8', 'S17', 'S25', 'S10']
+2026-01-17 17:14:33,238 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:14:33,345 - Cross-FedNeuro -   Round 32 Selected: ['S1', 'S2', 'S13', 'S6', 'S21', 'S15', 'S14', 'S23', 'S25', 'S7', 'S8', 'S18', 'S3', 'S17', 'S16', 'S11', 'S19', 'S24', 'S9', 'S10', 'S5', 'S12', 'S22']
+2026-01-17 17:15:04,171 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:15:04,281 - Cross-FedNeuro -   Round 33 Selected: ['S3', 'S13', 'S1', 'S10', 'S23', 'S8', 'S17', 'S2', 'S12', 'S22', 'S7', 'S19', 'S16', 'S18', 'S5', 'S25', 'S21', 'S11', 'S6', 'S9', 'S14', 'S24', 'S15']
+2026-01-17 17:15:34,839 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:15:34,948 - Cross-FedNeuro -   Round 34 Selected: ['S8', 'S13', 'S22', 'S23', 'S16', 'S21', 'S15', 'S9', 'S12', 'S17', 'S3', 'S5', 'S2', 'S10', 'S24', 'S11', 'S18', 'S14', 'S6', 'S1', 'S7', 'S19', 'S25']
+2026-01-17 17:16:05,644 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:16:05,751 - Cross-FedNeuro -   Round 35 Selected: ['S8', 'S21', 'S13', 'S12', 'S2', 'S3', 'S7', 'S1', 'S24', 'S10', 'S5', 'S22', 'S23', 'S17', 'S6', 'S15', 'S11', 'S9', 'S19', 'S18', 'S16', 'S14', 'S25']
+2026-01-17 17:16:35,956 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:16:36,057 - Cross-FedNeuro -   [Fold 4 Round 35] AUC: 0.7055 | ACC: 0.6531 | SEN: 0.6952 | SPE: 0.5615
+2026-01-17 17:16:36,057 - Cross-FedNeuro -   Round 36 Selected: ['S21', 'S14', 'S13', 'S15', 'S3', 'S9', 'S1', 'S10', 'S7', 'S2', 'S19', 'S5', 'S17', 'S8', 'S11', 'S25', 'S18', 'S6', 'S22', 'S23', 'S16', 'S12', 'S24']
+2026-01-17 17:17:06,118 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:17:06,226 - Cross-FedNeuro -   Round 37 Selected: ['S17', 'S22', 'S19', 'S12', 'S8', 'S25', 'S14', 'S21', 'S18', 'S10', 'S3', 'S9', 'S23', 'S24', 'S7', 'S2', 'S16', 'S15', 'S5', 'S11', 'S1', 'S13', 'S6']
+2026-01-17 17:17:36,003 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:17:36,123 - Cross-FedNeuro -   Round 38 Selected: ['S14', 'S7', 'S25', 'S24', 'S19', 'S1', 'S21', 'S16', 'S17', 'S9', 'S12', 'S13', 'S2', 'S10', 'S15', 'S5', 'S8', 'S22', 'S3', 'S23', 'S6', 'S18', 'S11']
+2026-01-17 17:18:05,915 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:18:06,020 - Cross-FedNeuro -   Round 39 Selected: ['S6', 'S5', 'S7', 'S1', 'S13', 'S15', 'S24', 'S23', 'S21', 'S22', 'S2', 'S16', 'S3', 'S19', 'S12', 'S18', 'S25', 'S8', 'S11', 'S14', 'S17', 'S9', 'S10']
+2026-01-17 17:18:35,673 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:18:35,773 - Cross-FedNeuro -   Round 40 Selected: ['S1', 'S7', 'S15', 'S9', 'S3', 'S17', 'S5', 'S8', 'S10', 'S22', 'S12', 'S14', 'S16', 'S24', 'S23', 'S13', 'S21', 'S6', 'S11', 'S2', 'S18', 'S19', 'S25']
+2026-01-17 17:19:05,647 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:19:05,749 - Cross-FedNeuro -   [Fold 4 Round 40] AUC: 0.7003 | ACC: 0.6344 | SEN: 0.6781 | SPE: 0.5335
+2026-01-17 17:19:05,749 - Cross-FedNeuro -   Round 41 Selected: ['S16', 'S13', 'S1', 'S5', 'S11', 'S22', 'S15', 'S12', 'S17', 'S8', 'S9', 'S3', 'S25', 'S6', 'S18', 'S14', 'S23', 'S2', 'S10', 'S19', 'S7', 'S21', 'S24']
+2026-01-17 17:19:35,702 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:19:35,810 - Cross-FedNeuro -   Round 42 Selected: ['S16', 'S7', 'S1', 'S17', 'S15', 'S14', 'S12', 'S19', 'S22', 'S24', 'S11', 'S3', 'S2', 'S8', 'S21', 'S10', 'S9', 'S6', 'S5', 'S13', 'S25', 'S23', 'S18']
+2026-01-17 17:20:05,659 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:20:05,778 - Cross-FedNeuro -   Round 43 Selected: ['S24', 'S5', 'S9', 'S22', 'S2', 'S19', 'S7', 'S25', 'S16', 'S1', 'S18', 'S6', 'S13', 'S17', 'S10', 'S23', 'S8', 'S11', 'S12', 'S15', 'S21', 'S3', 'S14']
+2026-01-17 17:20:35,754 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:20:35,852 - Cross-FedNeuro -   Round 44 Selected: ['S23', 'S14', 'S12', 'S6', 'S11', 'S16', 'S17', 'S8', 'S10', 'S15', 'S25', 'S1', 'S2', 'S7', 'S9', 'S21', 'S3', 'S22', 'S13', 'S18', 'S19', 'S5', 'S24']
+2026-01-17 17:21:06,515 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:21:06,631 - Cross-FedNeuro -   Round 45 Selected: ['S13', 'S12', 'S9', 'S16', 'S14', 'S22', 'S19', 'S8', 'S17', 'S25', 'S11', 'S23', 'S24', 'S6', 'S15', 'S2', 'S3', 'S7', 'S21', 'S18', 'S1', 'S10', 'S5']
+2026-01-17 17:21:37,273 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:21:37,385 - Cross-FedNeuro -   [Fold 4 Round 45] AUC: 0.7052 | ACC: 0.6270 | SEN: 0.6836 | SPE: 0.5175
+2026-01-17 17:21:37,385 - Cross-FedNeuro -   Round 46 Selected: ['S12', 'S2', 'S23', 'S7', 'S17', 'S3', 'S18', 'S8', 'S14', 'S6', 'S10', 'S22', 'S11', 'S15', 'S1', 'S16', 'S9', 'S19', 'S13', 'S5', 'S24', 'S21', 'S25']
+2026-01-17 17:22:08,313 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:22:08,417 - Cross-FedNeuro -   Round 47 Selected: ['S14', 'S15', 'S9', 'S5', 'S16', 'S18', 'S6', 'S1', 'S13', 'S19', 'S24', 'S17', 'S3', 'S8', 'S12', 'S22', 'S10', 'S7', 'S2', 'S23', 'S11', 'S25', 'S21']
+2026-01-17 17:22:39,461 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:22:39,572 - Cross-FedNeuro -   Round 48 Selected: ['S22', 'S25', 'S6', 'S5', 'S13', 'S18', 'S12', 'S7', 'S3', 'S23', 'S16', 'S17', 'S1', 'S14', 'S10', 'S9', 'S2', 'S11', 'S24', 'S21', 'S15', 'S8', 'S19']
+2026-01-17 17:23:10,564 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:23:10,671 - Cross-FedNeuro -   Round 49 Selected: ['S23', 'S12', 'S17', 'S14', 'S7', 'S18', 'S2', 'S19', 'S22', 'S13', 'S9', 'S24', 'S21', 'S11', 'S6', 'S10', 'S16', 'S1', 'S25', 'S15', 'S5', 'S3', 'S8']
+2026-01-17 17:23:41,471 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:23:41,588 - Cross-FedNeuro -   Round 50 Selected: ['S17', 'S11', 'S1', 'S25', 'S16', 'S13', 'S24', 'S5', 'S22', 'S19', 'S12', 'S6', 'S18', 'S14', 'S7', 'S2', 'S8', 'S21', 'S23', 'S9', 'S3', 'S10', 'S15']
+2026-01-17 17:24:12,590 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:24:12,699 - Cross-FedNeuro -   [Fold 4 Round 50] AUC: 0.7034 | ACC: 0.6268 | SEN: 0.6492 | SPE: 0.5416
+2026-01-17 17:24:12,699 - Cross-FedNeuro - Fold 4 Best Result -> AUC: 0.7086, ACC: 0.6247, SEN: 0.6689, SPE: 0.5246
+2026-01-17 17:24:12,700 - Cross-FedNeuro - 
+==================== Start Fold 5 / 5 ====================
+2026-01-17 17:24:13,972 - Cross-FedNeuro -   Round 1 Selected: ['S10', 'S6', 'S25', 'S24', 'S5', 'S16', 'S17', 'S15', 'S12', 'S19', 'S3', 'S2', 'S1', 'S7', 'S18', 'S9', 'S11', 'S22', 'S21', 'S23', 'S13', 'S14', 'S8']
+2026-01-17 17:24:34,554 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:24:34,665 - Cross-FedNeuro -   Round 2 Selected: ['S15', 'S19', 'S12', 'S21', 'S13', 'S8', 'S11', 'S25', 'S10', 'S6', 'S23', 'S24', 'S5', 'S14', 'S9', 'S7', 'S2', 'S1', 'S18', 'S16', 'S17', 'S22', 'S3']
+2026-01-17 17:25:06,291 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:25:06,399 - Cross-FedNeuro -   Round 3 Selected: ['S3', 'S17', 'S15', 'S21', 'S11', 'S22', 'S2', 'S12', 'S6', 'S16', 'S13', 'S7', 'S14', 'S8', 'S18', 'S5', 'S24', 'S9', 'S25', 'S23', 'S1', 'S10', 'S19']
+2026-01-17 17:25:38,128 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:25:38,250 - Cross-FedNeuro -   Round 4 Selected: ['S15', 'S12', 'S13', 'S10', 'S23', 'S17', 'S16', 'S14', 'S3', 'S2', 'S11', 'S22', 'S19', 'S18', 'S24', 'S7', 'S1', 'S6', 'S25', 'S9', 'S8', 'S21', 'S5']
+2026-01-17 17:26:09,958 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:26:10,074 - Cross-FedNeuro -   Round 5 Selected: ['S8', 'S16', 'S22', 'S9', 'S15', 'S5', 'S14', 'S12', 'S6', 'S17', 'S21', 'S3', 'S10', 'S23', 'S18', 'S7', 'S25', 'S24', 'S2', 'S19', 'S1', 'S13', 'S11']
+2026-01-17 17:26:42,092 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:26:42,209 - Cross-FedNeuro -   [Fold 5 Round 5] AUC: 0.6739 | ACC: 0.6266 | SEN: 0.6304 | SPE: 0.5760
+2026-01-17 17:26:42,210 - Cross-FedNeuro -   Round 6 Selected: ['S25', 'S8', 'S13', 'S22', 'S17', 'S24', 'S14', 'S9', 'S5', 'S21', 'S15', 'S2', 'S3', 'S6', 'S1', 'S11', 'S7', 'S10', 'S12', 'S16', 'S23', 'S18', 'S19']
+2026-01-17 17:27:13,885 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:27:13,999 - Cross-FedNeuro -   Round 7 Selected: ['S22', 'S25', 'S16', 'S2', 'S23', 'S1', 'S10', 'S9', 'S5', 'S24', 'S11', 'S15', 'S17', 'S12', 'S18', 'S6', 'S7', 'S14', 'S19', 'S13', 'S21', 'S8', 'S3']
+2026-01-17 17:27:46,031 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:27:46,145 - Cross-FedNeuro -   Round 8 Selected: ['S6', 'S3', 'S15', 'S12', 'S24', 'S25', 'S18', 'S19', 'S9', 'S5', 'S22', 'S2', 'S11', 'S10', 'S14', 'S7', 'S8', 'S1', 'S16', 'S13', 'S21', 'S17', 'S23']
+2026-01-17 17:28:17,898 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:28:18,013 - Cross-FedNeuro -   Round 9 Selected: ['S12', 'S22', 'S13', 'S18', 'S16', 'S23', 'S3', 'S19', 'S10', 'S25', 'S2', 'S14', 'S15', 'S24', 'S5', 'S17', 'S21', 'S1', 'S7', 'S6', 'S11', 'S9', 'S8']
+2026-01-17 17:28:49,602 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:28:49,714 - Cross-FedNeuro -   Round 10 Selected: ['S25', 'S21', 'S13', 'S22', 'S8', 'S14', 'S15', 'S17', 'S6', 'S7', 'S11', 'S9', 'S23', 'S19', 'S16', 'S18', 'S24', 'S1', 'S12', 'S10', 'S2', 'S3', 'S5']
+2026-01-17 17:29:21,368 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:29:21,474 - Cross-FedNeuro -   [Fold 5 Round 10] AUC: 0.6702 | ACC: 0.6443 | SEN: 0.6617 | SPE: 0.5842
+2026-01-17 17:29:21,474 - Cross-FedNeuro -   Round 11 Selected: ['S25', 'S7', 'S5', 'S24', 'S2', 'S18', 'S22', 'S15', 'S9', 'S13', 'S17', 'S23', 'S14', 'S6', 'S16', 'S11', 'S19', 'S8', 'S3', 'S21', 'S1', 'S12', 'S10']
+2026-01-17 17:29:53,106 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:29:53,222 - Cross-FedNeuro -   Round 12 Selected: ['S18', 'S25', 'S13', 'S6', 'S14', 'S24', 'S3', 'S9', 'S8', 'S10', 'S22', 'S19', 'S23', 'S21', 'S1', 'S5', 'S11', 'S12', 'S16', 'S15', 'S7', 'S2', 'S17']
+2026-01-17 17:30:25,010 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:30:25,117 - Cross-FedNeuro -   Round 13 Selected: ['S19', 'S23', 'S22', 'S1', 'S6', 'S21', 'S24', 'S14', 'S12', 'S5', 'S25', 'S11', 'S10', 'S13', 'S7', 'S9', 'S2', 'S15', 'S18', 'S17', 'S8', 'S3', 'S16']
+2026-01-17 17:30:56,889 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:30:57,006 - Cross-FedNeuro -   Round 14 Selected: ['S13', 'S7', 'S5', 'S2', 'S12', 'S11', 'S21', 'S9', 'S22', 'S18', 'S25', 'S8', 'S24', 'S17', 'S6', 'S3', 'S23', 'S19', 'S10', 'S1', 'S14', 'S16', 'S15']
+2026-01-17 17:31:28,933 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:31:29,052 - Cross-FedNeuro -   Round 15 Selected: ['S1', 'S17', 'S14', 'S12', 'S18', 'S11', 'S2', 'S3', 'S8', 'S15', 'S16', 'S22', 'S24', 'S23', 'S13', 'S6', 'S9', 'S19', 'S21', 'S7', 'S25', 'S10', 'S5']
+2026-01-17 17:32:01,329 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:32:01,443 - Cross-FedNeuro -   [Fold 5 Round 15] AUC: 0.6693 | ACC: 0.6312 | SEN: 0.6287 | SPE: 0.5930
+2026-01-17 17:32:01,443 - Cross-FedNeuro -   Round 16 Selected: ['S11', 'S24', 'S7', 'S13', 'S21', 'S25', 'S15', 'S23', 'S16', 'S14', 'S3', 'S2', 'S5', 'S18', 'S19', 'S17', 'S6', 'S8', 'S12', 'S22', 'S1', 'S9', 'S10']
+2026-01-17 17:32:33,055 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:32:33,175 - Cross-FedNeuro -   Round 17 Selected: ['S7', 'S21', 'S24', 'S17', 'S23', 'S19', 'S6', 'S22', 'S5', 'S16', 'S15', 'S25', 'S14', 'S2', 'S13', 'S12', 'S1', 'S10', 'S9', 'S3', 'S11', 'S18', 'S8']
+2026-01-17 17:33:04,743 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:33:04,852 - Cross-FedNeuro -   Round 18 Selected: ['S25', 'S14', 'S16', 'S17', 'S21', 'S6', 'S3', 'S12', 'S22', 'S13', 'S11', 'S18', 'S5', 'S23', 'S10', 'S2', 'S19', 'S7', 'S1', 'S8', 'S9', 'S15', 'S24']
+2026-01-17 17:33:36,152 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:33:36,267 - Cross-FedNeuro -   Round 19 Selected: ['S13', 'S3', 'S10', 'S16', 'S15', 'S7', 'S9', 'S14', 'S6', 'S24', 'S18', 'S11', 'S12', 'S23', 'S2', 'S22', 'S5', 'S21', 'S19', 'S25', 'S1', 'S17', 'S8']
+2026-01-17 17:34:07,544 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:34:07,656 - Cross-FedNeuro -   Round 20 Selected: ['S25', 'S19', 'S3', 'S24', 'S2', 'S5', 'S9', 'S12', 'S22', 'S7', 'S17', 'S6', 'S21', 'S18', 'S11', 'S1', 'S8', 'S10', 'S13', 'S23', 'S15', 'S16', 'S14']
+2026-01-17 17:34:39,427 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:34:39,545 - Cross-FedNeuro -   [Fold 5 Round 20] AUC: 0.6773 | ACC: 0.6388 | SEN: 0.6483 | SPE: 0.5789
+2026-01-17 17:34:39,546 - Cross-FedNeuro -   Round 21 Selected: ['S25', 'S13', 'S21', 'S5', 'S22', 'S8', 'S2', 'S11', 'S10', 'S18', 'S12', 'S9', 'S14', 'S17', 'S7', 'S1', 'S16', 'S24', 'S19', 'S6', 'S15', 'S23', 'S3']
+2026-01-17 17:35:11,240 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:35:11,362 - Cross-FedNeuro -   Round 22 Selected: ['S18', 'S6', 'S13', 'S16', 'S11', 'S19', 'S12', 'S15', 'S2', 'S17', 'S5', 'S7', 'S3', 'S21', 'S10', 'S22', 'S25', 'S14', 'S8', 'S1', 'S9', 'S24', 'S23']
+2026-01-17 17:35:43,010 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:35:43,117 - Cross-FedNeuro -   Round 23 Selected: ['S21', 'S1', 'S18', 'S25', 'S11', 'S16', 'S9', 'S23', 'S2', 'S12', 'S14', 'S8', 'S5', 'S15', 'S24', 'S19', 'S6', 'S7', 'S13', 'S17', 'S3', 'S10', 'S22']
+2026-01-17 17:36:14,359 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:36:14,469 - Cross-FedNeuro -   Round 24 Selected: ['S22', 'S11', 'S6', 'S15', 'S5', 'S24', 'S2', 'S12', 'S8', 'S7', 'S9', 'S13', 'S1', 'S25', 'S19', 'S23', 'S17', 'S18', 'S21', 'S3', 'S10', 'S14', 'S16']
+2026-01-17 17:36:46,051 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:36:46,164 - Cross-FedNeuro -   Round 25 Selected: ['S2', 'S11', 'S12', 'S23', 'S16', 'S1', 'S18', 'S10', 'S15', 'S5', 'S24', 'S22', 'S14', 'S9', 'S8', 'S13', 'S21', 'S3', 'S6', 'S25', 'S17', 'S19', 'S7']
+2026-01-17 17:37:18,038 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:37:18,143 - Cross-FedNeuro -   [Fold 5 Round 25] AUC: 0.6547 | ACC: 0.6305 | SEN: 0.6390 | SPE: 0.5742
+2026-01-17 17:37:18,143 - Cross-FedNeuro -   Round 26 Selected: ['S21', 'S25', 'S17', 'S22', 'S18', 'S11', 'S16', 'S10', 'S7', 'S8', 'S9', 'S19', 'S1', 'S23', 'S12', 'S14', 'S15', 'S24', 'S5', 'S13', 'S3', 'S2', 'S6']
+2026-01-17 17:37:49,790 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:37:49,899 - Cross-FedNeuro -   Round 27 Selected: ['S12', 'S8', 'S14', 'S10', 'S9', 'S11', 'S21', 'S22', 'S23', 'S13', 'S2', 'S5', 'S3', 'S15', 'S18', 'S25', 'S17', 'S16', 'S6', 'S1', 'S7', 'S24', 'S19']
+2026-01-17 17:38:21,235 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:38:21,347 - Cross-FedNeuro -   Round 28 Selected: ['S8', 'S17', 'S25', 'S21', 'S5', 'S11', 'S24', 'S23', 'S2', 'S15', 'S3', 'S18', 'S1', 'S12', 'S16', 'S19', 'S14', 'S10', 'S6', 'S9', 'S13', 'S22', 'S7']
+2026-01-17 17:38:52,830 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:38:52,942 - Cross-FedNeuro -   Round 29 Selected: ['S11', 'S9', 'S13', 'S3', 'S1', 'S6', 'S18', 'S21', 'S23', 'S7', 'S8', 'S22', 'S16', 'S5', 'S25', 'S15', 'S14', 'S19', 'S24', 'S10', 'S2', 'S12', 'S17']
+2026-01-17 17:39:24,161 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:39:24,280 - Cross-FedNeuro -   Round 30 Selected: ['S24', 'S22', 'S8', 'S9', 'S12', 'S1', 'S14', 'S13', 'S25', 'S16', 'S11', 'S2', 'S17', 'S21', 'S23', 'S7', 'S19', 'S3', 'S10', 'S15', 'S18', 'S6', 'S5']
+2026-01-17 17:39:55,537 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:39:55,654 - Cross-FedNeuro -   [Fold 5 Round 30] AUC: 0.6527 | ACC: 0.6358 | SEN: 0.6291 | SPE: 0.5949
+2026-01-17 17:39:55,654 - Cross-FedNeuro -   Round 31 Selected: ['S9', 'S5', 'S8', 'S25', 'S11', 'S23', 'S24', 'S10', 'S6', 'S21', 'S2', 'S19', 'S18', 'S3', 'S15', 'S16', 'S14', 'S13', 'S12', 'S1', 'S17', 'S22', 'S7']
+2026-01-17 17:40:27,095 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:40:27,210 - Cross-FedNeuro -   Round 32 Selected: ['S19', 'S12', 'S7', 'S22', 'S6', 'S15', 'S9', 'S16', 'S3', 'S25', 'S13', 'S11', 'S14', 'S8', 'S21', 'S23', 'S5', 'S1', 'S24', 'S2', 'S18', 'S10', 'S17']
+2026-01-17 17:40:58,652 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:40:58,762 - Cross-FedNeuro -   Round 33 Selected: ['S9', 'S6', 'S12', 'S14', 'S7', 'S15', 'S22', 'S5', 'S10', 'S25', 'S11', 'S2', 'S1', 'S8', 'S13', 'S21', 'S3', 'S17', 'S16', 'S24', 'S23', 'S18', 'S19']
+2026-01-17 17:41:30,128 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:41:30,241 - Cross-FedNeuro -   Round 34 Selected: ['S17', 'S6', 'S21', 'S12', 'S14', 'S25', 'S24', 'S15', 'S16', 'S22', 'S11', 'S13', 'S23', 'S19', 'S5', 'S9', 'S8', 'S7', 'S10', 'S1', 'S2', 'S3', 'S18']
+2026-01-17 17:42:01,180 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:42:01,297 - Cross-FedNeuro -   Round 35 Selected: ['S11', 'S16', 'S1', 'S17', 'S5', 'S12', 'S6', 'S25', 'S14', 'S18', 'S8', 'S7', 'S9', 'S22', 'S23', 'S15', 'S2', 'S19', 'S13', 'S3', 'S21', 'S10', 'S24']
+2026-01-17 17:42:32,567 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:42:32,676 - Cross-FedNeuro -   [Fold 5 Round 35] AUC: 0.6550 | ACC: 0.6191 | SEN: 0.6261 | SPE: 0.5675
+2026-01-17 17:42:32,676 - Cross-FedNeuro -   Round 36 Selected: ['S18', 'S24', 'S11', 'S12', 'S7', 'S8', 'S10', 'S21', 'S9', 'S6', 'S14', 'S15', 'S5', 'S23', 'S25', 'S19', 'S3', 'S16', 'S1', 'S22', 'S2', 'S17', 'S13']
+2026-01-17 17:43:03,778 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:43:03,888 - Cross-FedNeuro -   Round 37 Selected: ['S12', 'S19', 'S23', 'S14', 'S6', 'S16', 'S5', 'S10', 'S17', 'S2', 'S22', 'S24', 'S13', 'S7', 'S8', 'S9', 'S3', 'S18', 'S11', 'S1', 'S25', 'S21', 'S15']
+2026-01-17 17:43:35,319 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:43:35,442 - Cross-FedNeuro -   Round 38 Selected: ['S14', 'S12', 'S25', 'S19', 'S24', 'S17', 'S23', 'S10', 'S6', 'S8', 'S3', 'S21', 'S16', 'S22', 'S13', 'S1', 'S18', 'S9', 'S15', 'S7', 'S2', 'S11', 'S5']
+2026-01-17 17:44:06,397 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:44:06,513 - Cross-FedNeuro -   Round 39 Selected: ['S3', 'S1', 'S9', 'S14', 'S16', 'S2', 'S8', 'S5', 'S12', 'S7', 'S23', 'S10', 'S22', 'S15', 'S11', 'S19', 'S6', 'S21', 'S17', 'S13', 'S24', 'S18', 'S25']
+2026-01-17 17:44:37,557 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:44:37,657 - Cross-FedNeuro -   Round 40 Selected: ['S3', 'S18', 'S22', 'S13', 'S24', 'S16', 'S17', 'S7', 'S6', 'S23', 'S2', 'S1', 'S21', 'S10', 'S12', 'S15', 'S14', 'S5', 'S11', 'S19', 'S25', 'S9', 'S8']
+2026-01-17 17:45:09,222 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:45:09,328 - Cross-FedNeuro -   [Fold 5 Round 40] AUC: 0.6697 | ACC: 0.6113 | SEN: 0.6037 | SPE: 0.5716
+2026-01-17 17:45:09,329 - Cross-FedNeuro -   Round 41 Selected: ['S10', 'S11', 'S23', 'S14', 'S13', 'S9', 'S22', 'S25', 'S12', 'S15', 'S24', 'S21', 'S2', 'S8', 'S6', 'S17', 'S16', 'S3', 'S19', 'S7', 'S1', 'S18', 'S5']
+2026-01-17 17:45:40,405 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:45:40,513 - Cross-FedNeuro -   Round 42 Selected: ['S13', 'S24', 'S7', 'S12', 'S18', 'S17', 'S2', 'S19', 'S25', 'S3', 'S16', 'S15', 'S14', 'S23', 'S9', 'S5', 'S8', 'S10', 'S21', 'S1', 'S11', 'S6', 'S22']
+2026-01-17 17:46:11,744 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:46:11,850 - Cross-FedNeuro -   Round 43 Selected: ['S3', 'S16', 'S14', 'S8', 'S23', 'S6', 'S13', 'S24', 'S25', 'S11', 'S7', 'S10', 'S15', 'S5', 'S22', 'S1', 'S21', 'S18', 'S17', 'S19', 'S12', 'S2', 'S9']
+2026-01-17 17:46:42,941 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:46:43,070 - Cross-FedNeuro -   Round 44 Selected: ['S21', 'S7', 'S17', 'S14', 'S11', 'S16', 'S2', 'S19', 'S24', 'S15', 'S5', 'S13', 'S8', 'S10', 'S1', 'S3', 'S6', 'S23', 'S25', 'S9', 'S12', 'S18', 'S22']
+2026-01-17 17:47:14,639 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:47:14,742 - Cross-FedNeuro -   Round 45 Selected: ['S9', 'S1', 'S17', 'S25', 'S10', 'S8', 'S24', 'S3', 'S5', 'S19', 'S11', 'S15', 'S14', 'S6', 'S7', 'S18', 'S13', 'S2', 'S21', 'S12', 'S16', 'S23', 'S22']
+2026-01-17 17:47:45,813 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:47:45,922 - Cross-FedNeuro -   [Fold 5 Round 45] AUC: 0.6758 | ACC: 0.6302 | SEN: 0.6350 | SPE: 0.5747
+2026-01-17 17:47:45,922 - Cross-FedNeuro -   Round 46 Selected: ['S23', 'S1', 'S17', 'S15', 'S16', 'S9', 'S10', 'S8', 'S11', 'S12', 'S5', 'S19', 'S14', 'S3', 'S22', 'S18', 'S25', 'S13', 'S7', 'S6', 'S2', 'S21', 'S24']
+2026-01-17 17:48:17,048 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:48:17,151 - Cross-FedNeuro -   Round 47 Selected: ['S17', 'S8', 'S21', 'S7', 'S15', 'S5', 'S14', 'S3', 'S11', 'S22', 'S16', 'S18', 'S9', 'S23', 'S10', 'S13', 'S12', 'S1', 'S19', 'S25', 'S2', 'S6', 'S24']
+2026-01-17 17:48:48,337 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:48:48,444 - Cross-FedNeuro -   Round 48 Selected: ['S2', 'S13', 'S6', 'S16', 'S25', 'S14', 'S24', 'S17', 'S22', 'S23', 'S9', 'S5', 'S19', 'S15', 'S12', 'S8', 'S21', 'S18', 'S1', 'S7', 'S3', 'S11', 'S10']
+2026-01-17 17:49:19,500 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:49:19,602 - Cross-FedNeuro -   Round 49 Selected: ['S23', 'S19', 'S7', 'S24', 'S25', 'S11', 'S2', 'S14', 'S12', 'S13', 'S8', 'S9', 'S17', 'S6', 'S21', 'S1', 'S18', 'S16', 'S15', 'S10', 'S3', 'S5', 'S22']
+2026-01-17 17:49:50,761 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:49:50,868 - Cross-FedNeuro -   Round 50 Selected: ['S19', 'S11', 'S1', 'S13', 'S14', 'S23', 'S7', 'S2', 'S3', 'S8', 'S5', 'S24', 'S18', 'S10', 'S12', 'S17', 'S6', 'S15', 'S22', 'S25', 'S9', 'S21', 'S16']
+2026-01-17 17:50:21,548 - Cross-FedNeuro - GCA Aggregated Clinical Reps from 11 clients.
+2026-01-17 17:50:21,652 - Cross-FedNeuro -   [Fold 5 Round 50] AUC: 0.6723 | ACC: 0.6303 | SEN: 0.6458 | SPE: 0.5689
+2026-01-17 17:50:21,652 - Cross-FedNeuro - Fold 5 Best Result -> AUC: 0.6888, ACC: 0.6367, SEN: 0.6401, SPE: 0.5905
+2026-01-17 17:50:21,652 - Cross-FedNeuro - Extracting features for t-SNE (Last Fold)...
+2026-01-17 17:50:21,714 - Cross-FedNeuro - t-SNE data saved to ./checkpoints\tsne_data.npz
+2026-01-17 17:50:21,715 - Cross-FedNeuro - 
+==================== 5-Fold Cross-Validation Final Results ====================
+2026-01-17 17:50:21,728 - Cross-FedNeuro - Convergence data saved to ./checkpoints\convergence_curve.csv
+2026-01-17 17:50:21,729 - Cross-FedNeuro - AUC: 0.6856 ¡À 0.0179
+2026-01-17 17:50:21,730 - Cross-FedNeuro - ACC: 0.6332 ¡À 0.0100
+2026-01-17 17:50:21,730 - Cross-FedNeuro - SEN: 0.6526 ¡À 0.0125
+2026-01-17 17:50:21,730 - Cross-FedNeuro - SPE: 0.5696 ¡À 0.0313
+2026-01-18 13:36:40,121 - Baseline-Local - Running Baseline Mode: Local with Degraded Settings
+2026-01-18 13:36:40,213 - Baseline-Local - 
+==================== Fold 1 / 5 (Local) ====================
+2026-01-18 13:36:42,433 - Baseline-Local -   Round 1 Selected: ['S2', 'S15', 'S6', 'S12', 'S8', 'S14', 'S11', 'S13', 'S5', 'S19', 'S9', 'S17', 'S10', 'S21', 'S23', 'S22', 'S25', 'S1', 'S3', 'S18', 'S16', 'S7', 'S24']
+2026-01-18 13:36:56,527 - Baseline-Local -   Round 2 Selected: ['S21', 'S23', 'S9', 'S12', 'S1', 'S5', 'S10', 'S2', 'S25', 'S13', 'S3', 'S11', 'S19', 'S24', 'S18', 'S6', 'S15', 'S17', 'S7', 'S22', 'S14', 'S8', 'S16']
+2026-01-18 13:37:09,985 - Baseline-Local -   Round 3 Selected: ['S14', 'S17', 'S10', 'S12', 'S3', 'S9', 'S15', 'S5', 'S18', 'S16', 'S1', 'S2', 'S22', 'S25', 'S6', 'S21', 'S13', 'S23', 'S8', 'S19', 'S24', 'S11', 'S7']
+2026-01-18 13:37:23,494 - Baseline-Local -   Round 4 Selected: ['S21', 'S1', 'S24', 'S3', 'S17', 'S7', 'S8', 'S12', 'S18', 'S22', 'S11', 'S14', 'S15', 'S19', 'S2', 'S10', 'S23', 'S5', 'S13', 'S16', 'S6', 'S25', 'S9']
+2026-01-18 13:37:37,039 - Baseline-Local -   Round 5 Selected: ['S17', 'S9', 'S5', 'S11', 'S24', 'S16', 'S14', 'S21', 'S7', 'S13', 'S2', 'S25', 'S3', 'S1', 'S10', 'S8', 'S12', 'S18', 'S15', 'S19', 'S23', 'S22', 'S6']
+2026-01-18 13:37:50,484 - Baseline-Local -   [Fold 1 R5] AUC: 0.6405
+2026-01-18 13:37:50,484 - Baseline-Local -   Round 6 Selected: ['S25', 'S14', 'S24', 'S19', 'S2', 'S11', 'S1', 'S9', 'S13', 'S16', 'S6', 'S17', 'S15', 'S22', 'S10', 'S12', 'S3', 'S8', 'S5', 'S7', 'S18', 'S23', 'S21']
+2026-01-18 13:38:04,349 - Baseline-Local -   Round 7 Selected: ['S19', 'S5', 'S15', 'S16', 'S22', 'S11', 'S1', 'S25', 'S2', 'S17', 'S6', 'S14', 'S23', 'S12', 'S24', 'S7', 'S21', 'S13', 'S9', 'S3', 'S18', 'S8', 'S10']
+2026-01-18 13:38:18,141 - Baseline-Local -   Round 8 Selected: ['S22', 'S16', 'S14', 'S19', 'S24', 'S3', 'S5', 'S6', 'S21', 'S7', 'S11', 'S13', 'S12', 'S18', 'S2', 'S17', 'S10', 'S25', 'S9', 'S15', 'S8', 'S23', 'S1']

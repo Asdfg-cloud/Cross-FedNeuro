@@ -107,13 +107,14 @@ class ClientTrainer:
                         pub_local_proj = self.model.get_projection(pub_imgs)
 
                         # Intra: 本地影像 <-> 全局影像共识
-                        target_img = g_img_reps[:curr_bs]
-                        loss_intra = self.contrastive_loss(pub_local_proj, target_img)
-                        loss_lcr += loss_intra
+                        if self.ablation.get('use_intra', True):
+                            target_img = g_img_reps[:curr_bs]
+                            loss_intra = self.contrastive_loss(pub_local_proj, target_img)
+                            loss_lcr += loss_intra
 
                         # Inter: 本地影像 <-> 全局临床共识
                         # 单模态客户端在这里通过 global_cli_reps间接学习临床知识
-                        if g_cli_reps is not None:
+                        if self.ablation.get('use_inter', True) and g_cli_reps is not None:
                             target_cli = g_cli_reps[:curr_bs]
                             loss_inter = self.contrastive_loss(pub_local_proj, target_cli)
                             loss_lcr += loss_inter

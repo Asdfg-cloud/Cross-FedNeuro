@@ -169,7 +169,8 @@ def main():
             # 初始化 Trainer
             trainer = ClientTrainer(site_id, model, train_loader, public_loader, cfg, device,
                                     is_multimodal=is_multimodal,
-                                    clinical_model=cli_model)
+                                    clinical_model=cli_model,
+                                    ablation_config={'use_intra': True, 'use_inter': True})
 
             clients.append({
                 'id': site_id,

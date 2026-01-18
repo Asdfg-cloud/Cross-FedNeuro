@@ -9,6 +9,7 @@ import statistics
 from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
+import pandas as pd
 
 from src import (
     RestMetaDataset,
@@ -26,7 +27,7 @@ from src import (
 # ==========================================
 # 核心控制变量: 切换此处以运行不同 Baseline
 # ==========================================
-BASELINE_MODE = 'FedAvg'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx'
+BASELINE_MODE = 'Local'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx'
 
 def fedavg_aggregate(global_model, clients):
     """ FedAvg/FedProx 专用的参数聚合函数 """
@@ -88,6 +89,8 @@ def main():
     n_folds = 5
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=cfg['experiment']['seed'])
     folds_best_results = {'auc': [], 'acc': [], 'sen': [], 'spe': []}
+
+    convergence_records = []
 
     for fold_idx in range(n_folds):
         logger.info(f"\n{'=' * 20} Fold {fold_idx + 1} / {n_folds} ({BASELINE_MODE}) {'=' * 20}")
@@ -215,11 +218,52 @@ def main():
             if (round_idx + 1) % 5 == 0:
                 logger.info(f"  [Fold {fold_idx+1} R{round_idx+1}] AUC: {avg_auc:.4f}")
 
+            convergence_records.append({
+                'fold': fold_idx,
+                'round': round_idx,
+                'avg_auc': avg_auc
+            })
+
         for k in folds_best_results: folds_best_results[k].append(best_metrics[k])
         logger.info(f"Fold {fold_idx+1} Best AUC: {best_metrics['auc']:.4f}")
 
-    # 最终统计
-    logger.info(f"\n{'='*20} Final Results ({BASELINE_MODE}) {'='*20}")
+        # t-SNE 数据提取 (仅在最后一折进行)
+        if fold_idx == n_folds - 1:
+            logger.info(f"Extracting features for t-SNE (Last Fold - {BASELINE_MODE})...")
+            tsne_feats, tsne_labels, tsne_sites = [], [], []
+
+            for c in clients:
+                c['trainer'].model.eval()
+                with torch.no_grad():
+                    for batch_data in c['test_loader']:
+                        if len(batch_data) == 3: imgs, _, labels = batch_data
+                        else: imgs, labels = batch_data
+
+                        imgs = imgs.to(device)
+
+                        # 假设 MDDClassifier 有 get_projection 方法 (与 run_experiment.py 一致)
+                        features = c['trainer'].model.get_projection(imgs)
+
+                        tsne_feats.append(features.cpu().numpy())
+                        tsne_labels.append(labels.cpu().numpy())
+                        tsne_sites.extend([c['id']] * len(labels))
+
+            # 保存 t-SNE 数据，文件名包含 BASELINE_MODE
+            tsne_filename = f'tsne_data_{BASELINE_MODE}.npz'
+            tsne_save_path = os.path.join(cfg['experiment']['save_dir'], tsne_filename)
+            np.savez(tsne_save_path,
+                     features=np.concatenate(tsne_feats),
+                     labels=np.concatenate(tsne_labels),
+                     sites=np.array(tsne_sites))
+            logger.info(f"t-SNE data saved to {tsne_save_path}")
+
+    # ================= 实验结束，输出统计 =================
+    logger.info(f"\n{'='*20} 5-Fold Cross-Validation Final Results ({BASELINE_MODE}) {'='*20}")
+    df_convergence = pd.DataFrame(convergence_records)
+    conv_filename = f'convergence_curve_{BASELINE_MODE}.csv'
+    conv_save_path = os.path.join(cfg['experiment']['save_dir'], conv_filename)
+    df_convergence.to_csv(conv_save_path, index=False)
+    logger.info(f"Convergence data saved to {conv_save_path}")
     for k, v in folds_best_results.items():
         logger.info(f"{k.upper()}: {statistics.mean(v):.4f} ± {statistics.stdev(v) if len(v)>1 else 0.0:.4f}")
 
