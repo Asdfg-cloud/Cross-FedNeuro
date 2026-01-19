@@ -27,7 +27,7 @@ from src import (
 # ==========================================
 # 核心控制变量: 切换此处以运行不同 Baseline
 # ==========================================
-BASELINE_MODE = 'Local'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx'
+BASELINE_MODE = 'Solo'  # 可选: 'Local', 'Solo', 'FedAvg', 'FedProx', 'FedMD'
 
 def fedavg_aggregate(global_model, clients):
     """ FedAvg/FedProx 专用的参数聚合函数 """
@@ -67,7 +67,13 @@ def get_client_site_ids(data_root, public_site_id):
 def main():
     cfg = load_config('config.yaml')
     cfg['federated']['multimodal_ratio'] = 0.0
-    original_epochs = cfg['train']['local_epochs']
+    cfg['train']['local_epochs'] = 20
+    print(f"[{BASELINE_MODE}] Undertraining (local_epochs=1)")
+    cfg['train']['optimizer'] = 'sgd'
+    print(f"[{BASELINE_MODE}] Switched Optimizer to SGD")
+
+    # 初始化全局 Logits 容器
+    global_logits = None
 
     seed_everything(cfg['experiment']['seed'])
     device = torch.device(cfg['experiment']['device'])
@@ -106,7 +112,7 @@ def main():
                 feature_dim=cfg['model']['feature_dim']
             )
             global_model_avg = MDDClassifier(g_backbone, hidden_dim=256).to(device)
-            print(f"[{BASELINE_MODE}] Strategy 2 Applied: Using BrainTransformer Backbone")
+            print(f"[{BASELINE_MODE}] Using BrainTransformer Backbone")
 
         # --- B. 初始化客户端 ---
         clients = []
@@ -160,13 +166,17 @@ def main():
                 for c in selected_clients:
                     c['trainer'].model.load_state_dict(global_params)
 
+            if BASELINE_MODE == 'FedMD' and global_logits is not None:
+                for c in selected_clients:
+                    c['trainer'].fedmd_distill(global_logits)
+
             # 3. 客户端训练
             client_uploads = []
             for c in selected_clients:
                 loss = c['trainer'].train_epoch(
                     global_reps=g_reps,
                     global_model_params=global_params if BASELINE_MODE == 'FedProx' else None,
-                    mu=0.01 if BASELINE_MODE == 'FedProx' else 0.0
+                    mu=1 if BASELINE_MODE == 'FedProx' else 0.0
                 )
 
                 if BASELINE_MODE == 'Solo':

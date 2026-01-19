@@ -9,14 +9,14 @@ data:
   public_site: "S20"   # 公共数据集
   roi_count: 116            # AAL116 图谱
   clinical_dim: 4          # [Age, Sex, HAMD, HAMA]
-  batch_size: 16
+  batch_size: 8
   num_workers: 4
   raw_excel_path: "./data/REST-meta-MDD-PhenotypicData_WithHAMDSubItem_V4.xlsx"
   processed_root: "./data/Rest-meta-MDD"
 
 federated:
   n_rounds: 50
-  n_clients: 25             # 参与训练的站点数量
+  n_clients: 24             # 参与训练的站点数量
   client_sample_rate: 1.0  # 每轮参与的客户端比例
   multimodal_ratio: 0.5  # 50% 的站点拥有临床数据，另外 50% 只有影像
 

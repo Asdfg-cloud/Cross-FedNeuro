@@ -25,9 +25,17 @@ class ClientTrainer:
         else:
             params = self.model.parameters()
 
-        self.optimizer = torch.optim.Adam(params,
-                                          lr=config['train']['lr'],
-                                          weight_decay=config['train']['weight_decay'])
+        optim_name = config['train'].get('optimizer', 'adam').lower()
+
+        if optim_name == 'sgd':
+            self.optimizer = torch.optim.SGD(params,
+                                             lr=config['train']['lr'],
+                                             weight_decay=config['train']['weight_decay'],
+                                             momentum=0.9)
+        else:
+            self.optimizer = torch.optim.Adam(params,
+                                              lr=config['train']['lr'],
+                                              weight_decay=config['train']['weight_decay'])
         self.criterion_ce = nn.CrossEntropyLoss()
         self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=config['train'].get('step_size', 50), gamma=0.9)
 
@@ -162,3 +170,48 @@ class ClientTrainer:
             'img_reps': torch.cat(img_reps, dim=0).cpu(),
             'cli_reps': torch.cat(cli_reps, dim=0).cpu() if self.is_multimodal else None
         }
+
+    def fedmd_distill(self, global_logits):
+        """ [最简FedMD] 使用全局 Logits 在公共数据上进行蒸馏 """
+        self.model.train()
+        criterion = nn.KLDivLoss(reduction='batchmean')
+
+        # 简单将 global_logits 包装为迭代器 (假设与 public_loader 顺序一致)
+        # 注意：这里假设 global_logits 在 CPU，训练时按需转 GPU
+        start_idx = 0
+
+        # 仅跑 1 个 epoch 的蒸馏即可
+        for batch_data in self.public_loader:
+            # 1. 获取公共图片
+            if len(batch_data) == 3: imgs, _, _ = batch_data
+            else: imgs, _ = batch_data
+            imgs = imgs.to(self.device)
+
+            # 2. 获取对应的 Teacher Logits
+            batch_size = imgs.size(0)
+            end_idx = start_idx + batch_size
+            teacher_logits = global_logits[start_idx:end_idx].to(self.device)
+            start_idx = end_idx
+
+            # 3. 蒸馏更新
+            student_logits = self.model(imgs)
+            # KL散度: LogSoftmax(Student) vs Softmax(Teacher)
+            loss = criterion(torch.log_softmax(student_logits, dim=1),
+                             torch.softmax(teacher_logits, dim=1))
+
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
+
+    def get_public_logits(self):
+        """ [最简FedMD] 获取公共数据上的 Logits 用于上传 """
+        self.model.eval()
+        logits_list = []
+        with torch.no_grad():
+            for batch_data in self.public_loader:
+                if len(batch_data) == 3: imgs, _, _ = batch_data
+                else: imgs, _ = batch_data
+
+                # 预测并转回 CPU 节省显存
+                logits_list.append(self.model(imgs.to(self.device)).cpu())
+        return torch.cat(logits_list, dim=0)
